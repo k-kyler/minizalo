@@ -1,0 +1,76 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem 0 1rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  flex: 0.2;
+}
+
+.navbar__logo > img {
+  height: 3.25rem;
+  margin-right: 0.5rem;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  flex: 0.6;
+}
+
+.navbar__link {
+  padding: 0.5rem 2rem;
+  margin: 0 0.25rem;
+}
+
+.navbar__link > .MuiSvgIcon-root {
+  font-size: 1.75rem;
+}
+
+.navbar__link:hover {
+  background-color: #f1f2f5;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+.navbar__link:not(:hover) {
+  transition: all 0.2s ease;
+}
+
+.navbar__link--active {
+  color: blue;
+  border-bottom: 0.25rem solid blue;
+}
+
+.navbar__link--active:hover {
+  border-radius: 0;
+  background: none;
+}
+
+.navbar__userSetting {
+  flex: 0.2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar__userInfo {
+  display: flex;
+  align-items: center;
+  background-color: #f1f2f5;
+  border-radius: 1.25rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
