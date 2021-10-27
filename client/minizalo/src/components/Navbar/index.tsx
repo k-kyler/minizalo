@@ -14,6 +14,7 @@ import { Link, NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import SearchIcon from "@mui/icons-material/Search";
 import ForumIcon from "@mui/icons-material/Forum";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -27,6 +28,11 @@ export const Navbar: FC = () => {
       name: "Home",
       Icon: <HomeIcon />,
       pathname: "/",
+    },
+    {
+      name: "Search",
+      Icon: <SearchIcon />,
+      pathname: "/search",
     },
     {
       name: "Chat",

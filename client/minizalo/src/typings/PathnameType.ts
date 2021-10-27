@@ -1,1 +1,6 @@
-export type PathnameType = "/" | "/chat" | "/friends" | "/notifications";
+export type PathnameType =
+  | "/"
+  | "/chat"
+  | "/friends"
+  | "/notifications"
+  | "/search";

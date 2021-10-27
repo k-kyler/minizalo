@@ -1,0 +1,22 @@
+.roomList {
+  display: flex;
+  flex-direction: column;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: lightgrey;
+  height: 100%;
+}
+
+.roomList__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.25rem 0.5rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.roomList__rooms {
+  display: flex;
+  flex-direction: column;
+}
