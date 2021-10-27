@@ -10,7 +10,7 @@ import {
   Divider,
   ListItemIcon,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -18,13 +18,10 @@ import ForumIcon from "@mui/icons-material/Forum";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { PathnameType } from "../../typings/PathnameType";
 import { NavbarLinkType } from "../../typings/NavbarLinkType";
 
 export const Navbar: FC = () => {
   // Navbar link setup
-  const [selectedPage, setSelectedPage] = useState<PathnameType>("/");
-
   const navbarLinkList: NavbarLinkType[] = [
     {
       name: "Home",
@@ -47,10 +44,6 @@ export const Navbar: FC = () => {
       pathname: "/friends",
     },
   ];
-
-  const switchPageHandler = (pathname: PathnameType) => {
-    setSelectedPage(pathname);
-  };
   // End of navbar link setup
 
   // User setting menu setup
@@ -79,18 +72,14 @@ export const Navbar: FC = () => {
       <ul className="navbar__links">
         {navbarLinkList.map((link, index) => (
           <Tooltip title={link.name} key={index}>
-            <Link
+            <NavLink
+              exact
               to={link.pathname}
-              onClick={() => switchPageHandler(link.pathname)}
+              className="navbar__link"
+              activeClassName="navbar__link--active"
             >
-              <li
-                className={`navbar__link ${
-                  selectedPage === link.pathname && "navbar__link--active"
-                }`}
-              >
-                {link.Icon}
-              </li>
-            </Link>
+              <li>{link.Icon}</li>
+            </NavLink>
           </Tooltip>
         ))}
       </ul>

@@ -34,31 +34,31 @@
   color: #65676b;
 }
 
-.navbar__link {
+.navbar__link > li {
   padding: 0.5rem 2rem;
   margin: 0 0.25rem;
 }
 
-.navbar__link > .MuiSvgIcon-root {
+.navbar__link .MuiSvgIcon-root {
   font-size: 1.75rem;
 }
 
-.navbar__link:hover {
+.navbar__link > li:hover {
   background-color: #f1f2f5;
   transition: all 0.3s ease;
   border-radius: 0.5rem;
 }
 
-.navbar__link:not(:hover) {
+.navbar__link > li:not(:hover) {
   transition: all 0.2s ease;
 }
 
-.navbar__link--active {
+.navbar__link--active > li {
   color: blue;
   border-bottom: 0.25rem solid blue;
 }
 
-.navbar__link--active:hover {
+.navbar__link--active > li:hover {
   border-radius: 0;
   background: none;
 }
