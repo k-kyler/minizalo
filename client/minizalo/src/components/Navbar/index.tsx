@@ -18,19 +18,54 @@ import ForumIcon from "@mui/icons-material/Forum";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { PathnameType } from "../../typings/PathnameType";
+import { NavbarLinkType } from "../../typings/NavbarLinkType";
 
 export const Navbar: FC = () => {
+  // Navbar link setup
+  const [selectedPage, setSelectedPage] = useState<PathnameType>("/");
+
+  const navbarLinkList: NavbarLinkType[] = [
+    {
+      name: "Home",
+      Icon: <HomeIcon />,
+      pathname: "/",
+    },
+    {
+      name: "Chat",
+      Icon: <ForumIcon />,
+      pathname: "/chat",
+    },
+    {
+      name: "Notifications",
+      Icon: <NotificationsIcon />,
+      pathname: "/notifications",
+    },
+    {
+      name: "Friends",
+      Icon: <PeopleAltIcon />,
+      pathname: "/friends",
+    },
+  ];
+
+  const switchPageHandler = (pathname: PathnameType) => {
+    setSelectedPage(pathname);
+  };
+  // End of navbar link setup
+
+  // User setting menu setup
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
 
-  const openUserSettingMenu = (event: MouseEvent<HTMLDivElement>) => {
+  const openUserSettingMenuHandler = (event: MouseEvent<HTMLDivElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const closeUserSettingMenu = () => {
+  const closeUserSettingMenuHandler = () => {
     setAnchorEl(null);
   };
+  // End of user setting menu setup
 
   return (
     <div className="navbar">
@@ -42,29 +77,22 @@ export const Navbar: FC = () => {
 
       {/* Links */}
       <ul className="navbar__links">
-        <Tooltip title="Home">
-          <li className="navbar__link navbar__link--active">
-            <HomeIcon />
-          </li>
-        </Tooltip>
-
-        <Tooltip title="Chat">
-          <li className="navbar__link">
-            <ForumIcon />
-          </li>
-        </Tooltip>
-
-        <Tooltip title="Notifications">
-          <li className="navbar__link">
-            <NotificationsIcon />
-          </li>
-        </Tooltip>
-
-        <Tooltip title="Friends">
-          <li className="navbar__link">
-            <PeopleAltIcon />
-          </li>
-        </Tooltip>
+        {navbarLinkList.map((link, index) => (
+          <Tooltip title={link.name} key={index}>
+            <Link
+              to={link.pathname}
+              onClick={() => switchPageHandler(link.pathname)}
+            >
+              <li
+                className={`navbar__link ${
+                  selectedPage === link.pathname && "navbar__link--active"
+                }`}
+              >
+                {link.Icon}
+              </li>
+            </Link>
+          </Tooltip>
+        ))}
       </ul>
 
       {/* User setting */}
@@ -74,7 +102,7 @@ export const Navbar: FC = () => {
             className="navbar__userInfo"
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
-            onClick={openUserSettingMenu}
+            onClick={openUserSettingMenuHandler}
           >
             <Avatar
               sx={{ width: "2rem", height: "2rem", marginRight: "0.5rem" }}
@@ -90,7 +118,7 @@ export const Navbar: FC = () => {
       <Menu
         anchorEl={anchorEl}
         open={open}
-        onClose={closeUserSettingMenu}
+        onClose={closeUserSettingMenuHandler}
         className="navbar__userSettingMenu"
         PaperProps={{
           elevation: 0,
@@ -121,20 +149,20 @@ export const Navbar: FC = () => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
       >
-        <MenuItem onClick={closeUserSettingMenu}>
+        <MenuItem onClick={closeUserSettingMenuHandler}>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
           Profile
         </MenuItem>
-        <MenuItem onClick={closeUserSettingMenu}>
+        <MenuItem onClick={closeUserSettingMenuHandler}>
           <ListItemIcon>
             <Brightness7Icon />
           </ListItemIcon>
           Light theme
         </MenuItem>
         <Divider />
-        <MenuItem onClick={closeUserSettingMenu}>
+        <MenuItem onClick={closeUserSettingMenuHandler}>
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>
