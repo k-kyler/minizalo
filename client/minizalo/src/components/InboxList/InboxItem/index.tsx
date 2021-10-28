@@ -1,34 +1,36 @@
 import { Avatar, Typography } from "@mui/material";
 import { FC } from "react";
-import { RoomItemType } from "../../../typings/RoomItemType";
-import "./RoomItem.css";
+import { InboxItemType } from "../../../typings/InboxItemType";
+import "./InboxItem.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-interface IRoomItem extends RoomItemType {
-  selectedRoomId: string;
+interface IInboxItem extends InboxItemType {
+  selectedInboxId: string;
   clickHandler: () => void;
 }
 
-export const RoomItem: FC<IRoomItem> = ({
+export const InboxItem: FC<IInboxItem> = ({
   id,
   name,
   background,
   messages,
   createdAt,
-  selectedRoomId,
+  selectedInboxId,
   clickHandler,
 }) => {
   return (
     <div
-      className={`roomItem ${selectedRoomId === id ? "roomItem--active" : ""}`}
+      className={`inboxItem ${
+        selectedInboxId === id ? "inboxItem--active" : ""
+      }`}
       onClick={clickHandler}
     >
-      <div className="roomItem__group">
+      <div className="inboxItem__group">
         {/* Background */}
         <Avatar alt={name} src={background} />
 
         {/* Information */}
-        <div className="roomItem__info">
+        <div className="inboxItem__info">
           <Typography variant="body1">{name}</Typography>
 
           {/* View last message */}
@@ -56,7 +58,7 @@ export const RoomItem: FC<IRoomItem> = ({
       </div>
 
       {/* Room setting */}
-      <MoreHorizIcon className="roomItem__setting" color="disabled" />
+      <MoreHorizIcon className="inboxItem__setting" color="disabled" />
     </div>
   );
 };
