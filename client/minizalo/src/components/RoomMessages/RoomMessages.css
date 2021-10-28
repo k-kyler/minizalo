@@ -1,0 +1,33 @@
+.roomMessages {
+  display: flex;
+  flex-direction: column;
+}
+
+.roomMessages__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.25rem 0.5rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.roomMessages__headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.roomMessages__info {
+  margin-left: 0.75rem !important;
+}
+
+.roomMessages__info > h6 {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  max-width: 20em;
+}
+
+.roomMessages__messages {
+  list-style: none;
+}

@@ -3,8 +3,9 @@
   flex-direction: column;
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: lightgrey;
+  border-right-color: rgb(216, 216, 216);
   height: 100%;
+  user-select: none;
 }
 
 .roomList__header {
@@ -19,4 +20,25 @@
 .roomList__rooms {
   display: flex;
   flex-direction: column;
+}
+
+.roomList__filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.roomList__filter > p {
+  cursor: pointer;
+}
+
+.roomList__filterOptions {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.roomList__filterOptions > p {
+  font-weight: 600;
 }

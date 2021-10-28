@@ -56,8 +56,8 @@
 }
 
 .navbar__link--active > li {
-  color: blue;
-  border-bottom: 0.25rem solid blue;
+  color: #0b81ff;
+  border-bottom: 0.25rem solid #0b81ff;
 }
 
 .navbar__link--active > li:hover {

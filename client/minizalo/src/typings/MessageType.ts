@@ -1,5 +1,6 @@
 export type MessageType = {
   id: string;
+  uid: string;
   username: string;
   avatar: string;
   createdAt: string;
