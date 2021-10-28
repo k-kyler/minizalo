@@ -32,13 +32,18 @@ export const InboxMessages: FC<IInboxMessages> = ({
 
             <div className="inboxMessages__info">
               <Typography variant="h6">{selectedInbox.name}</Typography>
-              <Typography variant="caption">
-                <PersonOutlineIcon
-                  fontSize="small"
-                  sx={{ marginRight: "0.25rem" }}
-                />
-                {selectedInbox.memberIds.length} Members
-              </Typography>
+
+              {selectedInbox.type === "group" ? (
+                <Typography variant="caption">
+                  <PersonOutlineIcon
+                    fontSize="small"
+                    sx={{ marginRight: "0.25rem" }}
+                  />
+                  {selectedInbox.memberIds.length} Members
+                </Typography>
+              ) : (
+                <Typography variant="caption">Direct message</Typography>
+              )}
             </div>
           </div>
         </Tooltip>
