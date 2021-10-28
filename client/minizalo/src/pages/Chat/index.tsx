@@ -1,26 +1,28 @@
 import { Grid, Container } from "@mui/material";
 import { FC, useState } from "react";
-import { RoomList } from "../../components/RoomList";
-import { RoomMessages } from "../../components/RoomMessages";
-import { RoomItemType } from "../../typings/RoomItemType";
+import { InboxList } from "../../components/InboxList";
+import { InboxMessages } from "../../components/InboxMessages";
+import { InboxItemType } from "../../typings/InboxItemType";
 import "./Chat.css";
 
 export const Chat: FC = () => {
-  // Test data (need to be sorted by newest joined room)
-  const roomItems: RoomItemType[] = [
+  // Test data (need to be sorted by latest inboxes)
+  const inboxItems: InboxItemType[] = [
     {
       id: "1",
       name: "kkyler and his friends",
       background: "",
       createdAt: "Wed Oct 27, 10:02 PM",
+      type: "group",
+      memberIds: ["user1", "user2", "user3"],
       messages: [
         {
           id: "1",
           uid: "user1",
           username: "kkyler",
-          avatar: "",
+          avatar: "https://avatars.githubusercontent.com/u/66368949?v=4",
           createdAt: "Wed Oct 27, 10:03 PM",
-          text: "Hello my friends",
+          text: "Hello my friends, bla bla bla bla bla bla bla bla bla bla bla",
           type: "text",
         },
         {
@@ -45,31 +47,45 @@ export const Chat: FC = () => {
     },
     {
       id: "2",
-      name: "KKL Team",
+      name: "Lung Yu",
       background: "",
-      createdAt: "Wed Oct 27, 8:42 PM",
+      createdAt: "Wed Oct 26, 8:21 PM",
       messages: [],
+      memberIds: ["user1", "user2"],
+      type: "personal",
+    },
+    {
+      id: "3",
+      name: "Kent",
+      background: "",
+      createdAt: "Wed Oct 26, 8:12 PM",
+      messages: [],
+      memberIds: ["user1", "user3"],
+      type: "personal",
     },
   ];
   // End of test data
 
-  const [selectedRoomId, setSelectedRoomId] = useState(roomItems[0].id);
+  const [selectedInboxId, setSelectedInboxId] = useState(inboxItems[0].id);
 
   return (
     <Container className="chat">
       <Grid container sx={{ height: "100%" }}>
-        {/* Room list */}
+        {/* Inbox list */}
         <Grid item md={3}>
-          <RoomList
-            selectedRoomId={selectedRoomId}
-            setSelectedRoomId={setSelectedRoomId}
-            roomItems={roomItems}
+          <InboxList
+            selectedInboxId={selectedInboxId}
+            setSelectedInboxId={setSelectedInboxId}
+            inboxItems={inboxItems}
           />
         </Grid>
 
-        {/* Room messages */}
+        {/* Inbox messages */}
         <Grid item md={9}>
-          <RoomMessages selectedRoomId={selectedRoomId} roomItems={roomItems} />
+          <InboxMessages
+            selectedInboxId={selectedInboxId}
+            inboxItems={inboxItems}
+          />
         </Grid>
       </Grid>
     </Container>

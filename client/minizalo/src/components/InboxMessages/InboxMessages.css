@@ -1,9 +1,9 @@
-.roomMessages {
+.inboxMessages {
   display: flex;
   flex-direction: column;
 }
 
-.roomMessages__header {
+.inboxMessages__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,22 +12,31 @@
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
-.roomMessages__headerLeft {
+.inboxMessages__headerLeft {
   display: flex;
   align-items: center;
 }
 
-.roomMessages__info {
+.inboxMessages__info {
   margin-left: 0.75rem !important;
+  display: flex;
+  flex-direction: column;
 }
 
-.roomMessages__info > h6 {
+.inboxMessages__info > h6 {
   text-overflow: ellipsis;
   overflow-x: hidden;
   white-space: nowrap;
   max-width: 20em;
 }
 
-.roomMessages__messages {
+.inboxMessages__info > span {
+  display: flex;
+  align-items: center;
+}
+
+.inboxMessages__messages {
   list-style: none;
+  padding: 1.25rem 1rem 1rem 1rem;
+  flex: 1;
 }

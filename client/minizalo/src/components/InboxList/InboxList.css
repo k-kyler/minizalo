@@ -1,44 +1,38 @@
-.roomList {
+.inboxList {
   display: flex;
   flex-direction: column;
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: rgb(216, 216, 216);
+  border-right-color: rgba(0, 0, 0, 0.1);
   height: 100%;
   user-select: none;
 }
 
-.roomList__header {
+.inboxList__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.25rem 0.5rem 1rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  padding: 0.875rem 0.25rem 0.875rem 1rem;
 }
 
-.roomList__rooms {
+.inboxList__inboxes {
   display: flex;
   flex-direction: column;
 }
 
-.roomList__filter {
+.inboxList__filter {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
 }
 
-.roomList__filter > p {
+.inboxList__filter > p {
   cursor: pointer;
 }
 
-.roomList__filterOptions {
+.inboxList__filterOptions {
   display: flex;
   align-items: center;
   cursor: pointer;
-}
-
-.roomList__filterOptions > p {
-  font-weight: 600;
 }
