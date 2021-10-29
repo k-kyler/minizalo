@@ -18,6 +18,13 @@
 .inboxList__inboxes {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  height: 25rem;
+  scroll-behavior: smooth;
+}
+
+.inboxList__inboxes::-webkit-scrollbar {
+  width: 0rem;
 }
 
 .inboxList__filter {

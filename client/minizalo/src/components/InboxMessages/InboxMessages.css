@@ -39,6 +39,39 @@
 
 .inboxMessages__messages {
   list-style: none;
-  padding: 1.25rem 1rem 1rem 1rem;
-  flex: 1;
+  padding: 1.25rem 0.5rem 1rem 1rem;
+  overflow-y: auto;
+  height: 22.75rem;
+  scroll-behavior: smooth;
+
+  /* Config for hiding scrollbar */
+  mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 0.5rem, black 0.5rem);
+  mask-size: 100% 1000rem;
+  mask-position: left bottom;
+
+  -webkit-mask-image: linear-gradient(to top, transparent, black),
+    linear-gradient(to left, transparent 0.5rem, black 0.5rem);
+  -webkit-mask-size: 100% 1000rem;
+  -webkit-mask-position: left bottom;
+
+  transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+  /* End of config for hiding scrollbar */
+}
+
+.inboxMessages__messages:hover {
+  -webkit-mask-position: left top;
+}
+
+.inboxMessages__messages::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.inboxMessages__messages::-webkit-scrollbar-track {
+  background: #f1f2f5;
+}
+
+.inboxMessages__messages::-webkit-scrollbar-thumb {
+  background: lightgrey;
+  border-radius: 0.5rem;
 }
