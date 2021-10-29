@@ -37,9 +37,7 @@ export const InboxList: FC<IInboxList> = ({
           <KeyboardArrowDownIcon />
         </div>
 
-        <Typography variant="body2" sx={{ color: "#0b81ff" }}>
-          Mark all as read
-        </Typography>
+        <Typography variant="body2">Mark all as read</Typography>
       </div>
 
       {/* Inboxes */}

@@ -31,6 +31,10 @@
   cursor: pointer;
 }
 
+.inboxList__filter > p:last-child {
+  color: #0b81ff;
+}
+
 .inboxList__filterOptions {
   display: flex;
   align-items: center;

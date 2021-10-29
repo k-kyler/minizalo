@@ -1,6 +1,7 @@
 .inboxMessages {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .inboxMessages__header {
@@ -10,6 +11,7 @@
   padding: 0.5rem 0.25rem 0.5rem 1rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  user-select: none;
 }
 
 .inboxMessages__headerLeft {

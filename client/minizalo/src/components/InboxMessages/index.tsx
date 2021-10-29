@@ -7,7 +7,7 @@ import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { InboxItemType } from "../../typings/InboxItemType";
 import { Message } from "./Message";
-import { ChatInput } from "../ChatInput";
+import { ChatInput } from "./ChatInput";
 
 interface IInboxMessages {
   selectedInboxId: string;
@@ -49,21 +49,23 @@ export const InboxMessages: FC<IInboxMessages> = ({
         </Tooltip>
 
         <div className="inboxMessages__headerRight">
-          <Tooltip title="Invite member">
+          {selectedInbox.type === "group" ? (
+            <Tooltip title="Invite member">
+              <IconButton>
+                <GroupAddIcon />
+              </IconButton>
+            </Tooltip>
+          ) : null}
+
+          <Tooltip title="View media & files">
             <IconButton>
-              <GroupAddIcon />
+              <BarChartIcon />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Search messages">
             <IconButton>
               <ManageSearchIcon />
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="View media & files">
-            <IconButton>
-              <BarChartIcon />
             </IconButton>
           </Tooltip>
         </div>
@@ -77,7 +79,10 @@ export const InboxMessages: FC<IInboxMessages> = ({
       </ul>
 
       {/* Chat input */}
-      <ChatInput />
+      <ChatInput
+        selectedInboxId={selectedInbox.id}
+        selectedInboxType={selectedInbox.type}
+      />
     </div>
   );
 };
