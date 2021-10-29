@@ -44,7 +44,7 @@ export const ChatInput: FC<IChatInput> = ({
   };
 
   const sendMessageHandler = () => {
-    // Check and collect input data, then send it
+    // Check and collect input data, then send it. Finally, scroll to bottom
   };
 
   const enterToSendMessageHandler = (
