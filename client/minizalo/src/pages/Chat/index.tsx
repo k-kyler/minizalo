@@ -6,7 +6,7 @@ import { InboxItemType } from "../../typings/InboxItemType";
 import "./Chat.css";
 
 export const Chat: FC = () => {
-  // Test data (need to be sorted by latest inboxes)
+  // Test data (need to be sorted by latest inboxes and messages)
   const inboxItems: InboxItemType[] = [
     {
       id: "1",

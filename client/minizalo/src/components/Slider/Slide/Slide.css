@@ -1,0 +1,16 @@
+.slide {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide__image {
+  width: 27rem;
+  height: 27rem;
+}
+
+.slide__info {
+  text-align: center;
+}

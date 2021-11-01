@@ -1,0 +1,36 @@
+.slider {
+  position: relative;
+  width: 100%;
+}
+
+.slider__leftArrow,
+.slider__rightArrow {
+  position: absolute;
+  cursor: pointer;
+  top: 40%;
+  padding: 1rem;
+}
+
+.slider__leftArrow {
+  left: 0;
+}
+
+.slider__rightArrow {
+  right: 0;
+}
+
+.slider__leftArrow > svg,
+.slider__rightArrow > svg {
+  font-size: 3rem;
+}
+
+.slider__leftArrow:hover svg,
+.slider__rightArrow:hover svg {
+  color: #0b81ff;
+  transition: all 0.3s ease;
+}
+
+.slider__leftArrow:not(:hover) svg,
+.slider__rightArrow:not(:hover) svg {
+  transition: all 0.3s ease;
+}
