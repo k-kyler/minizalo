@@ -39,7 +39,7 @@
 
 .inboxMessages__messages {
   list-style: none;
-  padding: 1.25rem 0.5rem 1rem 1rem;
+  padding: 1.25rem 0.5rem 0.25rem 1rem;
   overflow-y: auto;
   height: 22.75rem;
   scroll-behavior: smooth;

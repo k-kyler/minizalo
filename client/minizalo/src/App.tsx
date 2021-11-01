@@ -6,32 +6,46 @@ import { Home } from "./pages/Home";
 import { Notifications } from "./pages/Notifications";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
+import { SignIn } from "./pages/SignIn";
+import { SignUp } from "./pages/SignUp";
 
 function App() {
   return (
     <div className="app">
       <Router>
-        {/* Navbar */}
-        <Navbar />
-
-        {/* Page */}
+        {/* Pages */}
         <Switch>
           <Route exact path="/chat">
+            <Navbar />
             <Chat />
           </Route>
 
           <Route exact path="/friends">
+            <Navbar />
             <Friends />
           </Route>
 
-          <Route exact path="/search"></Route>
+          <Route exact path="/search">
+            <Navbar />
+            {/* Search component here... */}
+          </Route>
 
           <Route exact path="/notifications">
+            <Navbar />
             <Notifications />
           </Route>
 
-          <Route exact path="/">
+          <Route exact path="/home">
+            <Navbar />
             <Home />
+          </Route>
+
+          <Route exact path="/signin">
+            <SignIn />
+          </Route>
+
+          <Route exact path="/">
+            <SignUp />
           </Route>
         </Switch>
 
