@@ -1,1 +1,17 @@
-/* Code here... */
+.signin {padding: 50px;background-color: #fff;width: 100%;max-width: 600px;box-sizing: border-box;border-radius: 20px;align-items: center;justify-content: center;}
+.signin-heading {font-size: 40px;font-weight: bold;color: #373941;text-align: center;margin-bottom: 35px}
+.signin-field {position: relative;}
+.signin-input {border: 1px solid #eee;border-radius: 4px;width: 96%;height: 50px;padding-left: 20px;}
+.signin-input:focus { border-color: #6a5af9; }
+.signin-label {position: absolute;transform: translateY(-50%);left: 21px;user-select: none;color: #999;pointer-events: none;transition: 0.25s ease;}
+.signup-submit {color: white;font-size: 18px;text-align: center;border: 0;width: 100%;border-radius: 10px;cursor: pointer;font-weight: 600;margin: 25px 0px;}
+.signin-now{color: red;text-decoration: none;font-weight: bold;}
+
+#name-label {top: 23px;}
+#name:not(:placeholder-shown) + #name-label, #name:focus + #name-label {top: 0;left: 11px;padding: 0 10px;display: inline-block;background-color: white;color: #6a5af9;}
+#pass-label {top: 103px;}
+#pass:not(:placeholder-shown) + #pass-label, #pass:focus + #pass-label {top: 80px;left: 11px;padding: 0 10px;display: inline-block;background-color: white;color: #6a5af9;}
+
+
+
+

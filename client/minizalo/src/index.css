@@ -11,3 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f1f2f5;
 }
+
+.txt-center{text-align:center;}
+.space{margin: 30px;}
+.box{width: 100%;min-height: 80vh;background-color: #f2f3f5;display: flex;align-items: center;justify-content: center;}
