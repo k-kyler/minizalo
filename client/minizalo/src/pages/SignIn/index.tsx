@@ -6,49 +6,47 @@ export const SignIn: FC = () => {
   return (
     <div className="box">
       <div className="signin">
-        <h1 className="signin-heading">SIGN IN</h1>
-        <div className="signin-field">
-          <form action="/signin" className="signin-form">
+        <h1 className="signin__heading">SIGN IN</h1>
+        <div className="signin__field">
+          <form action="/signin" className="signin__form">
             <input
               type="text"
-              id="name"
-              className="signin-input"
+              className="signin__input name__input"
               placeholder=" "
               required
             />
-            <label htmlFor="name" id="name-label" className="signin-label">
+            <label htmlFor="name" id="" className="signin__label name__label">
               Username
             </label>
-            <p className="space"></p>
+            <Box sx={{ height: 25 }} />
             <input
               type="password"
-              id="pass"
-              className="signin-input"
+              className="signin__input pass__input"
               placeholder=" "
               required
             />
-            <label htmlFor="pass" id="pass-label" className="signin-label">
+            <label htmlFor="pass" id="" className="signin__label pass__label">
               Password
             </label>
             <Box sx={{ height: 25 }} />
             <Button
               type="submit"
               variant="contained"
-              className="signup-submit"
-              color="success"
+              className="signin__submit"
+              style={{backgroundColor: '#6F28F9', color: '#FFFFFF'}}
             >
               SIGN IN
             </Button>
           </form>
         </div>
-        <div className="txt-center">
+        <div className="text__center">
           <Box sx={{ height: 15 }} />
-          <Button href="/" variant="outlined" className="signup-submit">
+          <Button href="/" variant="outlined" className="signin__submit" style={{backgroundColor: '#999999', color: '#FFFFFF'}}>
             BACK
           </Button>
           <Box sx={{ height: 15 }} />
           Have no account?
-          <Button href="/signup" color="error">
+          <Button href="/signup" style={{color: '#1B86F9'}}>
             Sign up now !!
           </Button>
         </div>
