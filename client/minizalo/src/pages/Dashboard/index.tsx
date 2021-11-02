@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { SlideType } from "../../typings/SlideType";
-import "./Home.css";
+import "./Dashboard.css";
 import WelcomeGif from "../../assets/welcome.gif";
 import { Slider } from "../../components/Slider";
 
-export const Home: FC = () => {
+export const Dashboard: FC = () => {
   // Test data
   const sliderData: SlideType[] = [
     {
@@ -28,7 +28,7 @@ export const Home: FC = () => {
   // End of test data
 
   return (
-    <div className="home">
+    <div className="dashboard">
       <Slider sliderData={sliderData} />
     </div>
   );
