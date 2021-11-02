@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Chat } from "./pages/Chat";
 import { Friends } from "./pages/Friends";
-import { Home } from "./pages/Home";
+import { Dashboard } from "./pages/Dashboard";
 import { Notifications } from "./pages/Notifications";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
@@ -15,16 +15,11 @@ function App() {
       <Router>
         {/* Pages */}
         <Switch>
-		  <Route exact path="/">
+          <Route exact path="/dashboard">
             <Navbar />
-            <Home />
+            <Dashboard />
           </Route>
-		  
-		  <Route exact path="/home">
-            <Navbar />
-            <Home />
-          </Route>
-		  
+
           <Route exact path="/chat">
             <Navbar />
             <Chat />
@@ -45,12 +40,12 @@ function App() {
             <Notifications />
           </Route>
 
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+
+          <Route exact path="/">
+            <SignIn />
           </Route>
         </Switch>
 
