@@ -15,6 +15,16 @@ function App() {
       <Router>
         {/* Pages */}
         <Switch>
+		  <Route exact path="/">
+            <Navbar />
+            <Home />
+          </Route>
+		  
+		  <Route exact path="/home">
+            <Navbar />
+            <Home />
+          </Route>
+		  
           <Route exact path="/chat">
             <Navbar />
             <Chat />
@@ -35,16 +45,11 @@ function App() {
             <Notifications />
           </Route>
 
-          <Route exact path="/home">
-            <Navbar />
-            <Home />
-          </Route>
-
           <Route exact path="/signin">
             <SignIn />
           </Route>
 
-          <Route exact path="/">
+          <Route exact path="/signup">
             <SignUp />
           </Route>
         </Switch>
