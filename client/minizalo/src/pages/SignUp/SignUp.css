@@ -1,39 +1,91 @@
+/*Init*/
+.text__center {
+  text-align: center;
+}
+.box {
+  width: 100%;
+  min-height: 80vh;
+  background-color: #f2f3f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Effect Input*/
+.name__label {
+  top: 23px;
+}
+.name__input:not(:placeholder-shown) + .name__label,
+.name__input:focus + .name__label {
+  top: 0;
+  left: 11px;
+  padding: 0 10px;
+  display: inline-block;
+  background-color: white;
+  color: #6a5af9;
+}
+.pass__label {
+  top: 103px;
+}
+.pass__input:not(:placeholder-shown) + .pass__label,
+.pass__input:focus + .pass__label {
+  top: 80px;
+  left: 11px;
+  padding: 0 10px;
+  display: inline-block;
+  background-color: white;
+  color: #6a5af9;
+}
+.cfmpass__label {
+  top: 183px;
+}
+.cfmpass__input:not(:placeholder-shown) + .cfmpass__label,
+.cfmpass__input:focus + .cfmpass__label {
+  top: 160px;
+  left: 11px;
+  padding: 0 10px;
+  display: inline-block;
+  background-color: white;
+  color: #6a5af9;
+}
+
+/*Form*/
 .signup {
   flex: 1;
   display: grid;
   place-items: center;
 }
-.signup-container {
+.signup__container {
   padding: 50px;
   background-color: #fff;
   width: 100%;
   max-width: 520px;
-  box-sizing: border-box;
   border-radius: 20px;
+  box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
-.signup-heading {
+.signup__heading {
   font-size: 40px;
   font-weight: bold;
   color: #373941;
   text-align: center;
   margin-bottom: 35px;
 }
-.signup-field {
+.signup__field {
   position: relative;
 }
-.signup-input {
+.signup__input {
   border: 1px solid #eee;
   border-radius: 4px;
   width: 96%;
   height: 50px;
   padding-left: 20px;
 }
-.signup-input:focus {
+.signup__input:focus {
   border-color: #6a5af9;
 }
-.signup-label {
+.signup__label {
   position: absolute;
   transform: translateY(-50%);
   left: 21px;
@@ -42,7 +94,7 @@
   pointer-events: none;
   transition: 0.25s ease;
 }
-.signup-submit {
+.signup__submit {
   color: white;
   font-size: 18px;
   text-align: center;
@@ -54,39 +106,4 @@
   margin: 25px 0px;
 }
 
-#name-label {
-  top: 23px;
-}
-#name:not(:placeholder-shown) + #name-label,
-#name:focus + #name-label {
-  top: 0;
-  left: 11px;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
-}
-#pass-label {
-  top: 103px;
-}
-#pass:not(:placeholder-shown) + #pass-label,
-#pass:focus + #pass-label {
-  top: 80px;
-  left: 11px;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
-}
-#cfmpass-label {
-  top: 183px;
-}
-#cfmpass:not(:placeholder-shown) + #cfmpass-label,
-#cfmpass:focus + #cfmpass-label {
-  top: 160px;
-  left: 11px;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
-}
+/*End*/

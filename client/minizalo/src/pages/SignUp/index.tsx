@@ -6,54 +6,55 @@ import { Link } from "react-router-dom";
 export const SignUp: FC = () => {
   return (
     <div className="signup">
-      <div className="signup-container">
-        <h1 className="signup-heading">SIGN UP</h1>
-        <div className="signup-field">
-          <form className="signup-form">
+      <div className="signup__container">
+        <h1 className="signup__heading">SIGN UP</h1>
+        <div className="signup__field">
+          <form action="/signup" className="signup__form">
             <input
               type="text"
-              id="name"
-              className="signup-input"
+              className="signup__input name__input"
               placeholder=" "
               required
             />
-            <label htmlFor="name" id="name-label" className="signup-label">
+            <label htmlFor="name" className="signup__label name__label">
               Username
             </label>
-            <p className="space"></p>
+            <Box sx={{ height: 25 }} />
             <input
               type="password"
-              id="pass"
-              className="signup-input"
+              className="signup__input pass__input"
               placeholder=" "
               required
             />
-            <label htmlFor="pass" id="pass-label" className="signup-label">
+            <label htmlFor="pass" className="signup__label pass__label">
               Password
             </label>
-            <p className="space"></p>
+            <Box sx={{ height: 25 }} />
             <input
               type="password"
-              id="cfmpass"
-              className="signup-input"
+              className="signup__input cfmpass__input"
               placeholder=" "
               required
             />
-            <label htmlFor="pass" id="cfmpass-label" className="signup-label">
+            <label htmlFor="pass" className="signup__label cfmpass__label">
               Confirm Password
             </label>
             <Box sx={{ height: 25 }} />
             <Button
               type="submit"
               variant="contained"
-              className="signup-submit"
-              color="error"
+              className="signup__submit"
+              style={{ backgroundColor: "#1B86F9", color: "#FFFFFF" }}
             >
               SIGN UP
             </Button>
             <Box sx={{ height: 20 }} />
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Button variant="outlined" className="signup-submit">
+              <Button
+                variant="outlined"
+                className="signup__submit"
+                style={{ backgroundColor: "#999999", color: "#FFFFFF" }}
+              >
                 BACK
               </Button>
             </Link>
