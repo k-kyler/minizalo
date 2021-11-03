@@ -1,14 +1,15 @@
 import { FC } from "react";
 import { Button, Box } from "@mui/material";
 import "./SignUp.css";
+import { Link } from "react-router-dom";
 
 export const SignUp: FC = () => {
   return (
-    <div className="box">
-      <div className="signup">
+    <div className="signup">
+      <div className="signup-container">
         <h1 className="signup-heading">SIGN UP</h1>
         <div className="signup-field">
-          <form action="/signup" className="signup-form">
+          <form className="signup-form">
             <input
               type="text"
               id="name"
@@ -51,9 +52,11 @@ export const SignUp: FC = () => {
               SIGN UP
             </Button>
             <Box sx={{ height: 20 }} />
-            <Button href="/signin" variant="outlined" className="signup-submit">
-              BACK
-            </Button>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button variant="outlined" className="signup-submit">
+                BACK
+              </Button>
+            </Link>
           </form>
         </div>
       </div>

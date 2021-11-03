@@ -1,14 +1,15 @@
 import { FC } from "react";
 import { Button, Box } from "@mui/material";
 import "./SignIn.css";
+import { Link } from "react-router-dom";
 
 export const SignIn: FC = () => {
   return (
-    <div className="box">
-      <div className="signin">
+    <div className="signin">
+      <div className="signin-container">
         <h1 className="signin-heading">SIGN IN</h1>
         <div className="signin-field">
-          <form action="/signin" className="signin-form">
+          <form className="signin-form">
             <input
               type="text"
               id="name"
@@ -31,26 +32,28 @@ export const SignIn: FC = () => {
               Password
             </label>
             <Box sx={{ height: 25 }} />
-            <Button
-              type="submit"
-              variant="contained"
-              className="signup-submit"
-              color="success"
-            >
-              SIGN IN
-            </Button>
+            <Link style={{ textDecoration: "none" }} to="/dashboard">
+              <Button
+                type="submit"
+                variant="contained"
+                className="signup-submit"
+                color="success"
+              >
+                SIGN IN
+              </Button>
+            </Link>
           </form>
         </div>
         <div className="txt-center">
           <Box sx={{ height: 15 }} />
-          <Button href="/" variant="outlined" className="signup-submit">
+          <Button variant="outlined" className="signup-submit">
             BACK
           </Button>
           <Box sx={{ height: 15 }} />
           Have no account?
-          <Button href="/signup" color="error">
-            Sign up now !!
-          </Button>
+          <Link style={{ textDecoration: "none" }} to="/signup">
+            <Button color="error">Sign up now !!</Button>
+          </Link>
         </div>
       </div>
     </div>
