@@ -1,13 +1,18 @@
 /*Form*/
 .signin {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+.signin__container {
   padding: 50px;
   background-color: #fff;
   width: 100%;
-  max-width: 600px;
+  max-width: 520px;
   box-sizing: border-box;
   border-radius: 20px;
-  align-items: center;
-  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .signin__heading {
   font-size: 40px;
@@ -45,7 +50,6 @@
   border: 0;
   width: 100%;
   border-radius: 10px;
-  cursor: pointer;
   font-weight: 600;
   margin: 25px 0px;
 }
