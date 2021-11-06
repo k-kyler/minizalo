@@ -1,0 +1,10 @@
+# Client
+client/node_modules
+client/build
+client/.env
+
+# Server
+server/obj
+server/bin
+server/.vs
+server/.idea
