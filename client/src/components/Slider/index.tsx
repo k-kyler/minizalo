@@ -15,10 +15,6 @@ interface ISlider {
 }
 
 export const Slider: FC<ISlider> = ({ sliderData }) => {
-  // States
-  const [slideWidth, setSlideWidth] = useState(0);
-  // End of states
-
   // Refs
   const slideRef = useRef<HTMLDivElement>(null);
   const sliderSlidesRef = useRef<HTMLDivElement>(null);
