@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState, useReducer } from "react";
+import { FC, useEffect, useRef, useReducer } from "react";
 import { Slide } from "./Slide";
 import "./Slider.css";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
