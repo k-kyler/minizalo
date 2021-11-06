@@ -4,16 +4,15 @@ import { Chat } from "./pages/Chat";
 import { Friends } from "./pages/Friends";
 import { Dashboard } from "./pages/Dashboard";
 import { Notifications } from "./pages/Notifications";
-import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
     <div className="app">
       <Router>
-        {/* Pages */}
         <Switch>
           <Route exact path="/dashboard">
             <Navbar />
@@ -40,6 +39,11 @@ function App() {
             <Notifications />
           </Route>
 
+          <Route exact path="/copyright">
+            <Navbar />
+            <Footer />
+          </Route>
+
           <Route exact path="/signup">
             <SignUp />
           </Route>
@@ -48,9 +52,6 @@ function App() {
             <SignIn />
           </Route>
         </Switch>
-
-        {/* Footer */}
-        <Footer />
       </Router>
     </div>
   );

@@ -1,4 +1,5 @@
 .slide {
+  flex: 1 0 100%;
   user-select: none;
   display: flex;
   flex-direction: column;
@@ -7,8 +8,9 @@
 }
 
 .slide__image {
-  width: 27rem;
+  width: auto;
   height: 27rem;
+  display: flex;
 }
 
 .slide__info {

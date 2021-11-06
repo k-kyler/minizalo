@@ -1,22 +1,25 @@
 .slider {
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .slider__leftArrow,
 .slider__rightArrow {
   position: absolute;
   cursor: pointer;
-  top: 40%;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 1rem;
+  z-index: 99;
 }
 
 .slider__leftArrow {
-  left: 0;
+  left: 14.5%;
 }
 
 .slider__rightArrow {
-  right: 0;
+  right: 14.5%;
 }
 
 .slider__leftArrow > svg,
@@ -33,4 +36,9 @@
 .slider__leftArrow:not(:hover) svg,
 .slider__rightArrow:not(:hover) svg {
   transition: all 0.3s ease;
+}
+
+.slider__slides {
+  display: flex;
+  transition: transform 0.25s linear;
 }

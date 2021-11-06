@@ -1,31 +1,30 @@
 import { FC } from "react";
 import { SlideType } from "../../typings/SlideType";
 import "./Dashboard.css";
-import WelcomeGif from "../../assets/welcome.gif";
+import FirstSlide from "../../assets/slide_1.gif";
+import SecondSlide from "../../assets/slide_2.gif";
+import ThirdSlide from "../../assets/slide_3.gif";
 import { Slider } from "../../components/Slider";
 
 export const Dashboard: FC = () => {
-  // Test data
   const sliderData: SlideType[] = [
     {
-      image: WelcomeGif,
+      image: FirstSlide,
       title: "Welcome to MiniZalo!",
       description:
         "MiniZalo is a small and friendly chat application that inspired by Zalo",
-      type: "welcome",
     },
     {
-      image: "",
+      image: SecondSlide,
       title: "Simple but still have needed things for messaging",
       description: "Taking direct message or joining groups with your friends",
     },
     {
-      image: "",
+      image: ThirdSlide,
       title: "Upload media or files",
       description: "You can upload various types of file and media",
     },
   ];
-  // End of test data
 
   return (
     <div className="dashboard">

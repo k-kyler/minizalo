@@ -1,5 +1,6 @@
 import { FC, useState, MouseEvent } from "react";
 import "./Navbar.css";
+import { NavbarLinkType } from "../../typings/NavbarLinkType";
 import Logo from "../../assets/logo.png";
 import {
   Avatar,
@@ -11,7 +12,7 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
@@ -19,20 +20,15 @@ import ForumIcon from "@mui/icons-material/Forum";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { NavbarLinkType } from "../../typings/NavbarLinkType";
+import PrivacyTipIcon from "@mui/icons-material/PrivacyTip";
 
 export const Navbar: FC = () => {
   // Navbar link setup
   const navbarLinkList: NavbarLinkType[] = [
     {
-      name: "Home",
-      Icon: <HomeIcon />,
-      pathname: "/",
-    },
-    {
-      name: "Search",
-      Icon: <SearchIcon />,
-      pathname: "/search",
+      name: "Dashboard",
+      Icon: <DashboardIcon />,
+      pathname: "/dashboard",
     },
     {
       name: "Chat",
@@ -48,6 +44,16 @@ export const Navbar: FC = () => {
       name: "Friends",
       Icon: <PeopleAltIcon />,
       pathname: "/friends",
+    },
+    {
+      name: "Search",
+      Icon: <SearchIcon />,
+      pathname: "/search",
+    },
+    {
+      name: "Copyright",
+      Icon: <PrivacyTipIcon />,
+      pathname: "/copyright",
     },
   ];
   // End of navbar link setup
