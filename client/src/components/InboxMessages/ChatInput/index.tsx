@@ -1,13 +1,22 @@
-import { FC, useRef, useState, KeyboardEvent } from "react";
+import {
+  FC,
+  useRef,
+  useState,
+  useEffect,
+  KeyboardEvent,
+  MouseEvent,
+} from "react";
 import "./ChatInput.css";
 import { MessageType } from "../../../typings/MessageType";
 import { UserType } from "../../../typings/UserType";
-import { Button, IconButton, Tooltip } from "@mui/material";
+import { EmojiList } from "./EmojiList";
+import { IconButton, Tooltip } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import ImageIcon from "@mui/icons-material/Image";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
+import Picker, { IEmojiData } from "emoji-picker-react";
 
 interface IChatInput {
   selectedInboxId: string;
@@ -28,6 +37,8 @@ export const ChatInput: FC<IChatInput> = ({
   // End of test data for your logged user
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
+  const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
+  const [openEmojiModal, setOpenEmojiModal] = useState(false);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -56,6 +67,18 @@ export const ChatInput: FC<IChatInput> = ({
     }
   };
 
+  const chooseEmojiHandler = (
+    event: MouseEvent<Element, globalThis.MouseEvent>,
+    data: IEmojiData
+  ) => {
+    setChosenEmoji(data);
+  };
+
+  useEffect(() => {
+    if (chosenEmoji && textAreaRef.current)
+      textAreaRef.current.value += chosenEmoji.emoji;
+  }, [chosenEmoji]);
+
   return (
     <div className="chatInput">
       {/* Input container */}
@@ -76,11 +99,32 @@ export const ChatInput: FC<IChatInput> = ({
 
         {/* React and send buttons */}
         <div className="chatInput__buttons">
-          <Tooltip title="Add emoji">
-            <IconButton>
-              <InsertEmoticonIcon />
-            </IconButton>
-          </Tooltip>
+          <div className="chatInput__emoji">
+            <EmojiList
+              emojiPicker={
+                <Picker
+                  onEmojiClick={chooseEmojiHandler}
+                  disableAutoFocus={true}
+                  disableSkinTonePicker={true}
+                  disableSearchBar={true}
+                  native
+                  pickerStyle={{
+                    width: "100%",
+                    boxShadow: "none",
+                    border: "none",
+                    overflow: "hidden",
+                  }}
+                />
+              }
+              open={openEmojiModal}
+            />
+
+            <Tooltip title="Add emoji">
+              <IconButton onClick={() => setOpenEmojiModal(!openEmojiModal)}>
+                <InsertEmoticonIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
 
           <Tooltip title="Upload an image">
             <IconButton>
@@ -95,7 +139,7 @@ export const ChatInput: FC<IChatInput> = ({
           </Tooltip>
 
           {checkIsTyping ? (
-            <IconButton color="primary">
+            <IconButton color="primary" onClick={sendMessageHandler}>
               <SendIcon />
             </IconButton>
           ) : (

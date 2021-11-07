@@ -11,8 +11,10 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.5",
+    "emoji-picker-react": "3.4.8",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-flip-move": "^3.0.4",
     "react-router-dom": "^5.3.0"
   },
   "devDependencies": {

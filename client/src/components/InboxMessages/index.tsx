@@ -1,13 +1,14 @@
-import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import "./InboxMessages.css";
+import { InboxItemType } from "../../typings/InboxItemType";
+import { Message } from "./Message";
+import { ChatInput } from "./ChatInput";
+import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { InboxItemType } from "../../typings/InboxItemType";
-import { Message } from "./Message";
-import { ChatInput } from "./ChatInput";
+import FlipMove from "react-flip-move";
 
 interface IInboxMessages {
   selectedInboxId: string;
@@ -18,9 +19,19 @@ export const InboxMessages: FC<IInboxMessages> = ({
   selectedInboxId,
   inboxItems,
 }) => {
+  const messagesEndRef = useRef<HTMLUListElement>(null);
+
   const selectedInbox = inboxItems.filter(
     (inboxItem) => inboxItem.id === selectedInboxId
   )[0];
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(scrollToBottom, [selectedInboxId]);
 
   return (
     <div className="inboxMessages">
@@ -72,10 +83,12 @@ export const InboxMessages: FC<IInboxMessages> = ({
       </div>
 
       {/* Messages */}
-      <ul className="inboxMessages__messages">
-        {selectedInbox.messages?.map((message) => (
-          <Message key={message.id} {...message} />
-        ))}
+      <ul className="inboxMessages__messages" ref={messagesEndRef}>
+        <FlipMove leaveAnimation="fade">
+          {selectedInbox.messages?.map((message) => (
+            <Message key={message.id} {...message} />
+          ))}
+        </FlipMove>
       </ul>
 
       {/* Chat input */}

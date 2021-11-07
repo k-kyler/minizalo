@@ -98,7 +98,7 @@ export const Navbar: FC = () => {
 
       {/* User setting */}
       <div className="navbar__userSetting">
-        <Tooltip title="kkyler">
+        <Tooltip title="kkyler bui">
           <div
             className="navbar__userInfo"
             aria-haspopup="true"
@@ -110,7 +110,7 @@ export const Navbar: FC = () => {
               alt="kkyler"
               src={"https://avatars.githubusercontent.com/u/66368949?v=4"}
             />
-            <Typography variant="body1">kkyler</Typography>
+            <Typography variant="body1">kkyler bui</Typography>
           </div>
         </Tooltip>
       </div>
