@@ -20,5 +20,11 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Fix global is not defined of React Emoji Picker -->
+    <script>
+      window.global = window;
+    </script>
+    <!-- End of fix global is not defined of React Emoji Picker -->
   </body>
 </html>

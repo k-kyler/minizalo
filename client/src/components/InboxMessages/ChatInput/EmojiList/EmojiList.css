@@ -1,0 +1,35 @@
+.emojiList {
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  width: 20rem;
+  background-color: white;
+  border-radius: 12px;
+  padding: 0.5rem 0;
+  z-index: 1;
+  opacity: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.emojiList::after {
+  position: absolute;
+  top: 100.5%;
+  right: 0.75rem;
+  content: "";
+  border-width: 9px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.05) transparent transparent;
+}
+
+/* Override React Emoji Picker wrapper */
+.emoji-scroll-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
+/* End of override React Emoji Picker wrapper */

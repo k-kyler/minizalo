@@ -12,6 +12,7 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   user-select: none;
+  z-index: 1;
 }
 
 .inboxMessages__headerLeft {
@@ -39,7 +40,7 @@
 
 .inboxMessages__messages {
   list-style: none;
-  padding: 1.25rem 0.5rem 0.25rem 1rem;
+  padding: 1.25rem 0.5rem 0 1rem;
   overflow-y: auto;
   height: 22.75rem;
   scroll-behavior: smooth;
