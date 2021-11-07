@@ -1,4 +1,4 @@
-.footer {
+.copyright {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -6,6 +6,11 @@
   align-items: center;
 }
 
-.footer > p {
+.copyright > p {
   user-select: none;
+}
+
+.copyright__image {
+  height: 14rem;
+  margin-bottom: 1.25rem;
 }

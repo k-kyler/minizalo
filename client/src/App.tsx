@@ -1,13 +1,13 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
 import { Chat } from "./pages/Chat";
 import { Friends } from "./pages/Friends";
 import { Dashboard } from "./pages/Dashboard";
 import { Notifications } from "./pages/Notifications";
-import { Navbar } from "./components/Navbar";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
-import { Footer } from "./components/Footer";
+import { Copyright } from "./pages/Copyright";
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
 
           <Route exact path="/copyright">
             <Navbar />
-            <Footer />
+            <Copyright />
           </Route>
 
           <Route exact path="/signup">

@@ -1,14 +1,14 @@
 import { FC, useEffect, useRef, useReducer } from "react";
-import { Slide } from "./Slide";
 import "./Slider.css";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { SlideType } from "../../typings/SlideType";
 import {
   SliderReducerType,
   SliderActionType,
   SliderActionsType,
 } from "../../typings/SliderReducerType";
+import { Slide } from "./Slide";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 interface ISlider {
   sliderData: SlideType[];
@@ -73,11 +73,21 @@ export const Slider: FC<ISlider> = ({ sliderData }) => {
       sliderSlidesRef.current.style.transform = `translateX(${state.slideWidth}px)`;
     }
   };
+
+  const autoSlideHandler = () => {
+    setInterval(() => dispatch({ type: "next_slide" }), 5000);
+  };
   // End of handle functions
 
+  // Effects
   useEffect(() => {
     switchSlideHandler();
   }, [state.slideWidth]);
+
+  useEffect(() => {
+    autoSlideHandler();
+  }, []);
+  // End of effects
 
   return (
     <div className="slider">

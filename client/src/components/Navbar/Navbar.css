@@ -35,10 +35,10 @@
 }
 
 .navbar__link > li {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.75rem;
   margin: 0 0.25rem;
-  border-top: 0.25rem solid transparent;
-  border-bottom: 0.25rem solid transparent;
+  border-top: 0.25rem solid white;
+  border-bottom: 0.25rem solid white;
 }
 
 .navbar__link .MuiSvgIcon-root {
