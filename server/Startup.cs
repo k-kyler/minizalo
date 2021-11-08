@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using minizalo.Data;
+using minizalo.Repositories;
 
 namespace minizalo
 {
@@ -26,6 +29,16 @@ namespace minizalo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Register data context
+            services.AddDbContext<DataContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
+            // End of register data context
+   
+            // Register repositories
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            // End of register repositories
+            
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "minizalo", Version = "v1"}); });
         }
