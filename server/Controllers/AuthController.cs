@@ -60,7 +60,7 @@ namespace minizalo.Controllers
 
         // Endpoint to logout authentication
         [HttpPost("logout")]
-        public async Task<ActionResult> Logout()
+        public ActionResult Logout()
         {
             Response.Cookies.Delete("AuthJWT");
 
