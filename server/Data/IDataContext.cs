@@ -11,6 +11,6 @@ namespace minizalo.Data
         DbSet<Inbox> Inboxes { get; set; }
         DbSet<Message> Messages { get; set; }
 
-        Task<int> AsyncSaveChanges(CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

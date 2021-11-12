@@ -13,7 +13,6 @@ namespace minizalo.Dtos
         public string Avatar { get; set; }
         
         [Required]
-        [MinLength(8), MaxLength(30)]
         public string Password { get; set; }
     }
 }
