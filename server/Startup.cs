@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using minizalo.Data;
+using minizalo.Helpers;
 using minizalo.Repositories;
 
 namespace minizalo
@@ -36,8 +30,16 @@ namespace minizalo
             // End of register data context
    
             // Register repositories
-            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             // End of register repositories
+            
+            // Register helpers
+            services.AddScoped<JwtService>();
+            // End of register helpers
+
+            // Add core services
+            services.AddCors();
+            // End of add core services
             
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "minizalo", Version = "v1"}); });
@@ -56,6 +58,14 @@ namespace minizalo
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // global cors policy
+            app.UseCors(options => options
+                .WithOrigins(new []{"http://localhost:3000"})
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            // End of global cors policy
 
             app.UseAuthorization();
 

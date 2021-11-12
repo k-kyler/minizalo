@@ -19,10 +19,6 @@ namespace minizalo.Dtos
         public string Email { get; init; }
         
         [Required]
-        [MinLength(8), MaxLength(30)]
-        public string Password { get; set; }
-        
-        [Required]
         public DateTimeOffset CreatedAt { get; init; }
     }
 }
