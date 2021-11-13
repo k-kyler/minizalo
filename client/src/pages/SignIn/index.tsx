@@ -1,5 +1,5 @@
 import { FC, useState, useRef, useEffect, FormEvent } from "react";
-import { Button, Box, TextField } from "@mui/material";
+import { Button, Box, TextField, Alert } from "@mui/material";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +9,7 @@ export const SignIn: FC = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [test, setTest] = useState({});
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const signInHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,7 +30,9 @@ export const SignIn: FC = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post(
+      const {
+        data: { code, message },
+      } = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
         {
           email,
@@ -38,7 +40,16 @@ export const SignIn: FC = () => {
         },
         { withCredentials: true }
       );
-      console.log(response);
+
+      if (code === "error") {
+        setErrorMessage(message);
+      } else if (code === "success") {
+        setSuccessMessage(true);
+
+        setTimeout(() => {
+          setSuccessMessage(false);
+        }, 3000);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -46,6 +57,17 @@ export const SignIn: FC = () => {
 
   return (
     <div className="signin">
+      {/* Sign in successful alert */}
+      {successMessage ? (
+        <Alert
+          onClose={() => setSuccessMessage(false)}
+          sx={{ position: "absolute", right: "1rem", bottom: "1rem" }}
+        >
+          Glad to see you back, kkyler!
+        </Alert>
+      ) : null}
+
+      {/* Sign in container */}
       <div className="signin__container">
         <h1 className="signin__heading">SIGN IN</h1>
         <div className="signin__field">
@@ -93,7 +115,7 @@ export const SignIn: FC = () => {
 
         {/* Back to home & go to sign up buttons */}
         <div className="text__center">
-          <Box sx={{ height: 15 }} />
+          <Box sx={{ height: 12 }} />
           <Button
             variant="contained"
             sx={{
@@ -104,7 +126,7 @@ export const SignIn: FC = () => {
           >
             BACK
           </Button>
-          <Box sx={{ height: 15 }} />
+          <Box sx={{ height: 12 }} />
           Have no account?
           <Link style={{ textDecoration: "none" }} to="/signup">
             <Button
