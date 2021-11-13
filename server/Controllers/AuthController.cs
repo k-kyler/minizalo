@@ -24,15 +24,22 @@ namespace minizalo.Controllers
         
         // Endpoint to register a new user account
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterDto createUserDto)
+        public async Task<ActionResult> Register(RegisterDto registerDto)
         {
+            User existingUser = await _userRepository.GetUserByEmail(registerDto.Email);
+
+            if (existingUser != null) 
+            {
+                return BadRequest(new { code = "error", message = "Email has been taken" });
+            }
+
             User user = new()
             {
                 UserId = Guid.NewGuid(),
-                UserName = createUserDto.UserName,
-                Email = createUserDto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(createUserDto.Password),
-                CreatedAt = createUserDto.CreatedAt
+                UserName = registerDto.UserName,
+                Email = registerDto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
+                CreatedAt = registerDto.CreatedAt
             };
             
             await _userRepository.CreateUser(user);
