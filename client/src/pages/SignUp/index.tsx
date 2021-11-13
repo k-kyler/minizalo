@@ -50,13 +50,14 @@ export const SignUp: FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
         {
           email,
           username,
           password,
           createdAt,
-        }
+        },
+        { withCredentials: true }
       );
       console.log(response);
     } catch (error) {
@@ -118,7 +119,7 @@ export const SignUp: FC = () => {
               variant="outlined"
               sx={{ width: "100%" }}
             />
-            <Box sx={{ height: 30 }} />
+            <Box sx={{ height: 25 }} />
 
             {/* Buttons */}
             <Button
