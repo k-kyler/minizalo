@@ -62,7 +62,7 @@ namespace minizalo
             // global cors policy
             app.UseCors(options => options
                 .WithOrigins(new []{"http://localhost:3000"})
-                .AllowAnyOrigin()
+                .AllowCredentials()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
             // End of global cors policy
