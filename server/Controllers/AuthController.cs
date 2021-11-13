@@ -53,7 +53,11 @@ namespace minizalo.Controllers
 
             var authJWT = _jwtService.GenerateJWT(user.UserId.ToString());
             
-            Response.Cookies.Append("AuthJWT", authJWT, new CookieOptions() { HttpOnly = true }); // Set the JWT to be a HTTP only cookies to secure it from the client, only the server can modify it
+            Response.Cookies.Append("AuthJWT", authJWT, new CookieOptions() { 
+                HttpOnly = true, // Set the JWT to be a HTTP only cookies to secure it from the client, only the server can modify it
+                SameSite = SameSiteMode.None, // Configure for client to set the cookies
+                Secure = true // Set only https can receive
+            });
             
             return Ok(new { code = "success", message = "Authorized" });
         }
