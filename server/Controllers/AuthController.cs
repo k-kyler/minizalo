@@ -44,7 +44,7 @@ namespace minizalo.Controllers
             
             await _userRepository.CreateUser(user);
 
-            return Ok(new { code = "success", user });
+            return Ok(new { code = "success", message = "Successful registration" });
         }
         
         // Endpoint to login authentication
