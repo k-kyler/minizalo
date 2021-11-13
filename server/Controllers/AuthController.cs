@@ -30,7 +30,7 @@ namespace minizalo.Controllers
 
             if (existingUser != null) 
             {
-                return BadRequest(new { code = "error", message = "Email has been taken" });
+                return Ok(new { code = "error", message = "Email has been taken" });
             }
 
             User user = new()
@@ -44,7 +44,7 @@ namespace minizalo.Controllers
             
             await _userRepository.CreateUser(user);
 
-            return Ok(user);
+            return Ok(new { code = "success", user });
         }
         
         // Endpoint to login authentication
@@ -55,7 +55,7 @@ namespace minizalo.Controllers
 
             if (user is null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
             {
-                return BadRequest(new { code = "error", message = "Wrong email or password" });
+                return Ok(new { code = "error", message = "Wrong email or password" });
             }
 
             var authJWT = _jwtService.GenerateJWT(user.UserId.ToString());
