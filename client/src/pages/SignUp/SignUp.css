@@ -3,44 +3,6 @@
   text-align: center;
 }
 
-/*Effect Input*/
-.name__label {
-  top: 23px;
-}
-.name__input:not(:placeholder-shown) + .name__label,
-.name__input:focus + .name__label {
-  top: 0;
-  left: 11px;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
-}
-.pass__label {
-  top: 103px;
-}
-.pass__input:not(:placeholder-shown) + .pass__label,
-.pass__input:focus + .pass__label {
-  top: 80px;
-  left: 11px;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
-}
-.cfmpass__label {
-  top: 183px;
-}
-.cfmpass__input:not(:placeholder-shown) + .cfmpass__label,
-.cfmpass__input:focus + .cfmpass__label {
-  top: 160px;
-  left: 11px;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
-}
-
 /*Form*/
 .signup {
   flex: 1;
@@ -48,7 +10,7 @@
   place-items: center;
 }
 .signup__container {
-  padding: 50px;
+  padding: 40px 50px;
   background-color: #fff;
   width: 100%;
   max-width: 470px;
@@ -67,35 +29,12 @@
 .signup__field {
   position: relative;
 }
-.signup__input {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  width: 96%;
-  height: 50px;
-  padding-left: 20px;
+.signup__form .MuiOutlinedInput-root {
+  border-radius: 8px !important;
 }
-.signup__input:focus {
-  border-color: #6a5af9;
-}
-.signup__label {
-  position: absolute;
-  transform: translateY(-50%);
-  left: 21px;
-  user-select: none;
-  color: #999;
-  pointer-events: none;
-  transition: 0.25s ease;
-}
-.signup__submit {
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  border: 0;
-  width: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  margin: 25px 0px;
+.signup__back {
+  border: none !important;
+  background-color: #999999 !important;
 }
 
 /*End*/
