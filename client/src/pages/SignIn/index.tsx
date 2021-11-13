@@ -1,8 +1,9 @@
-import { FC, useState, useRef, useEffect, FormEvent } from "react";
+import { FC, useState, useRef, FormEvent } from "react";
 import { Button, Box, TextField, Alert } from "@mui/material";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAppDispatch } from "../../redux/hooks";
 
 export const SignIn: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -10,6 +11,21 @@ export const SignIn: FC = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const getUserData = async () => {
+    setSuccessMessage(false);
+
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/auth/user`
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const signInHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,7 +63,7 @@ export const SignIn: FC = () => {
         setSuccessMessage(true);
 
         setTimeout(() => {
-          setSuccessMessage(false);
+          getUserData();
         }, 3000);
       }
     } catch (error) {
