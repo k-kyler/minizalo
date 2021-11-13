@@ -49,12 +49,15 @@ export const SignUp: FC = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("/api/auth/register", {
-        email,
-        username,
-        password,
-        createdAt,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          email,
+          username,
+          password,
+          createdAt,
+        }
+      );
       console.log(response);
     } catch (error) {
       console.error(error);
