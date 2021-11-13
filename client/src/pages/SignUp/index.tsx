@@ -1,7 +1,7 @@
 import { FC, useRef, FormEvent, useState } from "react";
 import { Button, Box, TextField, Alert } from "@mui/material";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 export const SignUp: FC = () => {
@@ -12,6 +12,8 @@ export const SignUp: FC = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
+
+  const history = useHistory();
 
   const signUpHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,7 +53,7 @@ export const SignUp: FC = () => {
 
     try {
       const {
-        data: { code, message, user },
+        data: { code, message },
       } = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
         {
@@ -69,6 +71,7 @@ export const SignUp: FC = () => {
 
         setTimeout(() => {
           setSuccessMessage(false);
+          history.push("/"); // redirect back to sign in page
         }, 3000);
       }
     } catch (error) {
@@ -81,8 +84,14 @@ export const SignUp: FC = () => {
       {/* Sign up successful alert */}
       {successMessage ? (
         <Alert
+          variant="outlined"
           onClose={() => setSuccessMessage(false)}
-          sx={{ position: "absolute", right: "1rem", bottom: "1rem" }}
+          sx={{
+            position: "absolute",
+            top: "3.25rem",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
         >
           You've registered successfully!
         </Alert>

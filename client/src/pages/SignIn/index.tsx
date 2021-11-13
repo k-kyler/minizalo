@@ -60,8 +60,14 @@ export const SignIn: FC = () => {
       {/* Sign in successful alert */}
       {successMessage ? (
         <Alert
+          variant="outlined"
           onClose={() => setSuccessMessage(false)}
-          sx={{ position: "absolute", right: "1rem", bottom: "1rem" }}
+          sx={{
+            position: "absolute",
+            top: "3.25rem",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
         >
           Glad to see you back, kkyler!
         </Alert>
