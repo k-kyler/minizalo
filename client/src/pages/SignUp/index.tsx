@@ -1,5 +1,5 @@
 import { FC, useRef, FormEvent, useState } from "react";
-import { Button, Box, TextField } from "@mui/material";
+import { Button, Box, TextField, Alert } from "@mui/material";
 import "./SignUp.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -11,6 +11,7 @@ export const SignUp: FC = () => {
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const signUpHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,7 +20,7 @@ export const SignUp: FC = () => {
     const username = usernameRef.current!.value;
     const password = passwordRef.current!.value;
     const passwordConfirm = passwordConfirmRef.current!.value;
-    const createdAt = Date.now();
+    const createdAt = new Date().toISOString();
 
     if (!email) {
       setErrorMessage("Please fill in email");
@@ -41,25 +42,35 @@ export const SignUp: FC = () => {
       return;
     }
 
-    if (password === passwordConfirm && password.length < 8) {
-      setErrorMessage("Passwords must be at least 8 characters");
+    if (password === passwordConfirm && password.length < 6) {
+      setErrorMessage("Passwords must be at least 6 characters");
       return;
     }
 
     setErrorMessage("");
 
     try {
-      const response = await axios.post(
+      const {
+        data: { code, message, user },
+      } = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/register`,
         {
           email,
           username,
           password,
           createdAt,
-        },
-        { withCredentials: true }
+        }
       );
-      console.log(response);
+
+      if (code === "error") {
+        setErrorMessage(message);
+      } else if (code === "success") {
+        setSuccessMessage(true);
+
+        setTimeout(() => {
+          setSuccessMessage(false);
+        }, 3000);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -67,6 +78,17 @@ export const SignUp: FC = () => {
 
   return (
     <div className="signup">
+      {/* Sign up successful alert */}
+      {successMessage ? (
+        <Alert
+          onClose={() => setSuccessMessage(false)}
+          sx={{ position: "absolute", right: "1rem", bottom: "1rem" }}
+        >
+          You've registered successfully!
+        </Alert>
+      ) : null}
+
+      {/* Sign up container */}
       <div className="signup__container">
         <h1 className="signup__heading">SIGN UP</h1>
         <div className="signup__field">
@@ -132,7 +154,7 @@ export const SignUp: FC = () => {
             >
               SIGN UP
             </Button>
-            <Box sx={{ height: 15 }} />
+            <Box sx={{ height: 12 }} />
             <Link to="/" style={{ textDecoration: "none" }}>
               <Button
                 sx={{
