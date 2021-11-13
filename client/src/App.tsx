@@ -8,8 +8,11 @@ import { Notifications } from "./pages/Notifications";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Copyright } from "./pages/Copyright";
+import { useAppSelector } from "./redux/hooks";
 
 function App() {
+  const user = useAppSelector((state) => state.user);
+
   return (
     <div className="app">
       <Router>
