@@ -88,7 +88,7 @@ export const SignUp: FC = () => {
           onClose={() => setSuccessMessage(false)}
           sx={{
             position: "absolute",
-            top: "3.25rem",
+            top: "2.5rem",
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
