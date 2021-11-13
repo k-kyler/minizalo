@@ -1,4 +1,4 @@
-import { FC, useState, useRef, FormEvent } from "react";
+import { FC, useState, useRef, useEffect, FormEvent } from "react";
 import { Button, Box, TextField } from "@mui/material";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ export const SignIn: FC = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [test, setTest] = useState({});
 
   const signInHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,11 +31,12 @@ export const SignIn: FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         {
           email,
           password,
-        }
+        },
+        { withCredentials: true }
       );
       console.log(response);
     } catch (error) {
@@ -72,7 +74,7 @@ export const SignIn: FC = () => {
               variant="outlined"
               sx={{ width: "100%" }}
             />
-            <Box sx={{ height: 30 }} />
+            <Box sx={{ height: 25 }} />
 
             {/* Sign in button */}
             <Button
