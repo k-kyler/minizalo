@@ -5,7 +5,7 @@
   place-items: center;
 }
 .signin__container {
-  padding: 50px;
+  padding: 40px 50px;
   background-color: #fff;
   width: 100%;
   max-width: 470px;
@@ -24,39 +24,18 @@
 .signin__field {
   position: relative;
 }
-.signin__input {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  width: 96%;
-  height: 50px;
-  padding-left: 20px;
-}
-.signin__input:focus {
-  border-color: #6a5af9;
-}
-.signin__label {
-  position: absolute;
-  transform: translateY(-50%);
-  left: 21px;
-  user-select: none;
-  color: #999;
-  pointer-events: none;
-  transition: 0.25s ease;
-}
 .signin__submit {
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  border: 0;
-  width: 100%;
-  border-radius: 10px;
-  font-weight: 600;
-  margin: 25px 0px;
+  background-color: rgba(111, 40, 249, 0.9) !important;
 }
-.signin__now {
-  color: red;
-  text-decoration: none;
-  font-weight: bold;
+.signin__submit:hover {
+  background-color: rgba(111, 40, 249, 1) !important;
+}
+.signin__back {
+  border: none !important;
+  background-color: #999999 !important;
+}
+.signin__goToSignUp:hover {
+  background: none !important;
 }
 
 /*End*/

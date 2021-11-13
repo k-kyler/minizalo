@@ -1,60 +1,114 @@
-import { FC } from "react";
-import { Button, Box } from "@mui/material";
+import { FC, useState, useRef, FormEvent } from "react";
+import { Button, Box, TextField } from "@mui/material";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const SignIn: FC = () => {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const signInHandler = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const email = emailRef.current!.value;
+    const password = passwordRef.current!.value;
+
+    if (!email) {
+      setErrorMessage("Please fill in email");
+      return;
+    }
+
+    if (!password) {
+      setErrorMessage("Please fill in password");
+      return;
+    }
+
+    setErrorMessage("");
+
+    try {
+      const response = await axios.post("/api/auth/login", {
+        email,
+        password,
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="signin">
       <div className="signin__container">
         <h1 className="signin__heading">SIGN IN</h1>
         <div className="signin__field">
-          <form className="signin__form">
-            <input
-              type="text"
-              className="signin__input name__input"
-              placeholder=" "
-              required
+          <form className="signin__form" onSubmit={signInHandler}>
+            {/* Inputs */}
+            <TextField
+              error={errorMessage.toLowerCase().includes("email")}
+              helperText={
+                errorMessage.toLowerCase().includes("email") && errorMessage
+              }
+              inputRef={emailRef}
+              label="Email"
+              variant="outlined"
+              sx={{ width: "100%" }}
+              type="email"
             />
-            <label htmlFor="name" id="" className="signin__label name__label">
-              Username
-            </label>
             <Box sx={{ height: 25 }} />
-            <input
+            <TextField
+              error={errorMessage.toLowerCase().includes("password")}
+              helperText={
+                errorMessage.toLowerCase().includes("password") && errorMessage
+              }
+              inputRef={passwordRef}
               type="password"
-              className="signin__input pass__input"
-              placeholder=" "
-              required
+              label="Password"
+              variant="outlined"
+              sx={{ width: "100%" }}
             />
-            <label htmlFor="pass" id="" className="signin__label pass__label">
-              Password
-            </label>
-            <Box sx={{ height: 25 }} />
-            <Link style={{ textDecoration: "none" }} to="/dashboard">
-              <Button
-                type="submit"
-                variant="contained"
-                className="signin__submit"
-                style={{ backgroundColor: "#6F28F9", color: "#FFFFFF" }}
-              >
-                SIGN IN
-              </Button>
-            </Link>
+            <Box sx={{ height: 30 }} />
+
+            {/* Sign in button */}
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                width: "100%",
+                borderRadius: "6px",
+              }}
+              className="signin__submit"
+            >
+              SIGN IN
+            </Button>
           </form>
         </div>
+
+        {/* Back to home & go to sign up buttons */}
         <div className="text__center">
           <Box sx={{ height: 15 }} />
           <Button
-            variant="outlined"
-            className="signin__submit"
-            style={{ backgroundColor: "#999999", color: "#FFFFFF" }}
+            variant="contained"
+            sx={{
+              width: "100%",
+              borderRadius: "6px",
+            }}
+            className="signin__back"
           >
             BACK
           </Button>
           <Box sx={{ height: 15 }} />
           Have no account?
           <Link style={{ textDecoration: "none" }} to="/signup">
-            <Button style={{ color: "#1B86F9" }}>Sign up now !!</Button>
+            <Button
+              sx={{ color: "#1976d2" }}
+              variant="text"
+              className="signin__goToSignUp"
+            >
+              Sign up now !!
+            </Button>
           </Link>
         </div>
       </div>
