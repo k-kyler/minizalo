@@ -64,7 +64,6 @@ namespace minizalo.Controllers
                 HttpOnly = true, // Set the JWT to be a HTTP only cookies to secure it from the client, only the server can modify it
                 SameSite = SameSiteMode.None, // Configure for client to set the cookies
                 Secure = true, // Set only https can receive
-                expires = DateTime.Now.AddDays(5) // Set the cookie to expire in 5 days
             });
             
             return Ok(new { code = "success", message = "Authorized" });
@@ -84,7 +83,7 @@ namespace minizalo.Controllers
         public async Task<ActionResult<UserDto>> GetUser()
         {
            try {
-                var authJWT = Request.Cookies["AuthJWT"];
+                var authJWT = Request.Cookies["accessToken"];
                 var validatedJWT = _jwtService.ValidateJWT(authJWT);
 
                 User user = await _userRepository.GetUserById(Guid.Parse(validatedJWT.Issuer));
