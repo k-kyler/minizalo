@@ -6,6 +6,7 @@ import axios from "axios";
 interface UserState {
   user: UserType;
   isFetching: boolean;
+  error: boolean;
 }
 
 const initialState: UserState = {
@@ -17,19 +18,16 @@ const initialState: UserState = {
     createdAt: "",
   },
   isFetching: false,
+  error: false,
 };
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  try {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/api/auth/user`,
-      { withCredentials: true }
-    );
+  const { data } = await axios.get(
+    `${import.meta.env.VITE_API_URL}/api/auth/user`,
+    { withCredentials: true }
+  );
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 });
 
 export const userSlice = createSlice({
@@ -44,6 +42,9 @@ export const userSlice = createSlice({
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.isFetching = false;
         state.user = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state) => {
+        state.error = true;
       });
   },
 });
