@@ -58,15 +58,12 @@ export const SignUp: FC = () => {
     try {
       const {
         data: { code, message },
-      } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/register`,
-        {
-          email,
-          username,
-          password,
-          createdAt,
-        }
-      );
+      } = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
+        email,
+        username,
+        password,
+        createdAt,
+      });
 
       if (code === "error") {
         setErrorMessage(message);
