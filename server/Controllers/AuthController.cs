@@ -22,11 +22,11 @@ namespace minizalo.Controllers
             _jwtService = jwtService;
         }
         
-        // Endpoint to register a new user account
-        [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterDto registerDto)
+        // Endpoint to sign up a new user account
+        [HttpPost("signup")]
+        public async Task<ActionResult> SignUp(SignUpDto signUpDto)
         {
-            User existingUser = await _userRepository.GetUserByEmail(registerDto.Email);
+            User existingUser = await _userRepository.GetUserByEmail(signUpDto.Email);
 
             if (existingUser != null) 
             {
@@ -36,46 +36,47 @@ namespace minizalo.Controllers
             User user = new()
             {
                 UserId = Guid.NewGuid(),
-                UserName = registerDto.UserName,
-                Email = registerDto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
-                CreatedAt = registerDto.CreatedAt
+                UserName = signUpDto.UserName,
+                Email = signUpDto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(signUpDto.Password),
+                CreatedAt = signUpDto.CreatedAt
             };
             
             await _userRepository.CreateUser(user);
 
-            return Ok(new { code = "success", message = "Successful registration" });
+            return Ok(new { code = "success", message = "Sign up successful" });
         }
         
-        // Endpoint to login authentication
-        [HttpPost("login")]
-        public async Task<ActionResult> Login(LoginDto loginDto)
+        // Endpoint to sign in authentication
+        [HttpPost("signin")]
+        public async Task<ActionResult> SignIn(SignInDto signInDto)
         {
-            User user = await _userRepository.GetUserByEmail(loginDto.Email);
+            User user = await _userRepository.GetUserByEmail(signInDto.Email);
 
-            if (user is null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
+            if (user is null || !BCrypt.Net.BCrypt.Verify(signInDto.Password, user.Password))
             {
                 return Ok(new { code = "error", message = "Wrong email or password" });
             }
 
             var authJWT = _jwtService.GenerateJWT(user.UserId.ToString());
             
-            Response.Cookies.Append("AuthJWT", authJWT, new CookieOptions() { 
+            Response.Cookies.Append("accessToken", authJWT, new CookieOptions() { 
                 HttpOnly = true, // Set the JWT to be a HTTP only cookies to secure it from the client, only the server can modify it
                 SameSite = SameSiteMode.None, // Configure for client to set the cookies
-                Secure = true // Set only https can receive
+                Secure = true, // Set only https can receive
+                expires = DateTime.Now.AddDays(5) // Set the cookie to expire in 5 days
             });
             
             return Ok(new { code = "success", message = "Authorized" });
         }
 
-        // Endpoint to logout authentication
-        [HttpPost("logout")]
-        public ActionResult Logout()
+        // Endpoint to sign out authentication
+        [HttpGet("signout")]
+        public ActionResult SignOut()
         {
-            Response.Cookies.Delete("AuthJWT");
+            Response.Cookies.Delete("accessToken");
 
-            return Ok(new { code = "success", message = "Logged out" });
+            return Ok(new { code = "success", message = "Sign out successful" });
         }
 
         // Endpoint to get the data of authenticated user
