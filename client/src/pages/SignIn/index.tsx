@@ -3,8 +3,8 @@ import { Button, Box, TextField, Alert } from "@mui/material";
 import "./SignIn.css";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
-import { useAppSelector } from "../../redux/hooks";
-import { selectUser } from "../../redux/UserSlice";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { fetchUser, selectUser } from "../../redux/UserSlice";
 
 export const SignIn: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -14,6 +14,8 @@ export const SignIn: FC = () => {
   const [successMessage, setSuccessMessage] = useState(false);
 
   const user = useAppSelector(selectUser);
+
+  const dispatch = useAppDispatch();
 
   const signInHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,7 +39,7 @@ export const SignIn: FC = () => {
       const {
         data: { code, message },
       } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        `${import.meta.env.VITE_API_URL}/api/auth/signin`,
         {
           email,
           password,
@@ -49,6 +51,7 @@ export const SignIn: FC = () => {
         setErrorMessage(message);
       } else if (code === "success") {
         setSuccessMessage(true);
+        dispatch(fetchUser());
       }
     } catch (error) {
       console.error(error);

@@ -21,8 +21,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
-import { useAppSelector } from "../../redux/hooks";
-import { selectUser } from "../../redux/UserSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectUser, setUser } from "../../redux/UserSlice";
 import axios from "axios";
 
 export const Navbar: FC = () => {
@@ -77,13 +77,29 @@ export const Navbar: FC = () => {
 
   const { user } = useAppSelector(selectUser);
 
+  const dispatch = useAppDispatch();
+
   const signOutHandler = async () => {
     setAnchorEl(null);
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
+      const {
+        data: { code, message },
+      } = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/signout`, {
         withCredentials: true,
       });
+
+      if (code === "success") {
+        dispatch(
+          setUser({
+            userId: "",
+            userName: "",
+            email: "",
+            avatar: "",
+            createdAt: "",
+          })
+        );
+      }
     } catch (error) {
       console.error(error);
     }
