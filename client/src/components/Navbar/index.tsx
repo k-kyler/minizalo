@@ -20,7 +20,10 @@ import ForumIcon from "@mui/icons-material/Forum";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PrivacyTipIcon from "@mui/icons-material/PrivacyTip";
+import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
+import { useAppSelector } from "../../redux/hooks";
+import { selectUser } from "../../redux/UserSlice";
+import axios from "axios";
 
 export const Navbar: FC = () => {
   // Navbar link setup
@@ -31,14 +34,14 @@ export const Navbar: FC = () => {
       pathname: "/dashboard",
     },
     {
+      name: "Search",
+      Icon: <SearchIcon />,
+      pathname: "/search",
+    },
+    {
       name: "Chat",
       Icon: <ForumIcon />,
       pathname: "/chat",
-    },
-    {
-      name: "Notifications",
-      Icon: <NotificationsIcon />,
-      pathname: "/notifications",
     },
     {
       name: "Friends",
@@ -46,13 +49,13 @@ export const Navbar: FC = () => {
       pathname: "/friends",
     },
     {
-      name: "Search",
-      Icon: <SearchIcon />,
-      pathname: "/search",
+      name: "Notifications",
+      Icon: <NotificationsIcon />,
+      pathname: "/notifications",
     },
     {
       name: "Copyright",
-      Icon: <PrivacyTipIcon />,
+      Icon: <AssistantPhotoIcon />,
       pathname: "/copyright",
     },
   ];
@@ -71,6 +74,20 @@ export const Navbar: FC = () => {
     setAnchorEl(null);
   };
   // End of user setting menu setup
+
+  const { user } = useAppSelector(selectUser);
+
+  const signOutHandler = async () => {
+    setAnchorEl(null);
+
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="navbar">
@@ -98,7 +115,7 @@ export const Navbar: FC = () => {
 
       {/* User setting */}
       <div className="navbar__userSetting">
-        <Tooltip title="kkyler bui">
+        <Tooltip title={user.userName}>
           <div
             className="navbar__userInfo"
             aria-haspopup="true"
@@ -108,9 +125,9 @@ export const Navbar: FC = () => {
             <Avatar
               sx={{ width: "2rem", height: "2rem", marginRight: "0.5rem" }}
               alt="kkyler"
-              src={"https://avatars.githubusercontent.com/u/66368949?v=4"}
+              src={user.avatar}
             />
-            <Typography variant="body1">kkyler bui</Typography>
+            <Typography variant="body1">{user.userName}</Typography>
           </div>
         </Tooltip>
       </div>
@@ -156,14 +173,17 @@ export const Navbar: FC = () => {
           </ListItemIcon>
           Profile
         </MenuItem>
+
         <MenuItem onClick={closeUserSettingMenuHandler}>
           <ListItemIcon>
             <Brightness7Icon />
           </ListItemIcon>
           Light theme
         </MenuItem>
+
         <Divider />
-        <MenuItem onClick={closeUserSettingMenuHandler}>
+
+        <MenuItem onClick={signOutHandler}>
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>

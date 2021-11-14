@@ -72,7 +72,7 @@ export const SignIn: FC = () => {
                 transform: "translate(-50%, -50%)",
               }}
             >
-              Glad to see you back, kkyler!
+              Glad to see you back, {user.user.userName}!
             </Alert>
           ) : null}
 
