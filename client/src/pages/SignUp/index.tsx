@@ -1,10 +1,11 @@
 import { FC, useRef, FormEvent, useState } from "react";
-import { Button, Box, TextField, Alert } from "@mui/material";
+import { Button, Box, TextField } from "@mui/material";
 import "./SignUp.css";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUser } from "../../redux/UserSlice";
+import { closeAlert, openAlert } from "../../redux/AlertSlice";
 
 export const SignUp: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -13,9 +14,10 @@ export const SignUp: FC = () => {
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState(false);
 
   const history = useHistory();
+
+  const dispatch = useAppDispatch();
 
   const user = useAppSelector(selectUser);
 
@@ -68,10 +70,10 @@ export const SignUp: FC = () => {
       if (code === "error") {
         setErrorMessage(message);
       } else if (code === "success") {
-        setSuccessMessage(true);
+        dispatch(openAlert({ message: "Sign up successful!" }));
 
         setTimeout(() => {
-          setSuccessMessage(false);
+          dispatch(closeAlert());
           history.push("/"); // redirect back to sign in page
         }, 3000);
       }
@@ -86,22 +88,6 @@ export const SignUp: FC = () => {
         <Redirect to="/dashboard" />
       ) : (
         <div className="signup">
-          {/* Sign up successful alert */}
-          {successMessage ? (
-            <Alert
-              onClose={() => setSuccessMessage(false)}
-              sx={{
-                position: "absolute",
-                top: "2.5rem",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              You've registered successfully!
-            </Alert>
-          ) : null}
-
-          {/* Sign up container */}
           <div className="signup__container">
             <h1 className="signup__heading">SIGN UP</h1>
             <div className="signup__field">

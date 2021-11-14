@@ -22,7 +22,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectUser, setUser } from "../../redux/UserSlice";
+import { selectUser, fetchUser } from "../../redux/UserSlice";
 import axios from "axios";
 
 export const Navbar: FC = () => {
@@ -44,14 +44,14 @@ export const Navbar: FC = () => {
       pathname: "/chat",
     },
     {
-      name: "Friends",
-      Icon: <PeopleAltIcon />,
-      pathname: "/friends",
-    },
-    {
       name: "Notifications",
       Icon: <NotificationsIcon />,
       pathname: "/notifications",
+    },
+    {
+      name: "Friends",
+      Icon: <PeopleAltIcon />,
+      pathname: "/friends",
     },
     {
       name: "Copyright",
@@ -84,21 +84,13 @@ export const Navbar: FC = () => {
 
     try {
       const {
-        data: { code, message },
+        data: { code },
       } = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/signout`, {
         withCredentials: true,
       });
 
       if (code === "success") {
-        dispatch(
-          setUser({
-            userId: "",
-            userName: "",
-            email: "",
-            avatar: "",
-            createdAt: "",
-          })
-        );
+        dispatch(fetchUser());
       }
     } catch (error) {
       console.error(error);
