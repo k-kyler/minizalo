@@ -1,17 +1,17 @@
 import { FC, useState, useRef, FormEvent } from "react";
-import { Button, Box, TextField, Alert } from "@mui/material";
+import { Button, Box, TextField } from "@mui/material";
 import "./SignIn.css";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { fetchUser, selectUser } from "../../redux/UserSlice";
+import { openAlert } from "../../redux/AlertSlice";
 
 export const SignIn: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState(false);
 
   const user = useAppSelector(selectUser);
 
@@ -50,7 +50,7 @@ export const SignIn: FC = () => {
       if (code === "error") {
         setErrorMessage(message);
       } else if (code === "success") {
-        setSuccessMessage(true);
+        dispatch(openAlert({ message: "Sign in successful!" }));
         dispatch(fetchUser());
       }
     } catch (error) {
@@ -64,22 +64,6 @@ export const SignIn: FC = () => {
         <Redirect to="/dashboard" />
       ) : (
         <div className="signin">
-          {/* Sign in successful alert */}
-          {successMessage ? (
-            <Alert
-              onClose={() => setSuccessMessage(false)}
-              sx={{
-                position: "absolute",
-                top: "2.5rem",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              Glad to see you back, {user.user.userName}!
-            </Alert>
-          ) : null}
-
-          {/* Sign in container */}
           <div className="signin__container">
             <h1 className="signin__heading">SIGN IN</h1>
             <div className="signin__field">

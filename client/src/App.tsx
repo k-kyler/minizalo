@@ -9,12 +9,16 @@ import { Notifications } from "./pages/Notifications";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Copyright } from "./pages/Copyright";
-import { useAppDispatch } from "./redux/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { fetchUser } from "./redux/UserSlice";
+import { CustomAlert } from "./components/CustomAlert";
+import { selectIsOpen } from "./redux/AlertSlice";
 
 function App() {
   const dispatch = useAppDispatch();
+
+  const isAlertOpen = useAppSelector(selectIsOpen);
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -22,6 +26,9 @@ function App() {
 
   return (
     <div className="app">
+      {/* General alert */}
+      {isAlertOpen && <CustomAlert />}
+
       <Router>
         <Switch>
           {/* Dashboard */}
