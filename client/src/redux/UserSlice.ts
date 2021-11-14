@@ -1,28 +1,52 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 import { UserType } from "../typings/UserType";
+import axios from "axios";
 
-const initialState: UserType = {
-  userId: "",
-  userName: "",
-  avatar: "",
-  email: "",
-  createdAt: "",
+interface UserState {
+  user: UserType;
+  isFetching: boolean;
+}
+
+const initialState: UserState = {
+  user: {
+    userId: "",
+    userName: "",
+    avatar: "",
+    email: "",
+    createdAt: "",
+  },
+  isFetching: false,
 };
+
+export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
+  try {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/auth/user`,
+      { withCredentials: true }
+    );
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    signInProcessing: (state, action: PayloadAction<UserType>) => {
-      state = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUser.pending, (state) => {
+        state.isFetching = true;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.isFetching = false;
+        state.user = action.payload;
+      });
   },
 });
 
-export const { signInProcessing } = userSlice.actions;
-
-// Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user;
-
 export default userSlice.reducer;

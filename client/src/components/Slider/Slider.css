@@ -8,7 +8,7 @@
 .slider__rightArrow {
   position: absolute;
   cursor: pointer;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   padding: 1rem;
   z-index: 99;
@@ -40,5 +40,5 @@
 
 .slider__slides {
   display: flex;
-  transition: transform 0.25s linear;
+  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
