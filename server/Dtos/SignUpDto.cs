@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace minizalo.Dtos
 {
-    public record RegisterDto
+    public record SignUpDto
     {
         [Required]
         [MinLength(2), MaxLength(15)]

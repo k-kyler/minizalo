@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace minizalo.Dtos
 {
-    public class LoginDto
+    public class SignInDto
     {
         [Required]
         [EmailAddress]
