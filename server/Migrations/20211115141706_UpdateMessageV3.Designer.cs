@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using minizalo.Data;
@@ -9,9 +10,10 @@ using minizalo.Data;
 namespace minizalo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211115141706_UpdateMessageV3")]
+    partial class UpdateMessageV3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,21 +64,16 @@ namespace minizalo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("InboxId")
+                    b.Property<Guid?>("InboxId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("MessageId");
 
                     b.HasIndex("InboxId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Messages");
                 });
@@ -98,6 +95,9 @@ namespace minizalo.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("MessageId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
@@ -109,31 +109,33 @@ namespace minizalo.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("MessageId");
+
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("minizalo.Entities.Message", b =>
                 {
-                    b.HasOne("minizalo.Entities.Inbox", "Inbox")
+                    b.HasOne("minizalo.Entities.Inbox", null)
                         .WithMany("Messages")
-                        .HasForeignKey("InboxId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InboxId");
+                });
 
-                    b.HasOne("minizalo.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inbox");
-
-                    b.Navigation("User");
+            modelBuilder.Entity("minizalo.Entities.User", b =>
+                {
+                    b.HasOne("minizalo.Entities.Message", null)
+                        .WithMany("Users")
+                        .HasForeignKey("MessageId");
                 });
 
             modelBuilder.Entity("minizalo.Entities.Inbox", b =>
                 {
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("minizalo.Entities.Message", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

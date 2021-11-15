@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using minizalo.Data;
@@ -9,9 +10,10 @@ using minizalo.Data;
 namespace minizalo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211115134628_UpdateMessageV2")]
+    partial class UpdateMessageV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,8 +78,6 @@ namespace minizalo.Migrations
 
                     b.HasIndex("InboxId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Messages");
                 });
 
@@ -114,21 +114,11 @@ namespace minizalo.Migrations
 
             modelBuilder.Entity("minizalo.Entities.Message", b =>
                 {
-                    b.HasOne("minizalo.Entities.Inbox", "Inbox")
+                    b.HasOne("minizalo.Entities.Inbox", null)
                         .WithMany("Messages")
                         .HasForeignKey("InboxId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("minizalo.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inbox");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("minizalo.Entities.Inbox", b =>

@@ -40,20 +40,27 @@ namespace minizalo.Controllers
         [HttpPost("create")]
         public async Task<ActionResult> CreateInbox(CreateInboxDto createInboxDto)
         {
-            Inbox inbox = new()
-            {
-                InboxId = Guid.NewGuid(),
-                Name = createInboxDto.Name,
-                Background = createInboxDto.Background,
-                Type = createInboxDto.Type,
-                CreatedAt = createInboxDto.CreatedAt,
-                OwnerId = createInboxDto.OwnerId,
-                MemberIds = createInboxDto.MemberIds
-            };
+            try {
+                var authJWT = Request.Cookies["accessToken"];
+                var validatedJWT = _jwtService.ValidateJWT(authJWT);
 
-            await _inboxRepository.CreateInbox(inbox);
-
-            return Ok(new { code = "success", inbox, message = "Create inbox successful" });
+                Inbox inbox = new()
+                {
+                    InboxId = Guid.NewGuid(),
+                    Name = createInboxDto.Name,
+                    Background = createInboxDto.Background,
+                    Type = createInboxDto.Type,
+                    CreatedAt = createInboxDto.CreatedAt,
+                    OwnerId = createInboxDto.OwnerId,
+                    MemberIds = createInboxDto.MemberIds
+                };
+    
+                await _inboxRepository.CreateInbox(inbox);
+    
+                return Ok(new { code = "success", inbox, message = "Create inbox successful" });
+            } catch (Exception ex) {
+                return Unauthorized(new { code = "error", message = "Unauthorized" });
+            }
         }
     }
 }
