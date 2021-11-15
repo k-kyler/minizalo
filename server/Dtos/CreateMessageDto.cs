@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using minizalo.Entities;
 
-namespace minizalo.Entities
+namespace minizalo.Dtos
 {
-    public record Message
+    public record CreateMessageDto
     {
-        public Guid MessageId { get; init; }
-        
         [Required]
         public string Content { get; set; }
         
@@ -17,11 +16,9 @@ namespace minizalo.Entities
         [Required]
         public DateTime CreatedAt { get; init; }
         
-        // [ForeignKey("UserId")]
         public Guid UserId { get; init; }
         public User? User { get; init; }
-        //
-        // [ForeignKey("InboxId")]
+
         public Guid InboxId { get; init; }
         public Inbox? Inbox { get; init; }
     }
