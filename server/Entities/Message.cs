@@ -16,13 +16,11 @@ namespace minizalo.Entities
         
         [Required]
         public DateTime CreatedAt { get; init; }
-    
-        [Required]
-        [ForeignKey("UserId")]
-        public User User { get; set; }
         
-        [Required]
+        [ForeignKey("UserId")]
+        public User User { get; init; }
+        
         [ForeignKey("InboxId")]
-        public Inbox Inbox { get; set; }
+        public Inbox Inbox { get; init; }
     }
 }

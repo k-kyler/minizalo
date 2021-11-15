@@ -12,11 +12,12 @@ namespace minizalo.Migrations
                 columns: table => new
                 {
                     InboxId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Background = table.Column<string>(type: "text", nullable: true),
                     Type = table.Column<string>(type: "text", nullable: false),
-                    MemberIds = table.Column<string[]>(type: "text[]", nullable: false)
+                    OwnerId = table.Column<Guid>(type: "uuid", nullable: true),
+                    MemberIds = table.Column<Guid[]>(type: "uuid[]", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,10 +29,10 @@ namespace minizalo.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserName = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    UserName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Avatar = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -47,8 +48,8 @@ namespace minizalo.Migrations
                     Content = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    InboxId = table.Column<Guid>(type: "uuid", nullable: false)
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
+                    InboxId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,13 +59,13 @@ namespace minizalo.Migrations
                         column: x => x.InboxId,
                         principalTable: "Inboxes",
                         principalColumn: "InboxId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Messages_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

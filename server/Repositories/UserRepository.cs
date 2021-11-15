@@ -37,7 +37,7 @@ namespace minizalo.Repositories
         // Update user
         public async Task UpdateUser(User user)
         {
-            var userToUpdate = await _dataContext.Users.FirstOrDefaultAsync(user => user.UserId == user.UserId);
+            var userToUpdate = await _dataContext.Users.FirstOrDefaultAsync(u => u.UserId == user.UserId);
 
             if (userToUpdate is null)
             {

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using minizalo.Entities;
 
 namespace minizalo.Dtos
 { 
@@ -8,7 +10,7 @@ namespace minizalo.Dtos
         public Guid UserId { get; init; }
         
         [Required]
-        [MinLength(2), MaxLength(15)]
+        [MinLength(2), MaxLength(100)]
         public string UserName { get; set; }
 
         [MaxLength(200)]
