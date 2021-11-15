@@ -10,8 +10,8 @@ using minizalo.Data;
 namespace minizalo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211108165029_Initial")]
-    partial class Initial
+    [Migration("20211115080635_ChangeInboxProperties")]
+    partial class ChangeInboxProperties
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,12 +33,13 @@ namespace minizalo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string[]>("MemberIds")
-                        .IsRequired()
-                        .HasColumnType("text[]");
+                    b.Property<Guid[]>("MemberIds")
+                        .HasColumnType("uuid[]");
 
                     b.Property<string>("Name")
-                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("OwnerId")
                         .HasColumnType("text");
 
                     b.Property<string>("Type")
@@ -63,14 +64,14 @@ namespace minizalo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("InboxId")
+                    b.Property<Guid?>("InboxId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("MessageId");
@@ -101,13 +102,12 @@ namespace minizalo.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("UserId");
 
@@ -118,15 +118,11 @@ namespace minizalo.Migrations
                 {
                     b.HasOne("minizalo.Entities.Inbox", "Inbox")
                         .WithMany("Messages")
-                        .HasForeignKey("InboxId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InboxId");
 
                     b.HasOne("minizalo.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Inbox");
 

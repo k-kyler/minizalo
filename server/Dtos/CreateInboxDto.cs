@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace minizalo.Entities
+namespace minizalo.Dtos
 {
-    public record Inbox
+    public record CreateInboxDto
     {
-        public Guid InboxId { get; init; }
-        
         public string Name { get; set; }
         
         [Required]
@@ -21,7 +18,5 @@ namespace minizalo.Entities
         public string OwnerId { get; init; }
         
         public Guid[] MemberIds { get; set; }
-        
-        public List<Message> Messages { get; set; }
     }
 }

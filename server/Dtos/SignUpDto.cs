@@ -6,7 +6,7 @@ namespace minizalo.Dtos
     public record SignUpDto
     {
         [Required]
-        [MinLength(2), MaxLength(15)]
+        [MinLength(2), MaxLength(100)]
         public string UserName { get; set; }
         
         [Required]
