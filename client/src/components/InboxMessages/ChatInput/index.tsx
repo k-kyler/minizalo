@@ -7,7 +7,6 @@ import {
   MouseEvent,
 } from "react";
 import "./ChatInput.css";
-import { MessageType } from "../../../typings/MessageType";
 import { UserType } from "../../../typings/UserType";
 import { EmojiList } from "./EmojiList";
 import { IconButton, Tooltip } from "@mui/material";
@@ -17,6 +16,8 @@ import ImageIcon from "@mui/icons-material/Image";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import Picker, { IEmojiData } from "emoji-picker-react";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectUser } from "../../../redux/UserSlice";
 
 interface IChatInput {
   selectedInboxId: string;
@@ -27,14 +28,7 @@ export const ChatInput: FC<IChatInput> = ({
   selectedInboxId,
   selectedInboxType,
 }) => {
-  // Test data for your logged user
-  const user: UserType = {
-    uid: "user1",
-    username: "kkyler",
-    avatar: "",
-    createdAt: "Wed Oct 27, 10:00 PM",
-  };
-  // End of test data for your logged user
+  const { user } = useAppSelector(selectUser);
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);

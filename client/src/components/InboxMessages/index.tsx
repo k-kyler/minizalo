@@ -22,7 +22,7 @@ export const InboxMessages: FC<IInboxMessages> = ({
   const messagesEndRef = useRef<HTMLUListElement>(null);
 
   const selectedInbox = inboxItems.filter(
-    (inboxItem) => inboxItem.id === selectedInboxId
+    (inboxItem) => inboxItem.inboxId === selectedInboxId
   )[0];
 
   const scrollToBottom = () => {
@@ -86,14 +86,14 @@ export const InboxMessages: FC<IInboxMessages> = ({
       <ul className="inboxMessages__messages" ref={messagesEndRef}>
         <FlipMove leaveAnimation="fade">
           {selectedInbox.messages?.map((message) => (
-            <Message key={message.id} {...message} />
+            <Message key={message.messageId} {...message} />
           ))}
         </FlipMove>
       </ul>
 
       {/* Chat input */}
       <ChatInput
-        selectedInboxId={selectedInbox.id}
+        selectedInboxId={selectedInbox.inboxId}
         selectedInboxType={selectedInbox.type}
       />
     </div>

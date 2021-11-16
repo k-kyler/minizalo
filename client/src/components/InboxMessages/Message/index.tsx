@@ -2,37 +2,31 @@ import { forwardRef } from "react";
 import "./Message.css";
 import { MessageType } from "../../../typings/MessageType";
 import { Avatar, Typography } from "@mui/material";
-import { UserType } from "../../../typings/UserType";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectUser } from "../../../redux/UserSlice";
 
 interface IMessage extends MessageType {}
 
 export const Message = forwardRef<HTMLLIElement, IMessage>(
-  ({ id, uid, username, avatar, text, video, image, type, createdAt }, ref) => {
-    // Test data for your logged user
-    const user: UserType = {
-      uid: "user1",
-      username: "kkyler",
-      avatar: "",
-      createdAt: "Wed Oct 27, 10:00 PM",
-    };
-    // End of test data for your logged user
+  ({ messageId, uid, username, avatar, content, type, createdAt }, ref) => {
+    const { user } = useAppSelector(selectUser);
 
     return (
       <li
         ref={ref}
-        className={`message ${user.uid === uid ? "message--yourUser" : ""}`}
+        className={`message ${user.userId === uid ? "message--yourUser" : ""}`}
       >
         {/* Avatar */}
-        {user.uid === uid ? null : <Avatar alt={username} src={avatar} />}
+        {user.userId === uid ? null : <Avatar alt={username} src={avatar} />}
 
         {/* Message content */}
         <div
           className={`message__info ${
-            user.uid === uid ? "message__info--yourUser" : ""
+            user.userId === uid ? "message__info--yourUser" : ""
           }`}
         >
           {/* Username */}
-          {user.uid === uid ? null : (
+          {user.userId === uid ? null : (
             <Typography variant="caption" color="gray">
               {username}
             </Typography>
@@ -41,7 +35,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
           {/* Display styles for each types of message */}
           {type === "text" ? (
             <Typography variant="body1" className="message__text">
-              {text}
+              {content}
             </Typography>
           ) : type === "image" ? (
             <div className="message__image"></div>

@@ -1,7 +1,7 @@
 .inboxMessages {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 34.75rem;
 }
 
 .inboxMessages__header {
@@ -40,9 +40,8 @@
 
 .inboxMessages__messages {
   list-style: none;
-  padding: 1.25rem 0.5rem 0 1rem;
+  padding: 1.5rem 0.5rem 0 1rem;
   overflow-y: auto;
-  height: 22.75rem;
   scroll-behavior: smooth;
 
   /* Config for hiding scrollbar */
