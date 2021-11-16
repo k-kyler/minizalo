@@ -14,14 +14,17 @@ namespace minizalo.Controllers
     public class InboxController : ControllerBase
     {
         private readonly IInboxRepository _inboxRepository;
+        private readonly IMessageRepository _messageRepository;
         private readonly JwtService _jwtService;
 
-        public InboxController(IInboxRepository inboxRepository, JwtService jwtService)
+        public InboxController(IInboxRepository inboxRepository, IMessageRepository messageRepository, JwtService jwtService)
         {
             _inboxRepository = inboxRepository;
+            _messageRepository = messageRepository;
             _jwtService = jwtService;
         }
 
+        // Get all inboxes that user has joined
         [HttpGet("user")]
         public async Task<ActionResult<InboxDto>> GetUserInboxes()
         {
@@ -31,12 +34,18 @@ namespace minizalo.Controllers
 
                 IEnumerable<Inbox> inboxes = await _inboxRepository.GetUserInboxes(Guid.Parse(validatedJWT.Issuer));
 
-                return Ok(new { code = "success", message = "Retrieve user inboxes successful", inboxes });
+                return Ok(new
+                {
+                    code = "success", 
+                    message = "Retrieve user inboxes successful",
+                    inboxes
+                });
             } catch (Exception ex) {
                 return Unauthorized(new { code = "error", message = "Unauthorized" });
             }
         }
 
+        // Create new inbox
         [HttpPost("create")]
         public async Task<ActionResult> CreateInbox(CreateInboxDto createInboxDto)
         {

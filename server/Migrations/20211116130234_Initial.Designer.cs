@@ -10,8 +10,8 @@ using minizalo.Data;
 namespace minizalo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211115133305_UpdateMessage")]
-    partial class UpdateMessage
+    [Migration("20211116130234_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,6 +57,9 @@ namespace minizalo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Avatar")
+                        .HasColumnType("text");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
@@ -64,21 +67,26 @@ namespace minizalo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("InboxId")
+                    b.Property<Guid?>("InboxId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("InboxRefId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Uid")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("MessageId");
 
                     b.HasIndex("InboxId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Messages");
                 });
@@ -116,21 +124,9 @@ namespace minizalo.Migrations
 
             modelBuilder.Entity("minizalo.Entities.Message", b =>
                 {
-                    b.HasOne("minizalo.Entities.Inbox", "Inbox")
+                    b.HasOne("minizalo.Entities.Inbox", null)
                         .WithMany("Messages")
-                        .HasForeignKey("InboxId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("minizalo.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inbox");
-
-                    b.Navigation("User");
+                        .HasForeignKey("InboxId");
                 });
 
             modelBuilder.Entity("minizalo.Entities.Inbox", b =>

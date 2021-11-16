@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using minizalo.Entities;
 
 namespace minizalo.Dtos
 {
@@ -17,12 +15,10 @@ namespace minizalo.Dtos
         public string Background { get; set; }
         
         [Required]
-        public string Type { get; init; }
+        public string Type { get; set; }
         
         public string OwnerId { get; init; }
 
         public Guid[] MemberIds { get; set; }
-        
-        public List<Message> Messages { get; set; }
     }
 }

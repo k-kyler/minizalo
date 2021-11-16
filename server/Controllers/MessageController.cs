@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using minizalo.Dtos;
@@ -21,21 +22,43 @@ namespace minizalo.Controllers
             _jwtService = jwtService;
         }
 
+        [HttpGet("inbox/{id}")]
+        public async Task<ActionResult<MessageDto>> GetMessagesByInboxId(Guid id)
+        {
+            try {
+                var authJWT = Request.Cookies["accessToken"];
+                var validatedJWT = _jwtService.ValidateJWT(authJWT);
+
+                IEnumerable<Message> messages = await _messageRepository.GetMessagesByInboxRefId(id);
+
+                return Ok(new
+                {
+                    code = "success", 
+                    message = "Retrieve messages of inbox successful",
+                    messages
+                });
+            } catch (Exception ex) {
+                return Unauthorized(new { code = "error", message = "Unauthorized" });
+            }
+        }
+
         [HttpPost("create")]
         public async Task<ActionResult> CreateMessage(CreateMessageDto createMessageDto)
         {
             try {
                 var authJWT = Request.Cookies["accessToken"];
                 var validatedJWT = _jwtService.ValidateJWT(authJWT);
-
+                
                 Message message = new()
                 {
                     MessageId = Guid.NewGuid(),
+                    Uid = createMessageDto.Uid,
+                    Username = createMessageDto.Username,
+                    Avatar = createMessageDto.Avatar,
                     Content = createMessageDto.Content,
                     Type = createMessageDto.Type,
                     CreatedAt = createMessageDto.CreatedAt,
-                    UserId = createMessageDto.UserId,
-                    InboxId = createMessageDto.InboxId
+                    InboxRefId = createMessageDto.InboxRefId
                 };
     
                 await _messageRepository.CreateMessage(message);

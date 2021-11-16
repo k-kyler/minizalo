@@ -13,7 +13,7 @@ namespace minizalo.Dtos
         public string Background { get; set; }
         
         [Required]
-        public string Type { get; init; }
+        public string Type { get; set; }
         
         public string OwnerId { get; init; }
         
