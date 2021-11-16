@@ -1,11 +1,9 @@
 export type MessageType = {
-  id: string;
+  messageId: string;
   uid: string;
   username: string;
   avatar: string;
   createdAt: string;
-  text?: string;
-  video?: string;
-  image?: string;
+  content: string;
   type: "text" | "video" | "image";
 };

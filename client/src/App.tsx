@@ -14,6 +14,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { fetchUser } from "./redux/UserSlice";
 import { CustomAlert } from "./components/CustomAlert";
 import { selectIsOpen } from "./redux/AlertSlice";
+import { fetchInboxes } from "./redux/InboxesSlice";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUser());
+    dispatch(fetchInboxes());
   }, []);
 
   return (

@@ -44,10 +44,10 @@ export const InboxList: FC<IInboxList> = ({
       <div className="inboxList__inboxes">
         {inboxItems.map((room) => (
           <InboxItem
-            key={room.id}
+            key={room.inboxId}
             {...room}
             selectedInboxId={selectedInboxId}
-            clickHandler={() => setSelectedInboxId(room.id)}
+            clickHandler={() => setSelectedInboxId(room.inboxId)}
           />
         ))}
       </div>

@@ -10,10 +10,9 @@ interface IInboxItem extends InboxItemType {
 }
 
 export const InboxItem: FC<IInboxItem> = ({
-  id,
+  inboxId,
   name,
   background,
-  messages,
   createdAt,
   selectedInboxId,
   clickHandler,
@@ -21,7 +20,7 @@ export const InboxItem: FC<IInboxItem> = ({
   return (
     <div
       className={`inboxItem ${
-        selectedInboxId === id ? "inboxItem--active" : ""
+        selectedInboxId === inboxId ? "inboxItem--active" : ""
       }`}
       onClick={clickHandler}
     >
@@ -34,10 +33,10 @@ export const InboxItem: FC<IInboxItem> = ({
           <Typography variant="body1">{name}</Typography>
 
           {/* View last message */}
-          {messages?.length && messages[messages.length - 1].type === "text" ? (
+          {/* {messages?.length && messages[messages.length - 1].type === "text" ? (
             <Typography variant="caption" color="gray">
               {messages[messages.length - 1].username}:{" "}
-              {messages[messages.length - 1].text}
+              {messages[messages.length - 1].content}
             </Typography>
           ) : messages?.length &&
             messages[messages.length - 1].type === "video" ? (
@@ -53,7 +52,13 @@ export const InboxItem: FC<IInboxItem> = ({
             <Typography variant="caption" color="gray">
               No messages
             </Typography>
-          )}
+          )} */}
+
+          {/* Test */}
+          <Typography variant="caption" color="gray">
+            No messages
+          </Typography>
+          {/* End of test */}
         </div>
       </div>
 
