@@ -16,7 +16,7 @@ namespace minizalo.Migrations
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Background = table.Column<string>(type: "text", nullable: true),
                     Type = table.Column<string>(type: "text", nullable: false),
-                    OwnerId = table.Column<Guid>(type: "uuid", nullable: true),
+                    OwnerId = table.Column<string>(type: "text", nullable: true),
                     MemberIds = table.Column<Guid[]>(type: "uuid[]", nullable: true)
                 },
                 constraints: table =>
@@ -45,10 +45,13 @@ namespace minizalo.Migrations
                 columns: table => new
                 {
                     MessageId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Uid = table.Column<Guid>(type: "uuid", nullable: false),
+                    Username = table.Column<string>(type: "text", nullable: false),
+                    Avatar = table.Column<string>(type: "text", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
+                    InboxRefId = table.Column<Guid>(type: "uuid", nullable: false),
                     InboxId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -60,23 +63,12 @@ namespace minizalo.Migrations
                         principalTable: "Inboxes",
                         principalColumn: "InboxId",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Messages_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_InboxId",
                 table: "Messages",
                 column: "InboxId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Messages_UserId",
-                table: "Messages",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -85,10 +77,10 @@ namespace minizalo.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "Inboxes");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Inboxes");
         }
     }
 }

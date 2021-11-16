@@ -2,9 +2,9 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace minizalo.Entities
+namespace minizalo.Dtos
 {
-    public record Message
+    public record MessageDto
     {
         public Guid MessageId { get; init; }
 
