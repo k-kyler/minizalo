@@ -22,26 +22,6 @@ namespace minizalo.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpGet("inbox/{id}")]
-        public async Task<ActionResult<MessageDto>> GetMessagesByInboxId(Guid id)
-        {
-            try {
-                var authJWT = Request.Cookies["accessToken"];
-                var validatedJWT = _jwtService.ValidateJWT(authJWT);
-
-                IEnumerable<Message> messages = await _messageRepository.GetMessagesByInboxRefId(id);
-
-                return Ok(new
-                {
-                    code = "success", 
-                    message = "Retrieve messages of inbox successful",
-                    messages
-                });
-            } catch (Exception ex) {
-                return Unauthorized(new { code = "error", message = "Unauthorized" });
-            }
-        }
-
         [HttpPost("create")]
         public async Task<ActionResult> CreateMessage(CreateMessageDto createMessageDto)
         {
