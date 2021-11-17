@@ -9,14 +9,17 @@
 }
 
 .navbar__logo {
+  flex: 0.2;
+}
+
+.navbar__logo > a {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: black;
-  flex: 0.2;
 }
 
-.navbar__logo > img {
+.navbar__logo > a > img {
   height: 3.25rem;
   margin-right: 0.5rem;
 }
@@ -75,9 +78,9 @@
 .navbar__userInfo {
   display: flex;
   align-items: center;
-  background-color: #f1f2f5;
   border-radius: 1.25rem;
+  background-color: #f1f2f5;
   padding: 0.25rem 0.5rem;
-  margin: 0 0.5rem;
+  margin-right: 0.5rem;
   cursor: pointer;
 }
