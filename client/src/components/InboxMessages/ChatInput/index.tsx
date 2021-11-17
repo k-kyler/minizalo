@@ -7,7 +7,6 @@ import {
   MouseEvent,
 } from "react";
 import "./ChatInput.css";
-import { UserType } from "../../../typings/UserType";
 import { EmojiList } from "./EmojiList";
 import { IconButton, Tooltip } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -16,8 +15,9 @@ import ImageIcon from "@mui/icons-material/Image";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import Picker, { IEmojiData } from "emoji-picker-react";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
+import { postMessage } from "../../../redux/MessageSlice";
 
 interface IChatInput {
   selectedInboxId: string;
@@ -29,6 +29,8 @@ export const ChatInput: FC<IChatInput> = ({
   selectedInboxType,
 }) => {
   const { user } = useAppSelector(selectUser);
+
+  const dispatch = useAppDispatch();
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
@@ -49,7 +51,18 @@ export const ChatInput: FC<IChatInput> = ({
   };
 
   const sendMessageHandler = () => {
-    // Check and collect input data, then send it. Finally, scroll to bottom
+    dispatch(
+      postMessage({
+        uid: user.userId,
+        username: user.userName,
+        avatar: user.avatar,
+        content: textAreaRef.current ? textAreaRef.current.value : "",
+        type: "text",
+        inboxRefId: selectedInboxId,
+      })
+    ).then(() => {
+      if (textAreaRef.current) textAreaRef.current.value = "";
+    });
   };
 
   const enterToSendMessageHandler = (
