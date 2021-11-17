@@ -100,10 +100,12 @@ export const Navbar: FC = () => {
   return (
     <div className="navbar">
       {/* Logo */}
-      <Link className="navbar__logo" to="/">
-        <img src={Logo} alt="MiniZalo" />
-        <Typography variant="h5">MiniZalo</Typography>
-      </Link>
+      <div className="navbar__logo">
+        <Link to="/">
+          <img src={Logo} alt="MiniZalo" />
+          <Typography variant="h5">MiniZalo</Typography>
+        </Link>
+      </div>
 
       {/* Links */}
       <ul className="navbar__links">
@@ -131,11 +133,26 @@ export const Navbar: FC = () => {
             onClick={openUserSettingMenuHandler}
           >
             <Avatar
-              sx={{ width: "2rem", height: "2rem", marginRight: "0.5rem" }}
-              alt="kkyler"
+              sx={{
+                width: "2rem",
+                height: "2rem",
+                marginRight: "0.5rem",
+                backgroundColor: "white",
+              }}
+              alt={user.userName}
               src={user.avatar}
             />
-            <Typography variant="body1">{user.userName}</Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflowX: "hidden",
+                maxWidth: "6em",
+              }}
+            >
+              {user.userName}
+            </Typography>
           </div>
         </Tooltip>
       </div>
@@ -149,7 +166,7 @@ export const Navbar: FC = () => {
         PaperProps={{
           elevation: 0,
           sx: {
-            mt: 2,
+            mt: 3,
             overflow: "visible",
             filter: "drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.25))",
             "& .MuiAvatar-root": {
