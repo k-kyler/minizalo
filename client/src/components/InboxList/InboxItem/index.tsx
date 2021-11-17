@@ -14,6 +14,7 @@ export const InboxItem: FC<IInboxItem> = ({
   name,
   background,
   createdAt,
+  messages,
   selectedInboxId,
   clickHandler,
 }) => {
@@ -33,7 +34,7 @@ export const InboxItem: FC<IInboxItem> = ({
           <Typography variant="body1">{name}</Typography>
 
           {/* View last message */}
-          {/* {messages?.length && messages[messages.length - 1].type === "text" ? (
+          {messages?.length && messages[messages.length - 1].type === "text" ? (
             <Typography variant="caption" color="gray">
               {messages[messages.length - 1].username}:{" "}
               {messages[messages.length - 1].content}
@@ -52,13 +53,7 @@ export const InboxItem: FC<IInboxItem> = ({
             <Typography variant="caption" color="gray">
               No messages
             </Typography>
-          )} */}
-
-          {/* Test */}
-          <Typography variant="caption" color="gray">
-            No messages
-          </Typography>
-          {/* End of test */}
+          )}
         </div>
       </div>
 
