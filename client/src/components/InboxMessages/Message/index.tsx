@@ -4,6 +4,7 @@ import { MessageType } from "../../../typings/MessageType";
 import { Avatar, Typography } from "@mui/material";
 import { useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
+import { TimeAgo } from "../../TimeAgo";
 
 interface IMessage extends MessageType {}
 
@@ -45,7 +46,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
 
           {/* Timestamp */}
           <Typography variant="caption" color="gray">
-            {createdAt}
+            <TimeAgo timestamp={createdAt} />
           </Typography>
         </div>
       </li>

@@ -1,9 +1,10 @@
 export type MessageType = {
-  messageId: string;
+  messageId?: string;
   uid: string;
   username: string;
   avatar: string;
-  createdAt: string;
+  createdAt?: string;
   content: string;
   type: "text" | "video" | "image";
+  inboxRefId: string;
 };

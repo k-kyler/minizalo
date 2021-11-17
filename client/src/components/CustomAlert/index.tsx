@@ -8,6 +8,10 @@ export const CustomAlert: FC = () => {
 
   const message = useAppSelector(selectMessage);
 
+  setTimeout(() => {
+    dispatch(closeAlert());
+  }, 3000);
+
   return (
     <Alert
       variant="outlined"
