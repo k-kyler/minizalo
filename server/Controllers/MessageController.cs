@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using minizalo.Dtos;
@@ -37,7 +36,7 @@ namespace minizalo.Controllers
                     Avatar = createMessageDto.Avatar,
                     Content = createMessageDto.Content,
                     Type = createMessageDto.Type,
-                    CreatedAt = createMessageDto.CreatedAt,
+                    CreatedAt = DateTime.Now,
                     InboxRefId = createMessageDto.InboxRefId
                 };
     

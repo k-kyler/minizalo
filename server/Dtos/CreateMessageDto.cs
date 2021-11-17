@@ -20,9 +20,6 @@ namespace minizalo.Dtos
         [Required]
         public string Type { get; init; }
         
-        [Required]
-        public DateTime CreatedAt { get; init; }
-        
         [ForeignKey("FK_Inbox")]
         public Guid InboxRefId { get; init; }
     }

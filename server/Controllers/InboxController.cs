@@ -59,7 +59,7 @@ namespace minizalo.Controllers
                     Name = createInboxDto.Name,
                     Background = createInboxDto.Background,
                     Type = createInboxDto.Type,
-                    CreatedAt = createInboxDto.CreatedAt,
+                    CreatedAt = DateTime.Now,
                     OwnerId = createInboxDto.OwnerId,
                     MemberIds = createInboxDto.MemberIds
                 };
