@@ -39,7 +39,7 @@ namespace minizalo.Controllers
                 UserName = signUpDto.UserName,
                 Email = signUpDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(signUpDto.Password),
-                CreatedAt = signUpDto.CreatedAt
+                CreatedAt = DateTime.Now
             };
             
             await _userRepository.CreateUser(user);

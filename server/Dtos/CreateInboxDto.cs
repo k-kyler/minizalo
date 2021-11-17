@@ -7,9 +7,6 @@ namespace minizalo.Dtos
     {
         public string Name { get; set; }
         
-        [Required]
-        public DateTime CreatedAt { get; init; }
-        
         public string Background { get; set; }
         
         [Required]

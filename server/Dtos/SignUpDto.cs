@@ -15,8 +15,5 @@ namespace minizalo.Dtos
         
         [Required]
         public string Password { get; set; }
-        
-        [Required]
-        public DateTimeOffset CreatedAt { get; init; }
     }
 }
