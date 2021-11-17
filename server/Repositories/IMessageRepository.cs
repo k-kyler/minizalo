@@ -7,7 +7,6 @@ namespace minizalo.Repositories
 {
     public interface IMessageRepository
     {
-        Task<IEnumerable<Message>> GetMessagesByInboxRefId(Guid id);
         Task CreateMessage(Message message);
     }
 }
