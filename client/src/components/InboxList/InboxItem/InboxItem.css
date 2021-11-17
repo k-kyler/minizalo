@@ -43,7 +43,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow-x: hidden;
-  max-width: 12em;
+  max-width: 15em;
 }
 
 .inboxItem__setting {

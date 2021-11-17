@@ -1,3 +1,5 @@
+import { MessageType } from "./MessageType";
+
 export type InboxItemType = {
   inboxId: string;
   name: string;
@@ -5,4 +7,5 @@ export type InboxItemType = {
   createdAt: string;
   memberIds: string[];
   type: "group" | "personal";
+  messages?: MessageType[];
 };
