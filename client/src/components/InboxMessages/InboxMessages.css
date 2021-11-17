@@ -43,6 +43,7 @@
   padding: 1.5rem 0.5rem 0 1rem;
   overflow-y: auto;
   scroll-behavior: smooth;
+  flex: 1;
 
   /* Config for hiding scrollbar */
   mask-image: linear-gradient(to top, transparent, black),
