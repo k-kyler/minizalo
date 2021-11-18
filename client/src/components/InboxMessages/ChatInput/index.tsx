@@ -64,6 +64,8 @@ export const ChatInput: FC<IChatInput> = ({
 
     if (dispatchResult.code === "success") {
       if (textAreaRef.current) textAreaRef.current.value = "";
+      if (textAreaRef.current && !textAreaRef.current.value)
+        setCheckIsTyping(false);
     }
   };
 
