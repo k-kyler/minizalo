@@ -79,6 +79,10 @@ namespace minizalo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                // Add endpoints of hubs
+                endpoints.MapHub<ChatHub>("/hubs/chat");
+                // End of endpoints of hubs
             });
         }
     }
