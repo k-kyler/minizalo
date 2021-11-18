@@ -46,7 +46,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
 
           {/* Timestamp */}
           <Typography variant="caption" color="gray">
-            <TimeAgo timestamp={createdAt} />
+            <TimeAgo timestamp={createdAt ? createdAt : ""} />
           </Typography>
         </div>
       </li>

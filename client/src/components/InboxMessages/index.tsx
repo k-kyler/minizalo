@@ -31,7 +31,7 @@ export const InboxMessages: FC<IInboxMessages> = ({
     }
   };
 
-  useEffect(scrollToBottom, [selectedInboxId]);
+  useEffect(scrollToBottom, [selectedInboxId, selectedInbox]);
 
   return (
     <div className="inboxMessages">
