@@ -1,7 +1,7 @@
 .inboxMessages {
   display: flex;
   flex-direction: column;
-  height: 34.75rem;
+  height: 34.5rem;
 }
 
 .inboxMessages__header {
