@@ -1,12 +1,17 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import { MessageType } from "../typings/MessageType";
 import { InboxItemType } from "../typings/InboxItemType";
 import { RootState } from "./store";
-import axios from "axios";
 
 interface InboxesState {
   inboxes: InboxItemType[];
   isFetching: boolean;
   error: boolean;
+}
+
+interface UpdateDataOfInbox {
+  message: MessageType;
 }
 
 const initialState: InboxesState = {
@@ -31,9 +36,21 @@ export const fetchInboxes = createAsyncThunk(
 export const inboxesSlice = createSlice({
   name: "inboxes",
   initialState,
-  reducers: {},
+  reducers: {
+    addNewMessage: (state, action: PayloadAction<UpdateDataOfInbox>) => {
+      const { message } = action.payload;
+      const existingInbox = state.inboxes.find(
+        (inbox) => inbox.inboxId === message.inboxRefId
+      );
+
+      if (existingInbox) {
+        existingInbox.messages?.push(message);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
+      // Fetch inboxes
       .addCase(fetchInboxes.pending, (state) => {
         state.isFetching = true;
       })
@@ -48,5 +65,6 @@ export const inboxesSlice = createSlice({
   },
 });
 
+export const { addNewMessage } = inboxesSlice.actions;
 export const selectInboxes = (state: RootState) => state.inboxes;
 export default inboxesSlice.reducer;
