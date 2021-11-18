@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using minizalo.Data;
 using minizalo.Helpers;
+using minizalo.Hubs;
 using minizalo.Repositories;
 
 namespace minizalo
@@ -39,9 +40,13 @@ namespace minizalo
             services.AddScoped<JwtService>();
             // End of register helpers
 
-            // Add core services
+            // Add cors services
             services.AddCors();
-            // End of add core services
+            // End of add cors services
+            
+            // Add SignalR services
+            services.AddSignalR();
+            // End of SignalR services
             
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "minizalo", Version = "v1"}); });
@@ -71,7 +76,10 @@ namespace minizalo
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
