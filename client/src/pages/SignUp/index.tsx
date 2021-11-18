@@ -2,10 +2,9 @@ import { FC, useRef, FormEvent, useState } from "react";
 import { Button, Box, TextField } from "@mui/material";
 import "./SignUp.css";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectUser } from "../../redux/UserSlice";
-import { closeAlert, openAlert } from "../../redux/AlertSlice";
+import { selectUser, signUpUser } from "../../redux/UserSlice";
+import { openAlert } from "../../redux/AlertSlice";
 
 export const SignUp: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -25,17 +24,16 @@ export const SignUp: FC = () => {
     event.preventDefault();
 
     const email = emailRef.current!.value;
-    const username = usernameRef.current!.value;
+    const userName = usernameRef.current!.value;
     const password = passwordRef.current!.value;
     const passwordConfirm = passwordConfirmRef.current!.value;
-    const createdAt = new Date().toISOString();
 
     if (!email) {
       setErrorMessage("Please fill in email");
       return;
     }
 
-    if (!username) {
+    if (!userName) {
       setErrorMessage("Please fill in username");
       return;
     }
@@ -58,22 +56,20 @@ export const SignUp: FC = () => {
     setErrorMessage("");
 
     try {
-      const {
-        data: { code, message },
-      } = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
-        email,
-        username,
-        password,
-        createdAt,
-      });
+      const dispatchResult = await dispatch(
+        signUpUser({
+          email,
+          userName,
+          password,
+        })
+      ).unwrap();
 
-      if (code === "error") {
-        setErrorMessage(message);
-      } else if (code === "success") {
+      if (dispatchResult.code === "error") {
+        setErrorMessage(dispatchResult.message);
+      } else if (dispatchResult.code === "success") {
         dispatch(openAlert({ message: "Sign up successful!" }));
 
         setTimeout(() => {
-          dispatch(closeAlert());
           history.push("/"); // redirect back to sign in page
         }, 3000);
       }

@@ -27,14 +27,17 @@ export const postMessage = createAsyncThunk(
   "message/postMessage",
   async (inputMessage: MessageType) => {
     const {
-      data: { message },
+      data: { code, message },
     } = await axios.post(
       `${import.meta.env.VITE_API_URL}/api/message/create`,
       inputMessage,
       { withCredentials: true }
     );
 
-    return message;
+    return {
+      code,
+      message,
+    };
   }
 );
 
@@ -44,11 +47,14 @@ export const messageSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Post message
       .addCase(postMessage.pending, (state) => {
         state.isFetching = true;
       })
       .addCase(postMessage.fulfilled, (state, action) => {
-        state.message = action.payload;
+        if (action.payload.code === "success") {
+          state.message = action.payload.message;
+        }
       })
       .addCase(postMessage.rejected, (state) => {
         state.error = true;

@@ -2,9 +2,8 @@ import { FC, useState, useRef, FormEvent } from "react";
 import { Button, Box, TextField } from "@mui/material";
 import "./SignIn.css";
 import { Link, Redirect } from "react-router-dom";
-import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { fetchUser, selectUser } from "../../redux/UserSlice";
+import { fetchUser, selectUser, signInUser } from "../../redux/UserSlice";
 import { openAlert } from "../../redux/AlertSlice";
 
 export const SignIn: FC = () => {
@@ -36,20 +35,16 @@ export const SignIn: FC = () => {
     setErrorMessage("");
 
     try {
-      const {
-        data: { code, message },
-      } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/signin`,
-        {
+      const dispatchResult = await dispatch(
+        signInUser({
           email,
           password,
-        },
-        { withCredentials: true }
-      );
+        })
+      ).unwrap();
 
-      if (code === "error") {
-        setErrorMessage(message);
-      } else if (code === "success") {
+      if (dispatchResult.code === "error") {
+        setErrorMessage(dispatchResult.message);
+      } else if (dispatchResult.code === "success") {
         dispatch(openAlert({ message: "Sign in successful!" }));
         dispatch(fetchUser());
       }

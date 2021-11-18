@@ -50,8 +50,8 @@ export const ChatInput: FC<IChatInput> = ({
     }
   };
 
-  const sendMessageHandler = () => {
-    dispatch(
+  const sendMessageHandler = async () => {
+    const dispatchResult = await dispatch(
       postMessage({
         uid: user.userId,
         username: user.userName,
@@ -60,9 +60,11 @@ export const ChatInput: FC<IChatInput> = ({
         type: "text",
         inboxRefId: selectedInboxId,
       })
-    ).then(() => {
+    ).unwrap();
+
+    if (dispatchResult.code === "success") {
       if (textAreaRef.current) textAreaRef.current.value = "";
-    });
+    }
   };
 
   const enterToSendMessageHandler = (
