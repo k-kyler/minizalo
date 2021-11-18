@@ -22,7 +22,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectUser, fetchUser } from "../../redux/UserSlice";
+import { selectUser, signOutUser } from "../../redux/UserSlice";
 import axios from "axios";
 
 export const Navbar: FC = () => {
@@ -81,20 +81,7 @@ export const Navbar: FC = () => {
 
   const signOutHandler = async () => {
     setAnchorEl(null);
-
-    try {
-      const {
-        data: { code },
-      } = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/signout`, {
-        withCredentials: true,
-      });
-
-      if (code === "success") {
-        dispatch(fetchUser());
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(signOutUser());
   };
 
   return (
