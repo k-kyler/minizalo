@@ -96,11 +96,11 @@ export const SignUp: FC = () => {
                   }
                   inputRef={emailRef}
                   label="Email"
-                  variant="outlined"
+                  variant="standard"
                   sx={{ width: "100%" }}
                   type="email"
                 />
-                <Box sx={{ height: 25 }} />
+                <Box sx={{ height: 20 }} />
                 <TextField
                   error={errorMessage.toLowerCase().includes("username")}
                   helperText={
@@ -110,10 +110,10 @@ export const SignUp: FC = () => {
                   inputRef={usernameRef}
                   type="text"
                   label="Username"
-                  variant="outlined"
+                  variant="standard"
                   sx={{ width: "100%" }}
                 />
-                <Box sx={{ height: 25 }} />
+                <Box sx={{ height: 20 }} />
                 <TextField
                   error={errorMessage.toLowerCase().includes("password")}
                   helperText={
@@ -123,10 +123,10 @@ export const SignUp: FC = () => {
                   inputRef={passwordRef}
                   type="password"
                   label="Password"
-                  variant="outlined"
+                  variant="standard"
                   sx={{ width: "100%" }}
                 />
-                <Box sx={{ height: 25 }} />
+                <Box sx={{ height: 20 }} />
                 <TextField
                   error={errorMessage.toLowerCase().includes("password")}
                   helperText={
@@ -136,10 +136,10 @@ export const SignUp: FC = () => {
                   inputRef={passwordConfirmRef}
                   type="password"
                   label="Confirm password"
-                  variant="outlined"
+                  variant="standard"
                   sx={{ width: "100%" }}
                 />
-                <Box sx={{ height: 25 }} />
+                <Box sx={{ height: 40 }} />
 
                 {/* Buttons */}
                 <Button
@@ -152,7 +152,7 @@ export const SignUp: FC = () => {
                 >
                   SIGN UP
                 </Button>
-                <Box sx={{ height: 12 }} />
+                <Box sx={{ height: 15 }} />
                 <Link to="/" style={{ textDecoration: "none" }}>
                   <Button
                     sx={{

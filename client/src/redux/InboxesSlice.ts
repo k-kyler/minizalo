@@ -54,10 +54,24 @@ export const inboxesSlice = createSlice({
       .addCase(fetchInboxes.pending, (state) => {
         state.isFetching = true;
       })
-      .addCase(fetchInboxes.fulfilled, (state, action) => {
-        state.isFetching = false;
-        state.inboxes = action.payload;
-      })
+      .addCase(
+        fetchInboxes.fulfilled,
+        (state, action: PayloadAction<InboxItemType[]>) => {
+          state.isFetching = false;
+
+          const sortedInboxes = action.payload
+            .slice()
+            .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+            .map((inbox) => ({
+              ...inbox,
+              messages: inbox.messages
+                ?.slice()
+                .sort((a: any, b) => a.createdAt.localeCompare(b.createdAt)),
+            }));
+
+          state.inboxes = sortedInboxes;
+        }
+      )
       .addCase(fetchInboxes.rejected, (state) => {
         state.error = true;
         state.inboxes = initialState.inboxes;
