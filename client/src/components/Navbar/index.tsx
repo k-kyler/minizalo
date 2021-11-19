@@ -124,7 +124,6 @@ export const Navbar: FC = () => {
                 width: "2rem",
                 height: "2rem",
                 marginRight: "0.5rem",
-                backgroundColor: "white",
               }}
               alt={user.userName}
               src={user.avatar}

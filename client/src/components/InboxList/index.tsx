@@ -1,22 +1,17 @@
 import { IconButton, Tooltip, Typography } from "@mui/material";
-import { FC, SetStateAction, Dispatch } from "react";
+import { FC } from "react";
 import "./InboxList.css";
 import CreateIcon from "@mui/icons-material/Create";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { InboxItem } from "./InboxItem";
-import { InboxItemType } from "../../typings/InboxItemType";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { changeSelectedInboxId, selectInboxes } from "../../redux/InboxesSlice";
 
-interface IInboxList {
-  selectedInboxId: string;
-  setSelectedInboxId: Dispatch<SetStateAction<string>>;
-  inboxItems: InboxItemType[];
-}
+export const InboxList: FC = () => {
+  const dispatch = useAppDispatch();
 
-export const InboxList: FC<IInboxList> = ({
-  selectedInboxId,
-  setSelectedInboxId,
-  inboxItems,
-}) => {
+  const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
+
   return (
     <div className="inboxList">
       {/* Header */}
@@ -42,12 +37,12 @@ export const InboxList: FC<IInboxList> = ({
 
       {/* Inboxes */}
       <div className="inboxList__inboxes">
-        {inboxItems.map((room) => (
+        {inboxes.map((room) => (
           <InboxItem
             key={room.inboxId}
             {...room}
             selectedInboxId={selectedInboxId}
-            clickHandler={() => setSelectedInboxId(room.inboxId)}
+            clickHandler={() => dispatch(changeSelectedInboxId(room.inboxId))}
           />
         ))}
       </div>
