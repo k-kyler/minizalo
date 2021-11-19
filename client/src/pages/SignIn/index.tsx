@@ -71,11 +71,11 @@ export const SignIn: FC = () => {
                   }
                   inputRef={emailRef}
                   label="Email"
-                  variant="outlined"
+                  variant="standard"
                   sx={{ width: "100%" }}
                   type="email"
                 />
-                <Box sx={{ height: 25 }} />
+                <Box sx={{ height: 20 }} />
                 <TextField
                   error={errorMessage.toLowerCase().includes("password")}
                   helperText={
@@ -85,10 +85,10 @@ export const SignIn: FC = () => {
                   inputRef={passwordRef}
                   type="password"
                   label="Password"
-                  variant="outlined"
+                  variant="standard"
                   sx={{ width: "100%" }}
                 />
-                <Box sx={{ height: 25 }} />
+                <Box sx={{ height: 40 }} />
 
                 {/* Sign in button */}
                 <Button
@@ -107,7 +107,7 @@ export const SignIn: FC = () => {
 
             {/* Back to home & go to sign up buttons */}
             <div className="text__center">
-              <Box sx={{ height: 12 }} />
+              <Box sx={{ height: 15 }} />
               <Button
                 variant="contained"
                 sx={{
@@ -118,7 +118,7 @@ export const SignIn: FC = () => {
               >
                 BACK
               </Button>
-              <Box sx={{ height: 12 }} />
+              <Box sx={{ height: 15 }} />
               Have no account?
               <Link style={{ textDecoration: "none" }} to="/signup">
                 <Button
