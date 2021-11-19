@@ -6,6 +6,7 @@ import { RootState } from "./store";
 
 interface InboxesState {
   inboxes: InboxItemType[];
+  selectedInboxId: string;
   isFetching: boolean;
   error: boolean;
 }
@@ -16,7 +17,8 @@ interface UpdateDataOfInbox {
 
 const initialState: InboxesState = {
   inboxes: [],
-  isFetching: false,
+  selectedInboxId: "",
+  isFetching: true,
   error: false,
 };
 
@@ -37,6 +39,9 @@ export const inboxesSlice = createSlice({
   name: "inboxes",
   initialState,
   reducers: {
+    changeSelectedInboxId: (state, action: PayloadAction<string>) => {
+      state.selectedInboxId = action.payload;
+    },
     addNewMessage: (state, action: PayloadAction<UpdateDataOfInbox>) => {
       const { message } = action.payload;
       const existingInbox = state.inboxes.find(
@@ -57,8 +62,6 @@ export const inboxesSlice = createSlice({
       .addCase(
         fetchInboxes.fulfilled,
         (state, action: PayloadAction<InboxItemType[]>) => {
-          state.isFetching = false;
-
           const sortedInboxes = action.payload
             .slice()
             .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
@@ -70,6 +73,9 @@ export const inboxesSlice = createSlice({
             }));
 
           state.inboxes = sortedInboxes;
+          state.selectedInboxId = sortedInboxes[0].inboxId; // Set default selected inbox id of the latest inbox
+
+          if (state.inboxes.length) state.isFetching = false;
         }
       )
       .addCase(fetchInboxes.rejected, (state) => {
@@ -79,6 +85,6 @@ export const inboxesSlice = createSlice({
   },
 });
 
-export const { addNewMessage } = inboxesSlice.actions;
+export const { changeSelectedInboxId, addNewMessage } = inboxesSlice.actions;
 export const selectInboxes = (state: RootState) => state.inboxes;
 export default inboxesSlice.reducer;

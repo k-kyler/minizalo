@@ -19,7 +19,7 @@ const initialState: MessageState = {
     type: "text",
     inboxRefId: "",
   },
-  isFetching: false,
+  isFetching: true,
   error: false,
 };
 
@@ -54,6 +54,7 @@ export const messageSlice = createSlice({
       .addCase(postMessage.fulfilled, (state, action) => {
         if (action.payload.code === "success") {
           state.message = action.payload.message;
+          state.isFetching = false;
         }
       })
       .addCase(postMessage.rejected, (state) => {

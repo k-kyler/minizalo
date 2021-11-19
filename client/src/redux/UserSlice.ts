@@ -22,7 +22,7 @@ const initialState: UserState = {
     email: "",
     createdAt: "",
   },
-  isFetching: false,
+  isFetching: true,
   isSignUp: false,
   isSignIn: false,
   isSignOut: false,
@@ -98,8 +98,9 @@ export const userSlice = createSlice({
         state.isFetching = true;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
-        state.isFetching = false;
         state.user = action.payload;
+
+        if (state.user.userId) state.isFetching = false;
       })
       .addCase(fetchUser.rejected, (state) => {
         state.error = true;
@@ -138,8 +139,8 @@ export const userSlice = createSlice({
       })
       .addCase(signOutUser.fulfilled, (state, action) => {
         if (action.payload === "success") {
-          state.isSignOut = false;
           state.user = initialState.user;
+          state.isSignOut = false;
         }
       })
       .addCase(signOutUser.rejected, (state) => {

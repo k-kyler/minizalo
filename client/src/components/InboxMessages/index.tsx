@@ -1,6 +1,5 @@
 import { FC, useEffect, useRef } from "react";
 import "./InboxMessages.css";
-import { InboxItemType } from "../../typings/InboxItemType";
 import { Message } from "./Message";
 import { ChatInput } from "./ChatInput";
 import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
@@ -9,19 +8,15 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FlipMove from "react-flip-move";
+import { useAppSelector } from "../../redux/hooks";
+import { selectInboxes } from "../../redux/InboxesSlice";
 
-interface IInboxMessages {
-  selectedInboxId: string;
-  inboxItems: InboxItemType[];
-}
+export const InboxMessages: FC = () => {
+  const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
 
-export const InboxMessages: FC<IInboxMessages> = ({
-  selectedInboxId,
-  inboxItems,
-}) => {
   const messagesEndRef = useRef<HTMLUListElement>(null);
 
-  const selectedInbox = inboxItems.filter(
+  const selectedInbox = inboxes.filter(
     (inboxItem) => inboxItem.inboxId === selectedInboxId
   )[0];
 
