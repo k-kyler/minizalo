@@ -28,7 +28,10 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
         >
           {/* Username */}
           {user.userId === uid ? null : (
-            <Typography variant="caption" color="gray">
+            <Typography
+              variant="caption"
+              sx={{ color: "#808080", fontWeight: 500 }}
+            >
               {username}
             </Typography>
           )}
@@ -45,7 +48,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
           ) : null}
 
           {/* Timestamp */}
-          <Typography variant="caption" color="gray">
+          <Typography variant="caption" sx={{ color: "#ababab" }}>
             <TimeAgo timestamp={createdAt ? createdAt : ""} />
           </Typography>
         </div>

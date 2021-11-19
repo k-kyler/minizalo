@@ -62,10 +62,13 @@ export const ChatInput: FC<IChatInput> = ({
       })
     ).unwrap();
 
-    if (dispatchResult.code === "success") {
-      if (textAreaRef.current) textAreaRef.current.value = "";
-      if (textAreaRef.current && !textAreaRef.current.value)
-        setCheckIsTyping(false);
+    if (dispatchResult.code === "success" && textAreaRef.current) {
+      textAreaRef.current.value = "";
+      textAreaRef.current.style.cssText = "height: auto";
+      textAreaRef.current.style.cssText =
+        "height: " + textAreaRef.current.scrollHeight + "px";
+
+      if (!textAreaRef.current.value) setCheckIsTyping(false);
     }
   };
 
@@ -86,8 +89,10 @@ export const ChatInput: FC<IChatInput> = ({
   };
 
   useEffect(() => {
-    if (chosenEmoji && textAreaRef.current)
+    if (chosenEmoji && textAreaRef.current) {
       textAreaRef.current.value += chosenEmoji.emoji;
+      setCheckIsTyping(true);
+    }
   }, [chosenEmoji]);
 
   return (

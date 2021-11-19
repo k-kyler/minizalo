@@ -5,8 +5,13 @@ import FirstSlide from "../../assets/slide_1.gif";
 import SecondSlide from "../../assets/slide_2.gif";
 import ThirdSlide from "../../assets/slide_3.gif";
 import { Slider } from "../../components/Slider";
+import { useAppSelector } from "../../redux/hooks";
+import { selectUser } from "../../redux/UserSlice";
+import { PageLoading } from "../../components/Loadings/PageLoading";
 
 export const Dashboard: FC = () => {
+  const { isFetching } = useAppSelector(selectUser);
+
   const sliderData: SlideType[] = [
     {
       image: FirstSlide,
@@ -27,8 +32,14 @@ export const Dashboard: FC = () => {
   ];
 
   return (
-    <div className="dashboard">
-      <Slider sliderData={sliderData} />
-    </div>
+    <>
+      {isFetching ? (
+        <PageLoading />
+      ) : (
+        <div className="dashboard">
+          <Slider sliderData={sliderData} />
+        </div>
+      )}
+    </>
   );
 };
