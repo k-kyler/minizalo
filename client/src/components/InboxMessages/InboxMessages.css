@@ -1,7 +1,7 @@
 .inboxMessages {
   display: flex;
   flex-direction: column;
-  height: 34.5rem;
+  height: 100%;
 }
 
 .inboxMessages__header {
@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0.25rem 0.5rem 1rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   user-select: none;
   z-index: 1;
 }
@@ -40,7 +40,7 @@
 
 .inboxMessages__messages {
   list-style: none;
-  padding: 1.25rem 0.5rem 0.5rem 1rem;
+  padding: 0.75rem 0.5rem 0 1rem;
   overflow-y: auto;
   scroll-behavior: smooth;
   flex: 1;

@@ -34,15 +34,15 @@ export const InboxItem: FC<IInboxItem> = ({
       <div className="inboxItem__group">
         {/* Background (Avatar) of group or personal */}
         {type === "group" ? (
-          <Avatar alt={name} src={background} />
+          <Avatar src={background} />
         ) : (
           <>
             {users && users.length ? (
               <>
                 {user.userId === users[0].userId ? (
-                  <Avatar alt={name} src={users[1].avatar} />
+                  <Avatar src={users[1].avatar} />
                 ) : (
-                  <Avatar alt={name} src={users[0].avatar} />
+                  <Avatar src={users[0].avatar} />
                 )}
               </>
             ) : null}

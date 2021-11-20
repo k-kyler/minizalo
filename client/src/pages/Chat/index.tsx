@@ -1,5 +1,4 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
-import { Grid, Container } from "@mui/material";
 import { FC, useEffect } from "react";
 import { InboxList } from "../../components/InboxList";
 import { InboxMessages } from "../../components/InboxMessages";
@@ -48,19 +47,17 @@ export const Chat: FC = () => {
       {isFetching ? (
         <PageLoading />
       ) : (
-        <Container className="chat">
-          <Grid container sx={{ height: "100%" }}>
-            {/* Inbox list */}
-            <Grid item md={3}>
-              <InboxList />
-            </Grid>
+        <div className="chat">
+          {/* Inbox list */}
+          <div className="chat__inboxList">
+            <InboxList />
+          </div>
 
-            {/* Inbox messages */}
-            <Grid item md={9}>
-              <InboxMessages />
-            </Grid>
-          </Grid>
-        </Container>
+          {/* Inbox messages */}
+          <div className="chat__inboxMessages">
+            <InboxMessages />
+          </div>
+        </div>
       )}
     </>
   );
