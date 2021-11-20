@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using minizalo.Entities;
 
@@ -21,5 +22,9 @@ namespace minizalo.Dtos
         public string OwnerId { get; init; }
 
         public Guid[] MemberIds { get; set; }
+        
+        public List<Message> Messages { get; set; }
+        
+        public List<UserDto> Users { get; set; }
     }
 }

@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using minizalo.Entities;
 
 namespace minizalo.Dtos
 { 
