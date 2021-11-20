@@ -74,9 +74,8 @@ export const Slider: FC<ISlider> = ({ sliderData }) => {
     }
   };
 
-  const autoSlideHandler = () => {
+  const autoSlideHandler = () =>
     setInterval(() => dispatch({ type: "next_slide" }), 5000);
-  };
   // End of handle functions
 
   // Effects
@@ -86,6 +85,7 @@ export const Slider: FC<ISlider> = ({ sliderData }) => {
 
   useEffect(() => {
     autoSlideHandler();
+    return clearInterval();
   }, []);
   // End of effects
 
