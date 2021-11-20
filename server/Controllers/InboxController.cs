@@ -14,13 +14,11 @@ namespace minizalo.Controllers
     public class InboxController : ControllerBase
     {
         private readonly IInboxRepository _inboxRepository;
-        private readonly IMessageRepository _messageRepository;
         private readonly JwtService _jwtService;
 
-        public InboxController(IInboxRepository inboxRepository, IMessageRepository messageRepository, JwtService jwtService)
+        public InboxController(IInboxRepository inboxRepository, JwtService jwtService)
         {
             _inboxRepository = inboxRepository;
-            _messageRepository = messageRepository;
             _jwtService = jwtService;
         }
 
@@ -31,10 +29,10 @@ namespace minizalo.Controllers
             try {
                 var authJWT = Request.Cookies["accessToken"];
                 var validatedJWT = _jwtService.ValidateJWT(authJWT);
-
-                IEnumerable<Inbox> inboxes = await _inboxRepository.GetUserInboxes(Guid.Parse(validatedJWT.Issuer));
-
-                return Ok(new
+                
+                IEnumerable<InboxDto> inboxes = await _inboxRepository.GetUserInboxes(Guid.Parse(validatedJWT.Issuer));
+                
+                return Ok(new 
                 {
                     code = "success", 
                     message = "Retrieve user inboxes successful",
