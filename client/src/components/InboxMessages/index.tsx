@@ -7,12 +7,15 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import FlipMove from "react-flip-move";
 import { useAppSelector } from "../../redux/hooks";
 import { selectInboxes } from "../../redux/InboxesSlice";
+import { selectUser } from "../../redux/UserSlice";
 
 export const InboxMessages: FC = () => {
   const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
+  const { user } = useAppSelector(selectUser);
 
   const messagesEndRef = useRef<HTMLUListElement>(null);
 
@@ -32,12 +35,58 @@ export const InboxMessages: FC = () => {
     <div className="inboxMessages">
       {/* Header */}
       <div className="inboxMessages__header">
-        <Tooltip title={selectedInbox.name}>
+        <Tooltip
+          title={
+            selectedInbox.type === "group"
+              ? selectedInbox.name
+              : selectedInbox.users &&
+                selectedInbox.users.length &&
+                selectedInbox.users[0].userId === user.userId
+              ? selectedInbox.users[1].userName
+              : selectedInbox.users &&
+                selectedInbox.users.length &&
+                selectedInbox.users[0].userId === user.userId
+              ? selectedInbox.users[0].userName
+              : ""
+          }
+        >
           <div className="inboxMessages__headerLeft">
-            <Avatar alt={selectedInbox.name} src={selectedInbox.background} />
+            {selectedInbox.type === "group" ? (
+              <Avatar src={selectedInbox.background} />
+            ) : (
+              <>
+                {selectedInbox.users && selectedInbox.users.length ? (
+                  <>
+                    {user.userId === selectedInbox.users[0].userId ? (
+                      <Avatar src={selectedInbox.users[1].avatar} />
+                    ) : (
+                      <Avatar src={selectedInbox.users[0].avatar} />
+                    )}
+                  </>
+                ) : null}
+              </>
+            )}
 
             <div className="inboxMessages__info">
-              <Typography variant="h6">{selectedInbox.name}</Typography>
+              {selectedInbox.type === "group" ? (
+                <Typography variant="h6">{selectedInbox.name}</Typography>
+              ) : (
+                <>
+                  {selectedInbox.users && selectedInbox.users.length ? (
+                    <>
+                      {user.userId === selectedInbox.users[0].userId ? (
+                        <Typography variant="h6">
+                          {selectedInbox.users[1].userName}
+                        </Typography>
+                      ) : (
+                        <Typography variant="h6">
+                          {selectedInbox.users[0].userName}
+                        </Typography>
+                      )}
+                    </>
+                  ) : null}
+                </>
+              )}
 
               {selectedInbox.type === "group" ? (
                 <Typography variant="caption">
@@ -48,7 +97,13 @@ export const InboxMessages: FC = () => {
                   {selectedInbox.memberIds.length} Members
                 </Typography>
               ) : (
-                <Typography variant="caption">Direct message</Typography>
+                <Typography variant="caption">
+                  <TrendingUpOutlinedIcon
+                    fontSize="small"
+                    sx={{ marginRight: "0.25rem" }}
+                  />
+                  Direct message
+                </Typography>
               )}
             </div>
           </div>
@@ -57,20 +112,20 @@ export const InboxMessages: FC = () => {
         <div className="inboxMessages__headerRight">
           {selectedInbox.type === "group" ? (
             <Tooltip title="Invite member">
-              <IconButton>
+              <IconButton sx={{ color: "#0b81ff" }}>
                 <GroupAddIcon />
               </IconButton>
             </Tooltip>
           ) : null}
 
           <Tooltip title="View media & files">
-            <IconButton>
+            <IconButton sx={{ color: "#0b81ff" }}>
               <BarChartIcon />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Search messages">
-            <IconButton>
+            <IconButton sx={{ color: "#0b81ff" }}>
               <ManageSearchIcon />
             </IconButton>
           </Tooltip>
