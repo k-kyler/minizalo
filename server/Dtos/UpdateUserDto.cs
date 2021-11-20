@@ -8,7 +8,6 @@ namespace minizalo.Dtos
         [MinLength(2), MaxLength(100)]
         public string UserName { get; set; }
 
-        [MaxLength(200)]
         public string Avatar { get; set; }
         
         [Required]
