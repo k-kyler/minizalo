@@ -1,8 +1,10 @@
 import { Avatar, Typography } from "@mui/material";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FC } from "react";
 import { InboxItemType } from "../../../typings/InboxItemType";
 import "./InboxItem.css";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectUser } from "../../../redux/UserSlice";
 
 interface IInboxItem extends InboxItemType {
   selectedInboxId: string;
@@ -14,10 +16,14 @@ export const InboxItem: FC<IInboxItem> = ({
   name,
   background,
   createdAt,
+  type,
   messages,
+  users,
   selectedInboxId,
   clickHandler,
 }) => {
+  const { user } = useAppSelector(selectUser);
+
   return (
     <div
       className={`inboxItem ${
@@ -26,12 +32,40 @@ export const InboxItem: FC<IInboxItem> = ({
       onClick={clickHandler}
     >
       <div className="inboxItem__group">
-        {/* Background */}
-        <Avatar alt={name} src={background} />
+        {/* Background (Avatar) of group or personal */}
+        {type === "group" ? (
+          <Avatar alt={name} src={background} />
+        ) : (
+          <>
+            {users && users.length ? (
+              <>
+                {user.userId === users[0].userId ? (
+                  <Avatar alt={name} src={users[1].avatar} />
+                ) : (
+                  <Avatar alt={name} src={users[0].avatar} />
+                )}
+              </>
+            ) : null}
+          </>
+        )}
 
-        {/* Information */}
+        {/* Information of group or personal */}
         <div className="inboxItem__info">
-          <Typography variant="body1">{name}</Typography>
+          {type === "group" ? (
+            <Typography variant="body1">{name}</Typography>
+          ) : (
+            <>
+              {users && users.length ? (
+                <>
+                  {user.userId === users[0].userId ? (
+                    <Typography variant="body1">{users[1].userName}</Typography>
+                  ) : (
+                    <Typography variant="body1">{users[0].userName}</Typography>
+                  )}
+                </>
+              ) : null}
+            </>
+          )}
 
           {/* View last message */}
           {messages?.length && messages[messages.length - 1].type === "text" ? (

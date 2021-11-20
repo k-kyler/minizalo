@@ -1,4 +1,5 @@
 import { MessageType } from "./MessageType";
+import { UserType } from "./UserType";
 
 export type InboxItemType = {
   inboxId: string;
@@ -8,4 +9,5 @@ export type InboxItemType = {
   memberIds: string[];
   type: "group" | "personal";
   messages?: MessageType[];
+  users?: UserType[];
 };

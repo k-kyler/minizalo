@@ -16,7 +16,7 @@ import "./Navbar.css";
 import Logo from "../../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUser, signOutUser } from "../../redux/UserSlice";
-import { linkData } from "../../constant/LinkData";
+import { linkData } from "../../constants/LinkData";
 
 export const Navbar: FC = () => {
   // User setting menu setup
