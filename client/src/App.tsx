@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
-import { Chat } from "./pages/Chat";
-import { Friends } from "./pages/Friends";
-import { Dashboard } from "./pages/Dashboard";
-import { Notifications } from "./pages/Notifications";
+import { linkData } from "./constant/LinkData";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
-import { Copyright } from "./pages/Copyright";
-import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { Navbar } from "./components/Navbar";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { fetchUser } from "./redux/UserSlice";
 import { CustomAlert } from "./components/CustomAlert";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { fetchUser } from "./redux/UserSlice";
 import { selectIsOpen } from "./redux/AlertSlice";
 
 function App() {
@@ -31,84 +27,27 @@ function App() {
 
       <Router>
         <Switch>
-          {/* Dashboard */}
-          <PrivateRoute
-            exact
-            path="/dashboard"
-            component={() => (
-              <>
-                <Navbar />
-                <Dashboard />
-              </>
-            )}
-          />
+          {/* Private endpoints */}
+          {linkData.map((link, index) => (
+            <PrivateRoute
+              key={index}
+              exact
+              path={link.pathname}
+              component={() => (
+                <>
+                  <Navbar />
+                  {link.Component}
+                </>
+              )}
+            />
+          ))}
 
-          {/* Chat */}
-          <PrivateRoute
-            exact
-            path="/chat"
-            component={() => (
-              <>
-                <Navbar />
-                <Chat />
-              </>
-            )}
-          />
-
-          {/* Friends */}
-          <PrivateRoute
-            exact
-            path="/friends"
-            component={() => (
-              <>
-                <Navbar />
-                <Friends />
-              </>
-            )}
-          />
-
-          {/* Search */}
-          <PrivateRoute
-            exact
-            path="/search"
-            component={() => (
-              <>
-                <Navbar />
-                {/* Search component here... */}
-              </>
-            )}
-          />
-
-          {/* Notifications */}
-          <PrivateRoute
-            exact
-            path="/notifications"
-            component={() => (
-              <>
-                <Navbar />
-                <Notifications />
-              </>
-            )}
-          />
-
-          {/* Copyright */}
-          <PrivateRoute
-            exact
-            path="/copyright"
-            component={() => (
-              <>
-                <Navbar />
-                <Copyright />
-              </>
-            )}
-          />
-
-          {/* Sign up */}
+          {/* Sign up endpoint */}
           <Route exact path="/signup">
             <SignUp />
           </Route>
 
-          {/* Sign in */}
+          {/* Sign in endpoint */}
           <Route exact path="/">
             <SignIn />
           </Route>

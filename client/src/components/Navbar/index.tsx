@@ -1,7 +1,4 @@
 import { FC, useState, MouseEvent } from "react";
-import "./Navbar.css";
-import { NavbarLinkType } from "../../typings/NavbarLinkType";
-import Logo from "../../assets/logo.png";
 import {
   Avatar,
   Tooltip,
@@ -12,55 +9,16 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SearchIcon from "@mui/icons-material/Search";
-import ForumIcon from "@mui/icons-material/Forum";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
+import "./Navbar.css";
+import Logo from "../../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUser, signOutUser } from "../../redux/UserSlice";
-import axios from "axios";
+import { linkData } from "../../constant/LinkData";
 
 export const Navbar: FC = () => {
-  // Navbar link setup
-  const navbarLinkList: NavbarLinkType[] = [
-    {
-      name: "Dashboard",
-      Icon: <DashboardIcon />,
-      pathname: "/dashboard",
-    },
-    {
-      name: "Search",
-      Icon: <SearchIcon />,
-      pathname: "/search",
-    },
-    {
-      name: "Chat",
-      Icon: <ForumIcon />,
-      pathname: "/chat",
-    },
-    {
-      name: "Notifications",
-      Icon: <NotificationsIcon />,
-      pathname: "/notifications",
-    },
-    {
-      name: "Friends",
-      Icon: <PeopleAltIcon />,
-      pathname: "/friends",
-    },
-    {
-      name: "Copyright",
-      Icon: <AssistantPhotoIcon />,
-      pathname: "/copyright",
-    },
-  ];
-  // End of navbar link setup
-
   // User setting menu setup
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -96,7 +54,7 @@ export const Navbar: FC = () => {
 
       {/* Links */}
       <ul className="navbar__links">
-        {navbarLinkList.map((link, index) => (
+        {linkData.map((link, index) => (
           <Tooltip title={link.name} key={index}>
             <NavLink
               exact

@@ -5,6 +5,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUser, signUpUser } from "../../redux/UserSlice";
 import { openAlert } from "../../redux/AlertSlice";
+import { MainLoading } from "../../components/Loadings/MainLoading";
 
 export const SignUp: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -82,7 +83,9 @@ export const SignUp: FC = () => {
     <>
       {!user.isFetching ? (
         <Redirect to="/dashboard" />
-      ) : (
+      ) : user.isFetching && !user.error ? (
+        <MainLoading />
+      ) : user.error ? (
         <div className="signup">
           <div className="signup__container">
             <h1 className="signup__heading">SIGN UP</h1>
@@ -169,7 +172,7 @@ export const SignUp: FC = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 };

@@ -1,10 +1,11 @@
 import { FC, useState, useRef, FormEvent } from "react";
 import { Button, Box, TextField } from "@mui/material";
-import "./SignIn.css";
 import { Link, Redirect } from "react-router-dom";
+import "./SignIn.css";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { fetchUser, selectUser, signInUser } from "../../redux/UserSlice";
 import { openAlert } from "../../redux/AlertSlice";
+import { MainLoading } from "../../components/Loadings/MainLoading";
 
 export const SignIn: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -57,7 +58,9 @@ export const SignIn: FC = () => {
     <>
       {!user.isFetching ? (
         <Redirect to="/dashboard" />
-      ) : (
+      ) : user.isFetching && !user.error ? (
+        <MainLoading />
+      ) : user.error ? (
         <div className="signin">
           <div className="signin__container">
             <h1 className="signin__heading">SIGN IN</h1>
@@ -132,7 +135,7 @@ export const SignIn: FC = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 };
