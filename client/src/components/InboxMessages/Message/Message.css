@@ -23,6 +23,6 @@
 
 .message__text {
   word-wrap: break-word;
-  max-width: 22em;
+  max-width: 25em;
   margin: 0.25rem 0 !important;
 }

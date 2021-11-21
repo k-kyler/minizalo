@@ -4,7 +4,7 @@ import { MessageType } from "../typings/MessageType";
 
 interface MessageState {
   message: MessageType;
-  isFetching: boolean;
+  isCreating: boolean;
   error: boolean;
 }
 
@@ -19,7 +19,7 @@ const initialState: MessageState = {
     type: "text",
     inboxRefId: "",
   },
-  isFetching: true,
+  isCreating: true,
   error: false,
 };
 
@@ -49,12 +49,12 @@ export const messageSlice = createSlice({
     builder
       // Post message
       .addCase(postMessage.pending, (state) => {
-        state.isFetching = true;
+        state.isCreating = true;
       })
       .addCase(postMessage.fulfilled, (state, action) => {
         if (action.payload.code === "success") {
           state.message = action.payload.message;
-          state.isFetching = false;
+          state.isCreating = false;
         }
       })
       .addCase(postMessage.rejected, (state) => {

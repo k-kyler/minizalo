@@ -73,9 +73,6 @@ export const Slider: FC<ISlider> = ({ sliderData }) => {
       sliderSlidesRef.current.style.transform = `translateX(${state.slideWidth}px)`;
     }
   };
-
-  const autoSlideHandler = () =>
-    setInterval(() => dispatch({ type: "next_slide" }), 5000);
   // End of handle functions
 
   // Effects
@@ -84,8 +81,12 @@ export const Slider: FC<ISlider> = ({ sliderData }) => {
   }, [state.slideWidth]);
 
   useEffect(() => {
-    autoSlideHandler();
-    return clearInterval();
+    const autoSlideHandler = setInterval(
+      () => dispatch({ type: "next_slide" }),
+      5000
+    );
+
+    return () => clearInterval(autoSlideHandler);
   }, []);
   // End of effects
 
