@@ -8,6 +8,7 @@ interface InboxesState {
   inboxes: InboxItemType[];
   selectedInboxId: string;
   isFetching: boolean;
+  isCreating: boolean;
   error: boolean;
 }
 
@@ -19,6 +20,7 @@ const initialState: InboxesState = {
   inboxes: [],
   selectedInboxId: "",
   isFetching: true,
+  isCreating: true,
   error: false,
 };
 
@@ -32,6 +34,25 @@ export const fetchInboxes = createAsyncThunk(
     });
 
     return inboxes;
+  }
+);
+
+export const postInbox = createAsyncThunk(
+  "inboxes/postInbox",
+  async (inboxData: InboxItemType) => {
+    const {
+      data: { code, message, inbox },
+    } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/inbox/create`,
+      inboxData,
+      { withCredentials: true }
+    );
+
+    return {
+      code,
+      message,
+      inbox,
+    };
   }
 );
 
@@ -81,6 +102,29 @@ export const inboxesSlice = createSlice({
       .addCase(fetchInboxes.rejected, (state) => {
         state.error = true;
         state.inboxes = initialState.inboxes;
+      })
+
+      // Post inbox
+      .addCase(postInbox.pending, (state) => {
+        state.isCreating = true;
+      })
+      .addCase(postInbox.fulfilled, (state, action) => {
+        if (action.payload.code === "success") {
+          state.inboxes.push(action.payload.inbox);
+          state.inboxes
+            .slice()
+            .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+            .map((inbox) => ({
+              ...inbox,
+              messages: inbox.messages
+                ?.slice()
+                .sort((a: any, b) => a.createdAt.localeCompare(b.createdAt)),
+            }));
+          state.isCreating = false;
+        }
+      })
+      .addCase(postInbox.rejected, (state) => {
+        state.error = true;
       });
   },
 });

@@ -1,0 +1,5 @@
+.customDialog__chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

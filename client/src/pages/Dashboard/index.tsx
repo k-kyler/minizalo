@@ -10,7 +10,7 @@ import { selectUser } from "../../redux/UserSlice";
 import { PageLoading } from "../../components/Loadings/PageLoading";
 
 export const Dashboard: FC = () => {
-  const { isFetching } = useAppSelector(selectUser);
+  const { isFetching, error } = useAppSelector(selectUser);
 
   const sliderData: SlideType[] = [
     {
@@ -33,7 +33,7 @@ export const Dashboard: FC = () => {
 
   return (
     <>
-      {isFetching ? (
+      {isFetching && !error ? (
         <PageLoading />
       ) : (
         <div className="dashboard">
