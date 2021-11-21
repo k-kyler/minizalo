@@ -80,8 +80,16 @@
   display: flex;
   align-items: center;
   border-radius: 1.25rem;
-  background-color: #f1f2f5;
   padding: 0.25rem 0.5rem;
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
   cursor: pointer;
+}
+
+.navbar__userInfo:hover {
+  background-color: #f1f2f5;
+  transition: all 0.3s ease;
+}
+
+.navbar__userInfo:not(:hover) {
+  transition: all 0.2s ease;
 }

@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import "./InboxMessages.css";
 import { Message } from "./Message";
 import { ChatInput } from "./ChatInput";
@@ -16,6 +16,8 @@ import { selectUser } from "../../redux/UserSlice";
 export const InboxMessages: FC = () => {
   const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
   const { user } = useAppSelector(selectUser);
+
+  const [openEmojiModal, setOpenEmojiModal] = useState(false);
 
   const messagesEndRef = useRef<HTMLUListElement>(null);
 
@@ -133,7 +135,11 @@ export const InboxMessages: FC = () => {
       </div>
 
       {/* Messages */}
-      <ul className="inboxMessages__messages" ref={messagesEndRef}>
+      <ul
+        className="inboxMessages__messages"
+        ref={messagesEndRef}
+        onClick={() => setOpenEmojiModal(false)}
+      >
         <FlipMove leaveAnimation="fade">
           {selectedInbox.messages?.map((message) => (
             <Message key={message.messageId} {...message} />
@@ -143,6 +149,8 @@ export const InboxMessages: FC = () => {
 
       {/* Chat input */}
       <ChatInput
+        openEmojiModal={openEmojiModal}
+        setOpenEmojiModal={setOpenEmojiModal}
         selectedInboxId={selectedInbox.inboxId}
         selectedInboxType={selectedInbox.type}
       />
