@@ -111,13 +111,12 @@ export const Navbar: FC = () => {
           elevation: 0,
           sx: {
             mt: 3,
+            ml: 0.5,
             overflow: "visible",
             filter: "drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.25))",
             "& .MuiAvatar-root": {
               width: 32,
               height: 32,
-              ml: -0.5,
-              mr: 1,
             },
             "&:before": {
               content: '""',

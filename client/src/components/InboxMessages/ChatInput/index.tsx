@@ -5,6 +5,8 @@ import {
   useEffect,
   KeyboardEvent,
   MouseEvent,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import "./ChatInput.css";
 import { EmojiList } from "./EmojiList";
@@ -22,11 +24,15 @@ import { postMessage } from "../../../redux/MessageSlice";
 interface IChatInput {
   selectedInboxId: string;
   selectedInboxType: "group" | "personal";
+  openEmojiModal: boolean;
+  setOpenEmojiModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ChatInput: FC<IChatInput> = ({
   selectedInboxId,
   selectedInboxType,
+  openEmojiModal,
+  setOpenEmojiModal,
 }) => {
   const { user } = useAppSelector(selectUser);
 
@@ -34,7 +40,6 @@ export const ChatInput: FC<IChatInput> = ({
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
-  const [openEmojiModal, setOpenEmojiModal] = useState(false);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 

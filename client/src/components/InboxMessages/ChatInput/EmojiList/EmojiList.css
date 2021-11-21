@@ -1,6 +1,6 @@
 .emojiList {
   position: absolute;
-  bottom: 3rem;
+  bottom: 2.75rem;
   right: 0;
   width: 20rem;
   background-color: white;
@@ -23,7 +23,7 @@
   top: 100.5%;
   right: 0.75rem;
   content: "";
-  border-width: 9px;
+  border-width: 8px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.08) transparent transparent;
 }
