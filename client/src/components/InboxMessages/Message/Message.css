@@ -19,10 +19,33 @@
 
 .message__info--yourUser {
   background-color: #e5efff;
+  align-items: flex-end;
+}
+
+.message__info--media {
+  background: none;
+  box-shadow: none;
+}
+
+.message__text,
+.message__image,
+.message__video {
+  max-width: 25em;
+  margin: 0.25rem 0 !important;
 }
 
 .message__text {
   word-wrap: break-word;
-  max-width: 25em;
-  margin: 0.25rem 0 !important;
+}
+
+.message__image {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+}
+
+.message__image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
 }

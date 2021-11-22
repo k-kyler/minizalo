@@ -3,3 +3,50 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.customDialog__content {
+  padding: 0 !important;
+  display: flex !important;
+  position: relative !important;
+}
+
+.customDialog__image {
+  width: 100%;
+  max-width: 60em;
+  height: auto;
+}
+
+.customDialog__content:hover .customDialog__overlay {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.customDialog__content:not(:hover) .customDialog__overlay {
+  transition: all 0.2s ease;
+}
+
+.customDialog__overlay {
+  opacity: 0;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+}
+
+.customDialog__overlay > a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+}
+
+.customDialog__overlay > a:hover {
+  color: rgba(255, 255, 255, 1);
+  transition: all 0.3s ease;
+}
+
+.customDialog__overlay > a:not(:hover) {
+  transition: all 0.2s ease;
+}

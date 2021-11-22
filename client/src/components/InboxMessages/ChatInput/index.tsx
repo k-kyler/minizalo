@@ -7,20 +7,20 @@ import {
   MouseEvent,
   Dispatch,
   SetStateAction,
+  ChangeEvent,
 } from "react";
 import "./ChatInput.css";
 import { EmojiList } from "./EmojiList";
 import { IconButton, styled, Tooltip } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
-// import ImageIcon from "@mui/icons-material/Image";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import Picker, { IEmojiData } from "emoji-picker-react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
 import { postMessage } from "../../../redux/MessageSlice";
-import { uploadFile } from "../../../redux/FileSlice";
+import { showPreviewMessage } from "../../../redux/InboxesSlice";
 
 interface IChatInput {
   selectedInboxId: string;
@@ -41,6 +41,7 @@ export const ChatInput: FC<IChatInput> = ({
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
+  const [inputFilePreview, setInputFilePreview] = useState(false);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -62,16 +63,19 @@ export const ChatInput: FC<IChatInput> = ({
   };
 
   const sendMessageHandler = async () => {
-    const dispatchResult = await dispatch(
-      postMessage({
-        uid: user.userId,
-        username: user.userName,
-        avatar: user.avatar,
-        content: textAreaRef.current ? textAreaRef.current.value : "",
-        type: "text",
-        inboxRefId: selectedInboxId,
-      })
-    ).unwrap();
+    const formData = new FormData();
+
+    formData.append("uid", user.userId);
+    formData.append("username", user.userName);
+    formData.append("avatar", user.avatar);
+    formData.append(
+      "content",
+      textAreaRef.current ? textAreaRef.current.value : ""
+    );
+    formData.append("type", "text");
+    formData.append("inboxRefId", selectedInboxId);
+
+    const dispatchResult = await dispatch(postMessage(formData)).unwrap();
 
     if (dispatchResult.code === "success" && textAreaRef.current) {
       textAreaRef.current.value = "";
@@ -99,20 +103,30 @@ export const ChatInput: FC<IChatInput> = ({
     setChosenEmoji(data);
   };
 
-  const uploadFileHandler = async () => {
-    if (inputFileRef.current && inputFileRef.current.files) {
-      const formData = new FormData();
-
-      formData.append("fileName", inputFileRef.current.files[0].name);
-      formData.append("formFile", inputFileRef.current.files[0]);
-
-      const dispatchResult = await dispatch(uploadFile(formData)).unwrap();
-
-      if (dispatchResult.code === "success") {
-        // dispatch to post image/video/file message
-      }
+  const showPreview = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setInputFilePreview(true);
+      dispatch(
+        showPreviewMessage({
+          previewMessage: {
+            messageId: "upload-preview",
+            uid: user.userId,
+            username: user.userName,
+            avatar: user.avatar,
+            content: URL.createObjectURL(event.target.files[0]),
+            type: event.target.files[0].type.includes("image")
+              ? "image"
+              : event.target.files[0].type.includes("video")
+              ? "video"
+              : "text",
+            inboxRefId: selectedInboxId,
+          },
+        })
+      );
     }
   };
+
+  const uploadFileHandler = async () => {};
 
   useEffect(() => {
     if (chosenEmoji && textAreaRef.current) {
@@ -169,25 +183,21 @@ export const ChatInput: FC<IChatInput> = ({
           </div>
 
           <Tooltip title="Upload">
-            <label htmlFor="upload">
+            <label htmlFor="upload-file">
               <Input
-                ref={inputFileRef}
                 accept="image/*, video/*, .pdf, .doc, .docx, .xls, .xlsx"
-                id="upload"
+                id="upload-file"
                 type="file"
+                ref={inputFileRef}
+                // value={inputFile}
+                // onChange={showPreview}
               />
 
-              <IconButton>
+              <IconButton component="span">
                 <FileUploadIcon />
               </IconButton>
             </label>
           </Tooltip>
-
-          {/* <Tooltip title="Upload an image">
-            <IconButton>
-              <ImageIcon />
-            </IconButton>
-          </Tooltip> */}
 
           {checkIsTyping ? (
             <IconButton color="primary" onClick={sendMessageHandler}>

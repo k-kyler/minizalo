@@ -25,7 +25,7 @@ const initialState: MessageState = {
 
 export const postMessage = createAsyncThunk(
   "message/postMessage",
-  async (inputMessage: MessageType) => {
+  async (inputMessage: FormData) => {
     const {
       data: { code, message },
     } = await axios.post(
