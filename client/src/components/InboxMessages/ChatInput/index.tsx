@@ -13,8 +13,8 @@ import { EmojiList } from "./EmojiList";
 import { IconButton, styled, Tooltip } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
-import ImageIcon from "@mui/icons-material/Image";
-// import FileUploadIcon from "@mui/icons-material/FileUpload";
+// import ImageIcon from "@mui/icons-material/Image";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import Picker, { IEmojiData } from "emoji-picker-react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -176,15 +176,16 @@ export const ChatInput: FC<IChatInput> = ({
                 id="upload"
                 type="file"
               />
+
               <IconButton>
-                <ImageIcon />
+                <FileUploadIcon />
               </IconButton>
             </label>
           </Tooltip>
 
-          {/* <Tooltip title="Upload a file">
+          {/* <Tooltip title="Upload an image">
             <IconButton>
-              <FileUploadIcon />
+              <ImageIcon />
             </IconButton>
           </Tooltip> */}
 
