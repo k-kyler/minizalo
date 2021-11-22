@@ -1,8 +1,10 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using minizalo.Data;
@@ -64,9 +66,17 @@ namespace minizalo
 
             app.UseHttpsRedirection();
 
+            // Static files
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Resources")),
+                RequestPath = "/Resources"
+            }); 
+            // End of static files
+
             app.UseRouting();
 
-            // global cors policy
+            // Global cors policy
             app.UseCors(options => options
                 .WithOrigins(new []{"http://localhost:3000"})
                 .AllowCredentials()

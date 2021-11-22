@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace minizalo.Dtos
 {
@@ -17,6 +18,8 @@ namespace minizalo.Dtos
         [Required]
         public string Content { get; set; }
         
+        public IFormFile File { get; set; }
+
         [Required]
         public string Type { get; init; }
         
