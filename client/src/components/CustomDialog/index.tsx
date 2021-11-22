@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { PhotoCamera } from "@mui/icons-material";
+import CallMadeIcon from "@mui/icons-material/CallMade";
 import "./CustomDialog.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { closeDialog, selectDialog } from "../../redux/DialogSlice";
@@ -43,7 +44,7 @@ export const CustomDialog: FC = () => {
         open={dialog.isOpen as any}
         onClose={() => dispatch(closeDialog())}
       >
-        <DialogTitle sx={{ textAlign: "center" }}>
+        <DialogTitle>
           <Typography variant="h5">Create new group</Typography>
         </DialogTitle>
 
@@ -179,6 +180,34 @@ export const CustomDialog: FC = () => {
           <Button>Create</Button>
           <Button onClick={() => dispatch(closeDialog())}>Cancel</Button>
         </DialogActions>
+      </Dialog>
+    );
+  if (dialog.type === "zoom-image")
+    return (
+      <Dialog
+        open={dialog.isOpen as any}
+        onClose={() => dispatch(closeDialog())}
+      >
+        <DialogContent className="customDialog__content">
+          <img
+            className="customDialog__image"
+            src={`${import.meta.env.VITE_API_URL}/Resources/${
+              dialog.imageSource
+            }`}
+            loading="lazy"
+          />
+
+          <Typography className="customDialog__overlay" variant="h6">
+            <a
+              href={`${import.meta.env.VITE_API_URL}/Resources/${
+                dialog.imageSource
+              }`}
+              target="__blank"
+            >
+              Open in original <CallMadeIcon sx={{ ml: 0.5 }} />
+            </a>
+          </Typography>
+        </DialogContent>
       </Dialog>
     );
   return null;
