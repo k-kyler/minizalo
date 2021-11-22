@@ -73,9 +73,16 @@ namespace minizalo.Controllers
         [HttpGet("signout")]
         public ActionResult SignOut()
         {
-            Response.Cookies.Delete("accessToken");
+            try {
+                var authJWT = Request.Cookies["accessToken"];
+                var validatedJWT = _jwtService.ValidateJWT(authJWT);
 
-            return Ok(new { code = "success", message = "Sign out successful" });
+                Response.Cookies.Delete("accessToken");
+
+                return Ok(new { code = "success", message = "Sign out successful" });
+            } catch (Exception ex) {
+                return Unauthorized(new { code = "error", message = "Unauthorized" });
+            }
         }
 
         // Endpoint to get the data of authenticated user
