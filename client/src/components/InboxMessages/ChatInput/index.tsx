@@ -10,16 +10,17 @@ import {
 } from "react";
 import "./ChatInput.css";
 import { EmojiList } from "./EmojiList";
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, styled, Tooltip } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import ImageIcon from "@mui/icons-material/Image";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
+// import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import Picker, { IEmojiData } from "emoji-picker-react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
 import { postMessage } from "../../../redux/MessageSlice";
+import { uploadFile } from "../../../redux/FileSlice";
 
 interface IChatInput {
   selectedInboxId: string;
@@ -42,6 +43,11 @@ export const ChatInput: FC<IChatInput> = ({
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const Input = styled("input")({
+    display: "none",
+  });
 
   const textAreaOnChangeHandler = () => {
     // Check if user is typing and make text area auto resize height
@@ -91,6 +97,21 @@ export const ChatInput: FC<IChatInput> = ({
     data: IEmojiData
   ) => {
     setChosenEmoji(data);
+  };
+
+  const uploadFileHandler = async () => {
+    if (inputFileRef.current && inputFileRef.current.files) {
+      const formData = new FormData();
+
+      formData.append("fileName", inputFileRef.current.files[0].name);
+      formData.append("formFile", inputFileRef.current.files[0]);
+
+      const dispatchResult = await dispatch(uploadFile(formData)).unwrap();
+
+      if (dispatchResult.code === "success") {
+        // dispatch to post image/video/file message
+      }
+    }
   };
 
   useEffect(() => {
@@ -147,17 +168,25 @@ export const ChatInput: FC<IChatInput> = ({
             </Tooltip>
           </div>
 
-          <Tooltip title="Upload an image">
-            <IconButton>
-              <ImageIcon />
-            </IconButton>
+          <Tooltip title="Upload">
+            <label htmlFor="upload">
+              <Input
+                ref={inputFileRef}
+                accept="image/*, video/*, .pdf, .doc, .docx, .xls, .xlsx"
+                id="upload"
+                type="file"
+              />
+              <IconButton>
+                <ImageIcon />
+              </IconButton>
+            </label>
           </Tooltip>
 
-          <Tooltip title="Upload a file">
+          {/* <Tooltip title="Upload a file">
             <IconButton>
               <FileUploadIcon />
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
 
           {checkIsTyping ? (
             <IconButton color="primary" onClick={sendMessageHandler}>
