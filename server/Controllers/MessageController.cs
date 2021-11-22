@@ -102,7 +102,7 @@ namespace minizalo.Controllers
             string fileName =
                 new string(Path.GetFileNameWithoutExtension(file.FileName).ToArray()).Replace(' ', '-');
             
-            fileName += "-" + DateTime.Now.ToString("yy-MMM-dd ddd") + Path.GetExtension(file.FileName);
+            fileName += "-" + DateTime.Now.ToString("hh:mm:ss t z") + Path.GetExtension(file.FileName);
 
             var filePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Resources", fileName);
 
