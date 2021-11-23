@@ -1,6 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,6 +50,14 @@ namespace minizalo
             // Add SignalR services
             services.AddSignalR();
             // End of SignalR services
+
+            // Configuration for form data
+            services.Configure<FormOptions>(options => {
+                options.ValueLengthLimit = int.MaxValue;  
+                options.MultipartBodyLengthLimit = int.MaxValue;  
+                options.MemoryBufferThreshold = int.MaxValue;  
+            });
+            // End of configuration for form data
             
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "minizalo", Version = "v1"}); });
