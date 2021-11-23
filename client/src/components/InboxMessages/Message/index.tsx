@@ -1,21 +1,54 @@
 import { forwardRef } from "react";
 import "./Message.css";
 import { MessageType } from "../../../typings/MessageType";
-import { Avatar, ButtonGroup, Typography, Button } from "@mui/material";
+import { Avatar, Typography, Button } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
 import { TimeAgo } from "../../TimeAgo";
 import { openDialog } from "../../../redux/DialogSlice";
-import { selectInboxes } from "../../../redux/InboxesSlice";
+import { removeMessage } from "../../../redux/InboxesSlice";
+import { postMessage } from "../../../redux/MessageSlice";
+import axios from "axios";
 
 interface IMessage extends MessageType {}
 
 export const Message = forwardRef<HTMLLIElement, IMessage>(
-  ({ messageId, uid, username, avatar, content, type, createdAt }, ref) => {
+  (
+    {
+      messageId,
+      uid,
+      username,
+      avatar,
+      content,
+      file,
+      type,
+      createdAt,
+      inboxRefId,
+    },
+    ref
+  ) => {
     const { user } = useAppSelector(selectUser);
-    const { isPreviewing } = useAppSelector(selectInboxes);
 
     const dispatch = useAppDispatch();
+
+    const cancelUploadFile = () =>
+      dispatch(removeMessage({ messageId, inboxRefId }));
+
+    const uploadFile = async () => {
+      const formData = new FormData();
+
+      formData.append("uid", uid);
+      formData.append("username", username);
+      formData.append("avatar", avatar);
+      formData.append("content", "");
+      formData.append("type", type);
+      formData.append("inboxRefId", inboxRefId);
+      formData.append("file", file);
+
+      const dispatchResult = await dispatch(postMessage(formData)).unwrap();
+
+      if (dispatchResult.code === "success") cancelUploadFile();
+    };
 
     return (
       <li
@@ -48,17 +81,26 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
             </Typography>
           ) : type === "image" ? (
             <div
-              className="message__image"
+              className={`message__image ${
+                messageId?.includes("upload-preview")
+                  ? "message__image--preview"
+                  : ""
+              }`}
               onClick={() =>
+                !messageId?.includes("upload-preview") &&
                 dispatch(
                   openDialog({ type: "zoom-image", imageSource: content })
                 )
               }
             >
-              <img
-                src={`${import.meta.env.VITE_API_URL}/Resources/${content}`}
-                loading="lazy"
-              />
+              {messageId?.includes("upload-preview") ? (
+                <img src={content} loading="lazy" />
+              ) : (
+                <img
+                  src={`${import.meta.env.VITE_API_URL}/Resources/${content}`}
+                  loading="lazy"
+                />
+              )}
             </div>
           ) : type === "video" ? (
             <div className="message__video"></div>
@@ -70,11 +112,15 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
           </Typography>
 
           {/* Preview message actions */}
-          {isPreviewing && messageId === "upload-preview" && (
-            <ButtonGroup variant="text">
-              <Button color="success">Upload</Button>
-              <Button color="error">Cancel</Button>
-            </ButtonGroup>
+          {messageId?.includes("upload-preview") && (
+            <div className="message__previewActions">
+              <Button color="primary" variant="text" onClick={uploadFile}>
+                Upload
+              </Button>
+              <Button color="error" variant="text" onClick={cancelUploadFile}>
+                Cancel
+              </Button>
+            </div>
           )}
         </div>
       </li>
