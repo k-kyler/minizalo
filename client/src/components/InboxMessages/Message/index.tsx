@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import "./Message.css";
 import { MessageType } from "../../../typings/MessageType";
 import { Avatar, Typography, Button } from "@mui/material";
@@ -6,25 +6,13 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
 import { TimeAgo } from "../../TimeAgo";
 import { openDialog } from "../../../redux/DialogSlice";
-import { removeMessage } from "../../../redux/InboxesSlice";
-import { postMessage } from "../../../redux/MessageSlice";
-import axios from "axios";
+import { changeIsPreviewing, removeMessage } from "../../../redux/InboxesSlice";
 
 interface IMessage extends MessageType {}
 
 export const Message = forwardRef<HTMLLIElement, IMessage>(
   (
-    {
-      messageId,
-      uid,
-      username,
-      avatar,
-      content,
-      file,
-      type,
-      createdAt,
-      inboxRefId,
-    },
+    { messageId, uid, username, avatar, content, type, createdAt, inboxRefId },
     ref
   ) => {
     const { user } = useAppSelector(selectUser);
@@ -34,21 +22,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
     const cancelUploadFile = () =>
       dispatch(removeMessage({ messageId, inboxRefId }));
 
-    const uploadFile = async () => {
-      const formData = new FormData();
-
-      formData.append("uid", uid);
-      formData.append("username", username);
-      formData.append("avatar", avatar);
-      formData.append("content", "");
-      formData.append("type", type);
-      formData.append("inboxRefId", inboxRefId);
-      formData.append("file", file);
-
-      const dispatchResult = await dispatch(postMessage(formData)).unwrap();
-
-      if (dispatchResult.code === "success") cancelUploadFile();
-    };
+    const uploadFile = () => dispatch(changeIsPreviewing(true));
 
     return (
       <li

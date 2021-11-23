@@ -9,6 +9,7 @@ interface InboxesState {
   selectedInboxId: string;
   isFetching: boolean;
   isCreating: boolean;
+  isPreviewing: boolean;
   error: boolean;
 }
 
@@ -26,6 +27,7 @@ const initialState: InboxesState = {
   selectedInboxId: "",
   isFetching: true,
   isCreating: true,
+  isPreviewing: false,
   error: false,
 };
 
@@ -67,6 +69,9 @@ export const inboxesSlice = createSlice({
   reducers: {
     changeSelectedInboxId: (state, action: PayloadAction<string>) => {
       state.selectedInboxId = action.payload;
+    },
+    changeIsPreviewing: (state, action: PayloadAction<boolean>) => {
+      state.isPreviewing = action.payload;
     },
     addNewMessage: (state, action: PayloadAction<UpdateDataOfInbox>) => {
       const { message } = action.payload;
@@ -146,7 +151,11 @@ export const inboxesSlice = createSlice({
   },
 });
 
-export const { changeSelectedInboxId, addNewMessage, removeMessage } =
-  inboxesSlice.actions;
+export const {
+  changeSelectedInboxId,
+  changeIsPreviewing,
+  addNewMessage,
+  removeMessage,
+} = inboxesSlice.actions;
 export const selectInboxes = (state: RootState) => state.inboxes;
 export default inboxesSlice.reducer;
