@@ -25,12 +25,25 @@ const initialState: MessageState = {
 
 export const postMessage = createAsyncThunk(
   "message/postMessage",
-  async (inputMessage: FormData) => {
+  async (inputMessage: MessageType) => {
+    const formData = new FormData();
+
+    formData.append("uid", inputMessage.uid);
+    formData.append("username", inputMessage.username);
+    formData.append("avatar", inputMessage.avatar);
+    formData.append("content", inputMessage.content);
+    formData.append("type", inputMessage.type);
+    formData.append("inboxRefId", inputMessage.inboxRefId);
+
+    if (inputMessage.file) {
+      formData.append("file", inputMessage.file, inputMessage.file.name);
+    }
+
     const {
       data: { code, message },
     } = await axios.post(
       `${import.meta.env.VITE_API_URL}/api/message/create`,
-      inputMessage,
+      formData,
       { withCredentials: true }
     );
 

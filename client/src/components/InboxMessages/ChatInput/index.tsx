@@ -21,13 +21,23 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
 import { postMessage } from "../../../redux/MessageSlice";
-import { addNewMessage } from "../../../redux/InboxesSlice";
+import {
+  addNewMessage,
+  selectInboxes,
+  removeMessage,
+} from "../../../redux/InboxesSlice";
 
 interface IChatInput {
   selectedInboxId: string;
   selectedInboxType: "group" | "personal";
   openEmojiModal: boolean;
   setOpenEmojiModal: Dispatch<SetStateAction<boolean>>;
+}
+
+interface IUploadData {
+  inboxRefId: string;
+  messageId: string;
+  file: any;
 }
 
 export const ChatInput: FC<IChatInput> = ({
@@ -37,11 +47,13 @@ export const ChatInput: FC<IChatInput> = ({
   setOpenEmojiModal,
 }) => {
   const { user } = useAppSelector(selectUser);
+  const { isPreviewing } = useAppSelector(selectInboxes);
 
   const dispatch = useAppDispatch();
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
+  const [uploadData, setUploadData] = useState<IUploadData>();
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -62,19 +74,16 @@ export const ChatInput: FC<IChatInput> = ({
   };
 
   const sendMessageHandler = async () => {
-    const formData = new FormData();
-
-    formData.append("uid", user.userId);
-    formData.append("username", user.userName);
-    formData.append("avatar", user.avatar);
-    formData.append(
-      "content",
-      textAreaRef.current ? textAreaRef.current.value : ""
-    );
-    formData.append("type", "text");
-    formData.append("inboxRefId", selectedInboxId);
-
-    const dispatchResult = await dispatch(postMessage(formData)).unwrap();
+    const dispatchResult = await dispatch(
+      postMessage({
+        uid: user.userId,
+        username: user.userName,
+        avatar: user.avatar,
+        content: textAreaRef.current ? textAreaRef.current.value : "",
+        type: "text",
+        inboxRefId: selectedInboxId,
+      })
+    ).unwrap();
 
     if (dispatchResult.code === "success" && textAreaRef.current) {
       textAreaRef.current.value = "";
@@ -102,26 +111,57 @@ export const ChatInput: FC<IChatInput> = ({
     setChosenEmoji(data);
   };
 
-  const showPreview = (event: ChangeEvent<HTMLInputElement>) => {
+  const showPreviewHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      dispatch(
-        addNewMessage({
-          message: {
-            messageId: `upload-preview-${nanoid()}`,
-            uid: user.userId,
-            username: user.userName,
-            avatar: user.avatar,
-            content: URL.createObjectURL(event.target.files[0]),
-            file: event.target.files[0],
-            type: event.target.files[0].type.includes("image")
-              ? "image"
-              : event.target.files[0].type.includes("video")
-              ? "video"
-              : "text",
-            inboxRefId: selectedInboxId,
-          },
+      const message = {
+        messageId: `upload-preview-${nanoid()}`,
+        uid: user.userId,
+        username: user.userName,
+        avatar: user.avatar,
+        content: URL.createObjectURL(event.target.files[0]),
+        file: "",
+        type: event.target.files[0].type.includes("image")
+          ? "image"
+          : event.target.files[0].type.includes("video")
+          ? "video"
+          : "text",
+        inboxRefId: selectedInboxId,
+      };
+
+      dispatch(addNewMessage({ message: message as any }));
+      setUploadData({
+        file: event.target,
+        inboxRefId: message.inboxRefId,
+        messageId: message.messageId,
+      });
+    }
+  };
+
+  const uploadFileHandler = async () => {
+    if (uploadData && uploadData.file && uploadData.file.files[0]) {
+      const { code } = await dispatch(
+        postMessage({
+          uid: user.userId,
+          username: user.userName,
+          avatar: user.avatar,
+          content: "No content",
+          file: uploadData?.file.files[0],
+          type: uploadData?.file.files[0].type.includes("image")
+            ? "image"
+            : uploadData?.file.files[0].type.includes("video")
+            ? "video"
+            : "text",
+          inboxRefId: selectedInboxId,
         })
-      );
+      ).unwrap();
+
+      if (code === "success")
+        dispatch(
+          removeMessage({
+            inboxRefId: uploadData.inboxRefId,
+            messageId: uploadData.messageId,
+          })
+        );
     }
   };
 
@@ -131,6 +171,10 @@ export const ChatInput: FC<IChatInput> = ({
       setCheckIsTyping(true);
     }
   }, [chosenEmoji]);
+
+  useEffect(() => {
+    if (isPreviewing) uploadFileHandler();
+  }, [isPreviewing]);
 
   return (
     <div className="chatInput">
@@ -185,7 +229,7 @@ export const ChatInput: FC<IChatInput> = ({
                 accept="image/*, video/*, .pdf, .doc, .docx, .xls, .xlsx"
                 id="upload-file"
                 type="file"
-                onChange={showPreview}
+                onChange={showPreviewHandler}
               />
 
               <IconButton component="span">
