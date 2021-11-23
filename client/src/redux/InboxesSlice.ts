@@ -9,7 +9,6 @@ interface InboxesState {
   selectedInboxId: string;
   isFetching: boolean;
   isCreating: boolean;
-  isPreviewing: boolean;
   error: boolean;
 }
 
@@ -17,8 +16,9 @@ interface UpdateDataOfInbox {
   message: MessageType;
 }
 
-interface PreviewMessage {
-  previewMessage: MessageType;
+interface RemoveMessage {
+  messageId?: string;
+  inboxRefId: string;
 }
 
 const initialState: InboxesState = {
@@ -26,7 +26,6 @@ const initialState: InboxesState = {
   selectedInboxId: "",
   isFetching: true,
   isCreating: true,
-  isPreviewing: false,
   error: false,
 };
 
@@ -79,14 +78,16 @@ export const inboxesSlice = createSlice({
         existingInbox.messages?.push(message);
       }
     },
-    showPreviewMessage: (state, action: PayloadAction<PreviewMessage>) => {
-      const { previewMessage } = action.payload;
+    removeMessage: (state, action: PayloadAction<RemoveMessage>) => {
+      const { messageId, inboxRefId } = action.payload;
       const existingInbox = state.inboxes.find(
-        (inbox) => inbox.inboxId === previewMessage.inboxRefId
+        (inbox) => inbox.inboxId === inboxRefId
       );
+
       if (existingInbox) {
-        existingInbox.messages?.push(previewMessage);
-        state.isPreviewing = true;
+        existingInbox.messages = existingInbox.messages?.filter(
+          (message) => message.messageId !== messageId
+        );
       }
     },
   },
@@ -145,7 +146,7 @@ export const inboxesSlice = createSlice({
   },
 });
 
-export const { changeSelectedInboxId, addNewMessage, showPreviewMessage } =
+export const { changeSelectedInboxId, addNewMessage, removeMessage } =
   inboxesSlice.actions;
 export const selectInboxes = (state: RootState) => state.inboxes;
 export default inboxesSlice.reducer;

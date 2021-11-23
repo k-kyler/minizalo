@@ -49,3 +49,11 @@
   height: 100%;
   border-radius: 0.75rem;
 }
+
+.message__image--preview {
+  pointer-events: none;
+}
+
+.message__previewActions {
+  display: flex;
+}

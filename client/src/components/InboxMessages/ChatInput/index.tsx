@@ -17,10 +17,11 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import Picker, { IEmojiData } from "emoji-picker-react";
+import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
 import { postMessage } from "../../../redux/MessageSlice";
-import { showPreviewMessage } from "../../../redux/InboxesSlice";
+import { addNewMessage } from "../../../redux/InboxesSlice";
 
 interface IChatInput {
   selectedInboxId: string;
@@ -41,10 +42,8 @@ export const ChatInput: FC<IChatInput> = ({
 
   const [checkIsTyping, setCheckIsTyping] = useState(false);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | any>(null);
-  const [inputFilePreview, setInputFilePreview] = useState(false);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const inputFileRef = useRef<HTMLInputElement>(null);
 
   const Input = styled("input")({
     display: "none",
@@ -105,15 +104,15 @@ export const ChatInput: FC<IChatInput> = ({
 
   const showPreview = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      setInputFilePreview(true);
       dispatch(
-        showPreviewMessage({
-          previewMessage: {
-            messageId: "upload-preview",
+        addNewMessage({
+          message: {
+            messageId: `upload-preview-${nanoid()}`,
             uid: user.userId,
             username: user.userName,
             avatar: user.avatar,
             content: URL.createObjectURL(event.target.files[0]),
+            file: event.target.files[0],
             type: event.target.files[0].type.includes("image")
               ? "image"
               : event.target.files[0].type.includes("video")
@@ -125,8 +124,6 @@ export const ChatInput: FC<IChatInput> = ({
       );
     }
   };
-
-  const uploadFileHandler = async () => {};
 
   useEffect(() => {
     if (chosenEmoji && textAreaRef.current) {
@@ -188,9 +185,7 @@ export const ChatInput: FC<IChatInput> = ({
                 accept="image/*, video/*, .pdf, .doc, .docx, .xls, .xlsx"
                 id="upload-file"
                 type="file"
-                ref={inputFileRef}
-                // value={inputFile}
-                // onChange={showPreview}
+                onChange={showPreview}
               />
 
               <IconButton component="span">

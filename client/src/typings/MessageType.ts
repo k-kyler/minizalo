@@ -7,4 +7,5 @@ export type MessageType = {
   content: string;
   type: "text" | "video" | "image";
   inboxRefId: string;
+  file?: any;
 };
