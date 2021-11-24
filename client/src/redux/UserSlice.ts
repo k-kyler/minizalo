@@ -112,7 +112,10 @@ export const userSlice = createSlice({
         state.isSignIn = true;
       })
       .addCase(signInUser.fulfilled, (state, action) => {
-        if (action.payload.code === "success") {
+        if (
+          action.payload.code === "success" ||
+          action.payload.code === "error"
+        ) {
           state.isSignIn = false;
         }
       })
@@ -125,7 +128,10 @@ export const userSlice = createSlice({
         state.isSignUp = true;
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
-        if (action.payload.code === "success") {
+        if (
+          action.payload.code === "success" ||
+          action.payload.code === "error"
+        ) {
           state.isSignUp = false;
         }
       })
@@ -138,13 +144,14 @@ export const userSlice = createSlice({
         state.isSignOut = true;
       })
       .addCase(signOutUser.fulfilled, (state, action) => {
-        if (action.payload === "success") {
+        if (action.payload.code === "success") {
           state.user = initialState.user;
           state.isSignOut = false;
         }
       })
       .addCase(signOutUser.rejected, (state) => {
         state.error = true;
+        state.isSignOut = false;
       });
   },
 });

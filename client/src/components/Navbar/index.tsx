@@ -7,11 +7,15 @@ import {
   MenuItem,
   Divider,
   ListItemIcon,
+  IconButton,
+  Badge,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "./Navbar.css";
 import Logo from "../../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -70,13 +74,9 @@ export const Navbar: FC = () => {
 
       {/* User setting */}
       <div className="navbar__userSetting">
+        {/* Short information */}
         <Tooltip title={user.userName}>
-          <div
-            className="navbar__userInfo"
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={openUserSettingMenuHandler}
-          >
+          <div className="navbar__userInfo">
             <Avatar
               sx={{
                 width: "2rem",
@@ -92,16 +92,34 @@ export const Navbar: FC = () => {
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
                 overflowX: "hidden",
-                maxWidth: "6em",
+                maxWidth: "7em",
               }}
             >
               {user.userName}
             </Typography>
           </div>
         </Tooltip>
+
+        {/* Notifications */}
+        <IconButton className="navbar__settingButton">
+          <Badge badgeContent={5} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+
+        {/* Setting */}
+        <div
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={openUserSettingMenuHandler}
+        >
+          <IconButton className="navbar__settingButton">
+            <ArrowDropDownIcon />
+          </IconButton>
+        </div>
       </div>
 
-      {/* User setting menu */}
+      {/* Setting menu */}
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -110,8 +128,8 @@ export const Navbar: FC = () => {
         PaperProps={{
           elevation: 0,
           sx: {
-            mt: 3,
-            ml: 0.5,
+            mt: 2.5,
+            ml: 0.4,
             overflow: "visible",
             filter: "drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.25))",
             "& .MuiAvatar-root": {

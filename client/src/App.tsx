@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { linkData } from "./constants/LinkData";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
@@ -51,6 +56,9 @@ function App() {
           <Route exact path="/">
             <SignIn />
           </Route>
+
+          {/* Redirect if user gets into wrong routes */}
+          <Redirect to="/dashboard" />
         </Switch>
       </Router>
     </div>
