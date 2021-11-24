@@ -1,5 +1,5 @@
 import { FC, useState, useRef, FormEvent } from "react";
-import { Button, Box, TextField } from "@mui/material";
+import { Button, Box, TextField, CircularProgress } from "@mui/material";
 import { Link, Redirect } from "react-router-dom";
 import "./SignIn.css";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
@@ -102,8 +102,16 @@ export const SignIn: FC = () => {
                     borderRadius: "6px",
                   }}
                   className="signin__submit"
+                  startIcon={
+                    user.isSignIn && (
+                      <CircularProgress
+                        size={20}
+                        sx={{ color: "white", my: 0.282 }}
+                      />
+                    )
+                  }
                 >
-                  SIGN IN
+                  {!user.isSignIn && <span>SIGN IN</span>}
                 </Button>
               </form>
             </div>

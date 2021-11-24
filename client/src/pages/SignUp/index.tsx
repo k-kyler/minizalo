@@ -1,5 +1,5 @@
 import { FC, useRef, FormEvent, useState } from "react";
-import { Button, Box, TextField } from "@mui/material";
+import { Button, Box, TextField, CircularProgress } from "@mui/material";
 import "./SignUp.css";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -72,7 +72,7 @@ export const SignUp: FC = () => {
 
         setTimeout(() => {
           history.push("/"); // redirect back to sign in page
-        }, 3000);
+        }, 2000);
       }
     } catch (error) {
       console.error(error);
@@ -152,8 +152,16 @@ export const SignUp: FC = () => {
                     borderRadius: "6px",
                   }}
                   variant="contained"
+                  startIcon={
+                    user.isSignUp && (
+                      <CircularProgress
+                        size={20}
+                        sx={{ color: "white", my: 0.282 }}
+                      />
+                    )
+                  }
                 >
-                  SIGN UP
+                  {!user.isSignUp && <span>SIGN UP</span>}
                 </Button>
                 <Box sx={{ height: 15 }} />
                 <Link to="/" style={{ textDecoration: "none" }}>

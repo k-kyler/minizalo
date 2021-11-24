@@ -1,10 +1,11 @@
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Tooltip, Typography } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FC } from "react";
 import { InboxItemType } from "../../../typings/InboxItemType";
 import "./InboxItem.css";
 import { useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
+import { TimeAgo } from "../../TimeAgo";
 
 interface IInboxItem extends InboxItemType {
   selectedInboxId: string;
@@ -91,8 +92,26 @@ export const InboxItem: FC<IInboxItem> = ({
         </div>
       </div>
 
-      {/* Room setting */}
-      <MoreHorizIcon className="inboxItem__setting" color="disabled" />
+      {/* Last active & room setting */}
+      <div className="inboxItem__lastActiveAndRoomSetting">
+        <Typography variant="caption" sx={{ color: "#ababab" }}>
+          <TimeAgo
+            timestamp={
+              messages?.length && messages[messages.length - 1].createdAt
+                ? (messages[messages.length - 1].createdAt as any)
+                : ""
+            }
+          />
+        </Typography>
+
+        <Tooltip title="Setting">
+          <MoreHorizIcon
+            className="inboxItem__setting"
+            color="disabled"
+            fontSize="small"
+          />
+        </Tooltip>
+      </div>
     </div>
   );
 };

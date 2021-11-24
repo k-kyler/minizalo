@@ -43,9 +43,21 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow-x: hidden;
-  max-width: 18em;
+}
+.inboxItem__info > p {
+  max-width: 10em;
+}
+
+.inboxItem__info > span {
+  max-width: 16em;
 }
 
 .inboxItem__setting {
   visibility: hidden;
+}
+
+.inboxItem__lastActiveAndRoomSetting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
