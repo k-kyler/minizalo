@@ -2,21 +2,20 @@
   display: grid;
   place-items: center;
   flex: 1;
-  position: relative;
+  overflow-y: auto;
 }
 
-.search__inner {
+.search__bar {
+  margin: 2rem 0 1.5rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
   border-radius: 1.75rem;
   padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-  width: 30vw;
+  width: 35vw;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  position: absolute;
-  top: 3rem;
 }
 
 .search__input {
@@ -26,4 +25,23 @@
   padding: 0.5rem 0;
   font-size: inherit;
   margin-right: 0.5rem;
+}
+
+.search__suggestKeywords {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.search__suggest {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search__scrollToTop {
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+  /* display: none; */
 }
