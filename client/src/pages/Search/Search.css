@@ -1,0 +1,29 @@
+.search {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.search__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 1.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  width: 30vw;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  position: absolute;
+  top: 3rem;
+}
+
+.search__input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  font-size: inherit;
+  margin-right: 0.5rem;
+}

@@ -13,6 +13,8 @@ export const TimeAgo: FC<ITimeAgo> = ({ timestamp }) => {
     const timePeriod = formatDistanceToNow(date);
 
     timeAgo = `${timePeriod}`;
+
+    if (timeAgo === "less than a minute") timeAgo = "1s";
   }
 
   return (
