@@ -5,7 +5,7 @@ export type MessageType = {
   avatar: string;
   createdAt?: string;
   content: string;
-  type: "text" | "video" | "image";
+  type: "text" | "video" | "image" | "document";
   inboxRefId: string;
   file?: any;
 };
