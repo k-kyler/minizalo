@@ -14,7 +14,7 @@ export const TimeAgo: FC<ITimeAgo> = ({ timestamp }) => {
 
     timeAgo = `${timePeriod}`;
 
-    if (timeAgo === "less than a minute") timeAgo = "1s";
+    if (timeAgo === "less than a minute") timeAgo = "now";
   }
 
   return (

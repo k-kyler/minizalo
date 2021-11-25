@@ -25,6 +25,7 @@ import {
   addNewMessage,
   selectInboxes,
   removeMessage,
+  changeIsPreviewing,
 } from "../../../redux/InboxesSlice";
 
 interface IChatInput {
@@ -118,13 +119,20 @@ export const ChatInput: FC<IChatInput> = ({
         uid: user.userId,
         username: user.userName,
         avatar: user.avatar,
-        content: URL.createObjectURL(event.target.files[0]),
+        content:
+          !event.target.files[0].type.includes("image") &&
+          !event.target.files[0].type.includes("video")
+            ? event.target.files[0].name
+            : URL.createObjectURL(event.target.files[0]),
         file: "",
         type: event.target.files[0].type.includes("image")
           ? "image"
           : event.target.files[0].type.includes("video")
           ? "video"
-          : "text",
+          : !event.target.files[0].type.includes("image") &&
+            !event.target.files[0].type.includes("video")
+          ? "document"
+          : "",
         inboxRefId: selectedInboxId,
       };
 
@@ -150,18 +158,23 @@ export const ChatInput: FC<IChatInput> = ({
             ? "image"
             : uploadData?.file.files[0].type.includes("video")
             ? "video"
+            : !uploadData?.file.files[0].type.includes("video") &&
+              !uploadData?.file.files[0].type.includes("image")
+            ? "document"
             : "text",
           inboxRefId: selectedInboxId,
         })
       ).unwrap();
 
-      if (code === "success")
+      if (code === "success") {
         dispatch(
           removeMessage({
             inboxRefId: uploadData.inboxRefId,
             messageId: uploadData.messageId,
           })
         );
+        dispatch(changeIsPreviewing(false));
+      }
     }
   };
 

@@ -84,6 +84,11 @@ export const InboxItem: FC<IInboxItem> = ({
             <Typography variant="caption" color="gray">
               {messages[messages.length - 1].username}: Sent an image
             </Typography>
+          ) : messages?.length &&
+            messages[messages.length - 1].type === "document" ? (
+            <Typography variant="caption" color="gray">
+              {messages[messages.length - 1].username}: Sent a document
+            </Typography>
           ) : (
             <Typography variant="caption" color="gray">
               No messages
