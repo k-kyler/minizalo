@@ -40,7 +40,7 @@ namespace minizalo.Controllers
 
                 Message messageToCreate;
 
-                if (createMessageDto.Type == "image" || createMessageDto.Type == "video")
+                if (createMessageDto.Type == "image" || createMessageDto.Type == "video" || createMessageDto.Type == "document")
                 {
                     var uploadFile = await UploadFile(createMessageDto.File);
 
@@ -88,8 +88,7 @@ namespace minizalo.Controllers
         [NonAction]
         private async Task<UploadDto> UploadFile(IFormFile file)
         {
-            // if (file.Length > 10000000)
-            if (file.Length > 2000000)
+            if (file.Length > 10000000)
             {
                 return new UploadDto()
                 {
