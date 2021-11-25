@@ -10,7 +10,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@microsoft/signalr": "^6.0.0",
-    "@mui/icons-material": "^5.0.5",
+    "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.0.5",
     "@reduxjs/toolkit": "^1.6.2",
     "axios": "^0.24.0",
