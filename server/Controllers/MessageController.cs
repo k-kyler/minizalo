@@ -88,6 +88,22 @@ namespace minizalo.Controllers
         [NonAction]
         private async Task<UploadDto> UploadFile(IFormFile file)
         {
+            var fileExtension = Path.GetExtension(file.FileName);
+            var acceptedExtension = new[]
+            {
+                ".png", 
+                ".jpg", 
+                ".jpeg",
+                ".pdf",
+                ".doc",
+                ".docx",
+                ".xls",
+                ".xlsx",
+                ".txt",
+                ".zip",
+                ".rar"
+            };
+            
             if (file.Length > 10000000)
             {
                 return new UploadDto()
@@ -95,6 +111,16 @@ namespace minizalo.Controllers
                     Code = "error",
                     FileName = "",
                     Message = "The file size upload is over 10mb"
+                };
+            }
+            
+            if (!acceptedExtension.Contains(fileExtension))
+            {
+                return new UploadDto()
+                {
+                    Code = "error",
+                    FileName = "",
+                    Message = "The file extension is not supported"
                 };
             }
             
