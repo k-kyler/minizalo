@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace minizalo.Entities
 {
@@ -24,5 +23,7 @@ namespace minizalo.Entities
         
         [Required]
         public DateTimeOffset CreatedAt { get; init; }
+        
+        public List<Friend> Friends { get; set; }
     }
 }

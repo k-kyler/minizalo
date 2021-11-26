@@ -10,6 +10,7 @@ namespace minizalo.Data
         DbSet<User> Users { get; set; }
         DbSet<Inbox> Inboxes { get; set; }
         DbSet<Message> Messages { get; set; }
+        DbSet<Friend> Friends { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

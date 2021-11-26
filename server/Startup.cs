@@ -37,6 +37,7 @@ namespace minizalo
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IInboxRepository, InboxRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<IFriendRepository, FriendRepository>();
             // End of register repositories
             
             // Register helpers
