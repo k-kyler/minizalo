@@ -19,24 +19,19 @@ export const SearchResults: FC = () => {
       avatar: "https://avatars.githubusercontent.com/u/663689?v=4",
     },
     {
-      uid: "2",
+      uid: "3",
       username: "Khai Bui",
       avatar: "https://avatars.githubusercontent.com/u/663689213?v=4",
     },
     {
-      uid: "3",
+      uid: "4",
       username: "Khai Bui",
       avatar: "https://avatars.githubusercontent.com/u/1233565?v=4",
     },
     {
-      uid: "4",
+      uid: "5",
       username: "Khai Quang",
       avatar: "https://avatars.githubusercontent.com/u/636813?v=4",
-    },
-    {
-      uid: "5",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
     },
     {
       uid: "6",
@@ -58,26 +53,21 @@ export const SearchResults: FC = () => {
       username: "Khai",
       avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
     },
+    {
+      uid: "10",
+      username: "Khai",
+      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
+    },
   ];
   // End of test data
 
   return (
-    <div className="searchResults">
-      <Typography
-        variant="h5"
-        color="GrayText"
-        className="searchResults__title"
-      >
-        Search results for Khai
-      </Typography>
-
-      <ul className="searchResults__list">
-        <FlipMove leaveAnimation="fade">
-          {searchResults.map((result) => (
-            <SearchResult key={result.uid} {...result} />
-          ))}
-        </FlipMove>
-      </ul>
-    </div>
+    <ul className="searchResults">
+      <FlipMove leaveAnimation="fade">
+        {searchResults.map((result) => (
+          <SearchResult key={result.uid} {...result} />
+        ))}
+      </FlipMove>
+    </ul>
   );
 };
