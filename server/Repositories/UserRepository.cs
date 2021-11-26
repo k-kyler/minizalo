@@ -15,26 +15,22 @@ namespace minizalo.Repositories
             _dataContext = dataContext;
         }
 
-        // Get user by email
         public async Task<User> GetUserByEmail(string email)
         {
             return await _dataContext.Users.FirstOrDefaultAsync(user => user.Email == email);
         }
 
-        // Get user by id
         public async Task<User> GetUserById(Guid id)
         {
             return await _dataContext.Users.FirstOrDefaultAsync(user => user.UserId == id);
         }
         
-        // Create user
         public async Task CreateUser(User user)
         {
             _dataContext.Users.Add(user);
             await _dataContext.SaveChangesAsync();
         }
 
-        // Update user
         public async Task UpdateUser(User user)
         {
             var userToUpdate = await _dataContext.Users.FirstOrDefaultAsync(u => u.UserId == user.UserId);
