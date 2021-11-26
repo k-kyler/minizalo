@@ -9,10 +9,9 @@ import { SearchResults } from "../../components/SearchResults";
 
 export const Search: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
 
-  const [checked, setChecked] = useState(false);
-
-  const results: any = [];
+  const [displayFloatButton, setDisplayFloatButton] = useState(false);
 
   const searchHandler = () => {
     if (inputRef.current) {
@@ -23,8 +22,18 @@ export const Search: FC = () => {
     }
   };
 
+  const showFloatButtonHandler = () => {
+    searchRef.current && searchRef.current.scrollTop !== 0
+      ? setDisplayFloatButton(true)
+      : setDisplayFloatButton(false);
+  };
+
+  const scrollToTopHandler = () => {
+    searchRef.current ? (searchRef.current.scrollTop = 0) : null;
+  };
+
   return (
-    <div className="search">
+    <div className="search" onScroll={showFloatButtonHandler} ref={searchRef}>
       {/* Search bar */}
       <div className="search__bar">
         <input
@@ -41,6 +50,9 @@ export const Search: FC = () => {
           <SearchIcon />
         </IconButton>
       </div>
+      <Typography variant="h5" color="GrayText" sx={{ mt: 4, mb: 2.5 }}>
+        Search results for Khai
+      </Typography>
 
       {/* Recent searches */}
       {/* Do it later... */}
@@ -72,7 +84,7 @@ export const Search: FC = () => {
         <div className="search__suggest">
           <NumbersIcon />
           <Typography variant="body2" sx={{ ml: 1.25 }}>
-            Mutual friends
+            Friends of friends
           </Typography>
         </div>
       </div> */}
@@ -80,8 +92,13 @@ export const Search: FC = () => {
       {/* Results */}
       <SearchResults />
 
-      <Zoom in={checked}>
-        <Fab color="primary" className="search__scrollToTop">
+      <Zoom in={displayFloatButton}>
+        <Fab
+          color="primary"
+          className="search__scrollToTop"
+          size="medium"
+          onClick={scrollToTopHandler}
+        >
           <KeyboardArrowUpIcon />
         </Fab>
       </Zoom>
