@@ -1,6 +1,7 @@
 .search {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   flex: 1;
 }
 
@@ -10,7 +11,7 @@
   justify-content: center;
   background-color: white;
   border-radius: 1.75rem;
-  margin: 2rem 0;
+  margin: 3.5rem 0 2rem 0;
   padding: 0.5rem 0.5rem 0.5rem 0;
   width: 35vw;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
