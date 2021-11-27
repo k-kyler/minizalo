@@ -1,0 +1,25 @@
+.friendItem {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 1.25rem;
+  padding: 1rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+}
+
+.friendItem:hover {
+  background-color: #f1f2f5;
+  transition: all 0.3s ease;
+}
+
+.friendItem:not(:hover) {
+  transition: all 0.2s ease;
+}
+
+.friendItem__info {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}

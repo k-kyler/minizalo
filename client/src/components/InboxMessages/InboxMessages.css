@@ -20,6 +20,14 @@
   align-items: center;
 }
 
+.inboxMessages__headerRight button:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.inboxMessages__headerRight button:last-child {
+  margin-right: 0.75rem;
+}
+
 .inboxMessages__info {
   margin-left: 0.75rem !important;
   display: flex;
