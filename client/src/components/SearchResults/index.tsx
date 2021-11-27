@@ -2,61 +2,21 @@ import { FC } from "react";
 import FlipMove from "react-flip-move";
 import "./SearchResults.css";
 import { SearchResult } from "./SearchResult";
-import { SearchResultType } from "../../typings/SearchResultType";
-import { Typography } from "@mui/material";
+import { FriendType } from "../../typings/FriendType";
 
 export const SearchResults: FC = () => {
   // Test data
-  const searchResults: SearchResultType[] = [
+  const searchResults: FriendType[] = [
     {
-      uid: "1",
-      username: "Quang Khai",
-      avatar: "https://avatars.githubusercontent.com/u/66368949?v=4",
-    },
-    {
-      uid: "2",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/663689?v=4",
-    },
-    {
-      uid: "3",
-      username: "Khai Bui",
-      avatar: "https://avatars.githubusercontent.com/u/663689213?v=4",
-    },
-    {
-      uid: "4",
-      username: "Khai Bui",
-      avatar: "https://avatars.githubusercontent.com/u/1233565?v=4",
-    },
-    {
-      uid: "5",
-      username: "Khai Quang",
-      avatar: "https://avatars.githubusercontent.com/u/636813?v=4",
-    },
-    {
-      uid: "6",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
-    },
-    {
-      uid: "7",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
-    },
-    {
-      uid: "8",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
-    },
-    {
-      uid: "9",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
-    },
-    {
-      uid: "10",
-      username: "Khai",
-      avatar: "https://avatars.githubusercontent.com/u/63689213?v=4",
+      friendId: "1",
+      data: {
+        userId: "1",
+        userName: "Quang Khai",
+        avatar: "https://avatars.githubusercontent.com/u/66368949?v=4",
+        email: "khai@gmail.com",
+        createdAt: "test time",
+      },
+      userRefId: "2",
     },
   ];
   // End of test data
@@ -65,7 +25,7 @@ export const SearchResults: FC = () => {
     <ul className="searchResults">
       <FlipMove leaveAnimation="fade">
         {searchResults.map((result) => (
-          <SearchResult key={result.uid} {...result} />
+          <SearchResult key={result.friendId} {...result} />
         ))}
       </FlipMove>
     </ul>
