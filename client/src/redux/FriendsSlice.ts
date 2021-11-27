@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { FriendType } from "../typings/FriendType";
 import axios from "axios";
+import { FriendType } from "../typings/FriendType";
 import { RootState } from "./store";
+import { UserType } from "../typings/UserType";
 
 interface FriendsState {
   friends: FriendType[];
   isFetching: boolean;
   isSearching: boolean;
+  sendingFriendRequest: boolean;
   searchKeyword: string;
-  searchResults: FriendType[];
+  searchResults: UserType[];
   error: boolean;
 }
 
@@ -21,6 +23,7 @@ const initialState: FriendsState = {
   friends: [],
   isFetching: false,
   isSearching: false,
+  sendingFriendRequest: false,
   searchKeyword: "",
   searchResults: [],
   error: false,
@@ -28,14 +31,14 @@ const initialState: FriendsState = {
 
 export const searchForFriends = createAsyncThunk(
   "friends/search",
-  async (keyword: string) => {
+  async (searchKeyword: string) => {
     const {
       data: { code, results },
     } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/friend/search`,
-      {
-        keyword,
-      },
+      `${
+        import.meta.env.VITE_API_URL
+      }/api/friend/search?keyword=${searchKeyword}`,
+      {},
       {
         withCredentials: true,
       }
@@ -44,6 +47,7 @@ export const searchForFriends = createAsyncThunk(
     return {
       code,
       results,
+      searchKeyword,
     };
   }
 );
@@ -93,6 +97,7 @@ export const friendsSlice = createSlice({
       })
       .addCase(searchForFriends.fulfilled, (state, action) => {
         if (action.payload.code === "success") {
+          state.searchKeyword = action.payload.searchKeyword;
           state.searchResults = action.payload.results;
           state.isSearching = false;
         }
@@ -114,9 +119,22 @@ export const friendsSlice = createSlice({
       )
       .addCase(fetchFriendsList.rejected, (state) => {
         state.error = true;
+      })
+
+      // Add friend
+      .addCase(addFriend.pending, (state) => {
+        state.sendingFriendRequest = true;
+      })
+      .addCase(addFriend.fulfilled, (state, action) => {
+        if (action.payload.code === "success") {
+          state.sendingFriendRequest = false;
+        }
+      })
+      .addCase(addFriend.rejected, (state) => {
+        state.error = true;
       });
   },
 });
 
-export const selectedFriends = (state: RootState) => state.friends;
+export const selectFriends = (state: RootState) => state.friends;
 export default friendsSlice.reducer;

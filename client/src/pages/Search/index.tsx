@@ -4,15 +4,23 @@ import NumbersIcon from "@mui/icons-material/Numbers";
 import { IconButton, Typography } from "@mui/material";
 import "./Search.css";
 import { SearchResults } from "../../components/SearchResults";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { searchForFriends, selectFriends } from "../../redux/FriendsSlice";
+import { PageLoading } from "../../components/Loadings/PageLoading";
 
 export const Search: FC = () => {
+  const dispatch = useAppDispatch();
+
+  const { isSearching, searchResults, searchKeyword } =
+    useAppSelector(selectFriends);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const searchHandler = () => {
     if (inputRef.current) {
       const keyword = inputRef.current.value;
 
-      // dispatch an action here...
+      dispatch(searchForFriends(keyword));
     }
   };
 
@@ -34,47 +42,64 @@ export const Search: FC = () => {
           <SearchIcon />
         </IconButton>
       </div>
-      {/* <Typography variant="h5" color="GrayText" sx={{ mt: 4, mb: 2.5 }}>
-        Search results for Khai
-      </Typography> */}
 
-      {/* Recent searches */}
-      {/* Do it later... */}
+      {isSearching ? (
+        <PageLoading />
+      ) : (
+        <>
+          {/* Results title */}
+          {searchResults.length ? (
+            <Typography variant="h5" color="GrayText" sx={{ mt: 4, mb: 2.5 }}>
+              Search results for <q>{searchKeyword}</q>
+            </Typography>
+          ) : null}
 
-      {/* Suggest keywords */}
-      <div className="search__suggestKeywords">
-        <Typography
-          variant="h5"
-          color="GrayText"
-          sx={{ mb: 2.5, textAlign: "center", fontSize: "1.75rem" }}
-        >
-          Try searching for
-        </Typography>
+          {/* Recent searches */}
+          {/* Do it later... */}
 
-        <div className="search__suggest">
-          <NumbersIcon />
-          <Typography variant="body2" sx={{ ml: 1.25 }}>
-            People you may know
-          </Typography>
-        </div>
+          {/* Suggest keywords */}
+          {!searchResults.length ? (
+            <div className="search__suggestKeywords">
+              <Typography
+                variant="h5"
+                color="GrayText"
+                sx={{
+                  mt: 2,
+                  mb: 2.5,
+                  textAlign: "center",
+                  fontSize: "1.75rem",
+                }}
+              >
+                Try searching for
+              </Typography>
 
-        <div className="search__suggest">
-          <NumbersIcon />
-          <Typography variant="body2" sx={{ ml: 1.25 }}>
-            People you may interested in
-          </Typography>
-        </div>
+              <div className="search__suggest">
+                <NumbersIcon />
+                <Typography variant="body2" sx={{ ml: 1.25 }}>
+                  People you may know
+                </Typography>
+              </div>
 
-        <div className="search__suggest">
-          <NumbersIcon />
-          <Typography variant="body2" sx={{ ml: 1.25 }}>
-            Friends of friends
-          </Typography>
-        </div>
-      </div>
+              <div className="search__suggest">
+                <NumbersIcon />
+                <Typography variant="body2" sx={{ ml: 1.25 }}>
+                  People you may interested in
+                </Typography>
+              </div>
 
-      {/* Results */}
-      {/* <SearchResults /> */}
+              <div className="search__suggest">
+                <NumbersIcon />
+                <Typography variant="body2" sx={{ ml: 1.25 }}>
+                  Friends of friends
+                </Typography>
+              </div>
+            </div>
+          ) : null}
+
+          {/* Results */}
+          {searchResults.length ? <SearchResults /> : null}
+        </>
+      )}
     </div>
   );
 };
