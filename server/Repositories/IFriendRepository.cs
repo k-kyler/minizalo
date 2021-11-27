@@ -9,6 +9,7 @@ namespace minizalo.Repositories
     public interface IFriendRepository
     {
         Task AddFriend(Friend friend);
+        Task<IEnumerable<UserDto>> SearchForFriends(string keyword);
         Task<IEnumerable<FriendDto>> GetUserFriends(Guid id);
     }
 }

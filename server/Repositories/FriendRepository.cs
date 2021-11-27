@@ -17,11 +17,25 @@ namespace minizalo.Repositories
         {
             _dataContext = dataContext;
         }
-        
+  
         public async Task AddFriend(Friend friend)
         {
             _dataContext.Friends.Add(friend);
             await _dataContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<UserDto>> SearchForFriends(string keyword) 
+        {
+            var matchedUsers = await _dataContext.Users.Where(user => user.UserName.ToLower().Trim().Contains(keyword)).Select(user => new UserDto()
+            {
+                UserId = user.UserId,
+                UserName = user.UserName,
+                Avatar = user.Avatar,
+                Email = user.Email,
+                CreatedAt = user.CreatedAt
+            }).ToListAsync();
+
+            return matchedUsers;
         }
 
         public async Task<IEnumerable<FriendDto>> GetUserFriends(Guid id)

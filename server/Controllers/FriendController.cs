@@ -21,7 +21,6 @@ namespace minizalo.Controllers
             _jwtService = jwtService;
             _friendRepository = friendRepository;
         }
-
         
         // Endpoint to get friends of user
         [HttpGet]
@@ -34,6 +33,22 @@ namespace minizalo.Controllers
                 IEnumerable<FriendDto> userFriends = await _friendRepository.GetUserFriends(Guid.Parse(validatedJWT.Issuer));
 
                 return Ok(new { code = "success", friends = userFriends });
+            } catch (Exception ex) {
+                return Unauthorized(new { code = "error", message = "Unauthorized" });
+            }
+        }
+
+        // Endpoint to search for friends
+        [HttpPost("search")]
+        public async Task<ActionResult<UserDto>> SearchForFriends(string keyword)
+        {
+            try {
+                var authJWT = Request.Cookies["accessToken"];
+                var validatedJWT = _jwtService.ValidateJWT(authJWT);
+
+                IEnumerable<UserDto> results = await _friendRepository.SearchForFriends(keyword);
+
+                return Ok(new { code = "success", results });
             } catch (Exception ex) {
                 return Unauthorized(new { code = "error", message = "Unauthorized" });
             }
