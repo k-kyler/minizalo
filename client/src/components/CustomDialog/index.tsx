@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,7 +11,6 @@ import {
   FormControl,
   IconButton,
   InputLabel,
-  ListItem,
   ListItemAvatar,
   ListItemText,
   MenuItem,
@@ -21,45 +20,137 @@ import {
 import { styled } from "@mui/material/styles";
 import { PhotoCamera } from "@mui/icons-material";
 import CallMadeIcon from "@mui/icons-material/CallMade";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./CustomDialog.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { closeDialog, selectDialog } from "../../redux/DialogSlice";
+import { selectFriends } from "../../redux/FriendsSlice";
+import { selectUser } from "../../redux/UserSlice";
+
+interface ChipMember {
+  userId: string;
+  userName: string;
+  avatar: string;
+}
 
 export const CustomDialog: FC = () => {
   const dispatch = useAppDispatch();
 
   const dialog = useAppSelector(selectDialog);
+  const { friends } = useAppSelector(selectFriends);
+  const { user } = useAppSelector(selectUser);
 
   const Input = styled("input")({
     display: "none",
   });
 
   const [selectedUserId, setSelectedUserId] = useState("");
+  const [chipIds, setChipIds] = useState<string[]>([]);
+  const [chipMembers, setChipMembers] = useState<ChipMember[]>([]);
+  const [avatarToUpload, setAvatarToUpload] = useState<any>();
 
-  const deleteChipHandler = () => {};
+  const setAvatarToUploadHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setAvatarToUpload(event.target.files[0]);
+    }
+  };
+
+  const clearAvatarToUploadHandler = () => setAvatarToUpload(null);
+
+  const selectMemberHandler = (id: string) => {
+    setSelectedUserId(id);
+
+    // Check for not adding duplicated id
+    if (!chipIds.filter((chipId) => chipId === id).length) {
+      setChipIds([...chipIds, id]);
+    }
+
+    setSelectedUserId("");
+  };
+
+  const generateChipMembers = () => {
+    const members = friends
+      .filter(
+        (friend) =>
+          chipIds.includes(friend.senderId) ||
+          chipIds.includes(friend.receiverId)
+      )
+      .map((member) => {
+        if (member.senderId !== user.userId) {
+          return {
+            userId: member.senderId,
+            userName: member.senderData.userName,
+            avatar: member.senderData.avatar,
+          };
+        } else if (member.receiverId !== user.userId) {
+          return {
+            userId: member.receiverId,
+            userName: member.receiverData.userName,
+            avatar: member.receiverData.avatar,
+          };
+        }
+      });
+
+    setChipMembers(members as any);
+  };
+
+  const deleteChipMemberHandler = (id: string) => {
+    const modifiedChipIds = chipIds.filter((chipId) => chipId !== id);
+
+    setChipIds(modifiedChipIds);
+  };
+
+  const createNewGroupHandler = () => {};
+
+  useEffect(generateChipMembers, [chipIds]);
 
   if (dialog.type === "create-group")
     return (
       <Dialog
         open={dialog.isOpen as any}
         onClose={() => dispatch(closeDialog())}
+        className="customDialog"
       >
-        <DialogTitle>
-          <Typography variant="h5">Create new group</Typography>
+        <DialogTitle sx={{ textAlign: "center", fontSize: "1.5rem" }}>
+          Create new group
         </DialogTitle>
 
         <DialogContent sx={{ textAlign: "center" }}>
           {/* Upload background */}
-          <label htmlFor="upload-background">
-            <Input accept="image/*" id="upload-background" type="file" />
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <PhotoCamera fontSize="large" />
-            </IconButton>
-          </label>
+          {!avatarToUpload ? (
+            <label htmlFor="upload-background">
+              <Input
+                accept="image/*"
+                id="upload-background"
+                type="file"
+                onChange={setAvatarToUploadHandler}
+              />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera fontSize="large" />
+              </IconButton>
+            </label>
+          ) : (
+            <div className="customDialog__avatarToUpload">
+              <Avatar
+                sx={{
+                  margin: "0 auto",
+                  width: 70,
+                  height: 70,
+                }}
+                src={URL.createObjectURL(avatarToUpload)}
+              />
+
+              <HighlightOffIcon
+                onClick={clearAvatarToUploadHandler}
+                color="error"
+                className="customDialog__clearAvatarButton"
+              />
+            </div>
+          )}
 
           {/* Name */}
           <TextField
@@ -81,103 +172,54 @@ export const CustomDialog: FC = () => {
               labelId="user-select"
               value={selectedUserId}
               label="Friends"
-              onChange={(event) =>
-                setSelectedUserId(event.target.value as string)
-              }
+              onChange={(event) => selectMemberHandler(event.target.value)}
               defaultValue=""
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
 
-              {/* Test data */}
-              <MenuItem value="kkyler">
-                <ListItem sx={{ m: 0, p: 0 }}>
-                  <ListItemAvatar>
-                    <Avatar
-                      src={
-                        "https://avatars.githubusercontent.com/u/66368949?v=4"
-                      }
-                    />
-                  </ListItemAvatar>
-                  <ListItemText primary={"kkyler"} />
-                </ListItem>
-              </MenuItem>
-              {/* End of test data */}
+              {friends.map((friend) => {
+                if (friend.senderId !== user.userId) {
+                  return (
+                    <MenuItem key={friend.senderId} value={friend.senderId}>
+                      <ListItemAvatar>
+                        <Avatar src={friend.senderData.avatar} />
+                      </ListItemAvatar>
+                      <ListItemText primary={friend.senderData.userName} />
+                    </MenuItem>
+                  );
+                } else if (friend.receiverId !== user.userId) {
+                  return (
+                    <MenuItem key={friend.receiverId} value={friend.receiverId}>
+                      <ListItemAvatar>
+                        <Avatar src={friend.receiverData.avatar} />
+                      </ListItemAvatar>
+                      <ListItemText primary={friend.receiverData.userName} />
+                    </MenuItem>
+                  );
+                }
+                return null;
+              })}
             </Select>
           </FormControl>
 
           {/* Selected list */}
           <div className="customDialog__chips">
-            {/* Test data */}
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            <Chip
-              avatar={
-                <Avatar src="https://avatars.githubusercontent.com/u/66368949?v=4" />
-              }
-              label="kkyler"
-              sx={{ m: 0.5 }}
-              variant="outlined"
-              onDelete={deleteChipHandler}
-            />
-            {/* End of test data */}
+            {chipMembers.map((member) => (
+              <Chip
+                key={member.userId}
+                avatar={<Avatar src={member.avatar} />}
+                label={member.userName}
+                sx={{ m: 0.5 }}
+                variant="outlined"
+                onDelete={() => deleteChipMemberHandler(member.userId)}
+              />
+            ))}
           </div>
         </DialogContent>
         <DialogActions>
-          <Button>Create</Button>
+          <Button onClick={createNewGroupHandler}>Create</Button>
           <Button onClick={() => dispatch(closeDialog())}>Cancel</Button>
         </DialogActions>
       </Dialog>
@@ -187,6 +229,7 @@ export const CustomDialog: FC = () => {
       <Dialog
         open={dialog.isOpen as any}
         onClose={() => dispatch(closeDialog())}
+        className="customDialog"
       >
         <DialogContent className="customDialog__content">
           <img

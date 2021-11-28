@@ -50,3 +50,31 @@
 .customDialog__overlay > a:not(:hover) {
   transition: all 0.2s ease;
 }
+
+.customDialog .MuiSelect-select {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.customDialog .MuiListItemText-root > span {
+  text-align: start !important;
+}
+
+.customDialog__avatarToUpload {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.customDialog__clearAvatarButton {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: -0.5rem;
+  display: none !important;
+}
+
+.customDialog__avatarToUpload:hover .customDialog__clearAvatarButton {
+  display: block !important;
+  transition: all 0.3s ease;
+}
