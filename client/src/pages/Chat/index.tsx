@@ -3,6 +3,7 @@ import { FC, useEffect } from "react";
 import { InboxList } from "../../components/InboxList";
 import { InboxMessages } from "../../components/InboxMessages";
 import { PageLoading } from "../../components/Loadings/PageLoading";
+import { useRedirect } from "../../hooks/useRedirect";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectInboxes,
@@ -15,6 +16,8 @@ export const Chat: FC = () => {
   const { isFetching } = useAppSelector(selectInboxes);
 
   const dispatch = useAppDispatch();
+
+  const { setPathnameHandler } = useRedirect();
 
   const createSignalRConnection = () => {
     const connection = new HubConnectionBuilder()
@@ -40,6 +43,7 @@ export const Chat: FC = () => {
   useEffect(() => {
     createSignalRConnection();
     dispatch(fetchInboxes());
+    setPathnameHandler();
   }, []);
 
   return (

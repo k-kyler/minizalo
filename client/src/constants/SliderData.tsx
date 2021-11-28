@@ -8,7 +8,7 @@ export const sliderData: SlideType[] = [
     image: FirstSlide,
     title: "Welcome to MiniZalo!",
     description:
-      "MiniZalo is a small and friendly chat application that inspired by Zalo",
+      "MiniZalo is a small and friendly chat application that inspired by Zalo and Facebook",
   },
   {
     image: SecondSlide,

@@ -1,9 +1,14 @@
 import { Typography, Link } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import "./Copyright.css";
 import CopyrightImage from "../../assets/copyright.png";
+import { useRedirect } from "../../hooks/useRedirect";
 
 export const Copyright: FC = () => {
+  const { setPathnameHandler } = useRedirect();
+
+  useEffect(setPathnameHandler, []);
+
   return (
     <div className="copyright">
       <img src={CopyrightImage} className="copyright__image" />

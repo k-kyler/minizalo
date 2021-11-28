@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import { IconButton, Typography } from "@mui/material";
@@ -7,6 +7,7 @@ import { SearchResults } from "../../components/SearchResults";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { searchForFriends, selectFriends } from "../../redux/FriendsSlice";
 import { PageLoading } from "../../components/Loadings/PageLoading";
+import { useRedirect } from "../../hooks/useRedirect";
 
 export const Search: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,8 @@ export const Search: FC = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { setPathnameHandler } = useRedirect();
+
   const searchHandler = () => {
     if (inputRef.current) {
       const keyword = inputRef.current.value;
@@ -23,6 +26,8 @@ export const Search: FC = () => {
       dispatch(searchForFriends(keyword));
     }
   };
+
+  useEffect(setPathnameHandler, []);
 
   return (
     <div className="search">
