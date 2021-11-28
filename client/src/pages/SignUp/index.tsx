@@ -7,6 +7,7 @@ import { selectUser, signUpUser } from "../../redux/UserSlice";
 import { openAlert } from "../../redux/AlertSlice";
 import { selectFriends } from "../../redux/FriendsSlice";
 import { MainLoading } from "../../components/Loadings/MainLoading";
+import { useRedirect } from "../../hooks/useRedirect";
 
 export const SignUp: FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -22,6 +23,8 @@ export const SignUp: FC = () => {
 
   const user = useAppSelector(selectUser);
   const friends = useAppSelector(selectFriends);
+
+  const { pathname } = useRedirect();
 
   const signUpHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -84,7 +87,7 @@ export const SignUp: FC = () => {
   return (
     <>
       {!user.isFetching ? (
-        <Redirect to="/dashboard" />
+        <Redirect to={pathname} />
       ) : user.isFetching &&
         !user.error &&
         friends.isFetching &&
