@@ -5,6 +5,7 @@ import "./SignIn.css";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { fetchUser, selectUser, signInUser } from "../../redux/UserSlice";
 import { openAlert } from "../../redux/AlertSlice";
+import { selectFriends } from "../../redux/FriendsSlice";
 import { MainLoading } from "../../components/Loadings/MainLoading";
 
 export const SignIn: FC = () => {
@@ -14,6 +15,7 @@ export const SignIn: FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const user = useAppSelector(selectUser);
+  const friends = useAppSelector(selectFriends);
 
   const dispatch = useAppDispatch();
 
@@ -58,7 +60,10 @@ export const SignIn: FC = () => {
     <>
       {!user.isFetching ? (
         <Redirect to="/dashboard" />
-      ) : user.isFetching && !user.error ? (
+      ) : user.isFetching &&
+        !user.error &&
+        friends.isFetching &&
+        !friends.error ? (
         <MainLoading />
       ) : user.error ? (
         <div className="signin">

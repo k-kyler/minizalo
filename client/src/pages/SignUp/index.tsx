@@ -5,6 +5,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUser, signUpUser } from "../../redux/UserSlice";
 import { openAlert } from "../../redux/AlertSlice";
+import { selectFriends } from "../../redux/FriendsSlice";
 import { MainLoading } from "../../components/Loadings/MainLoading";
 
 export const SignUp: FC = () => {
@@ -20,6 +21,7 @@ export const SignUp: FC = () => {
   const dispatch = useAppDispatch();
 
   const user = useAppSelector(selectUser);
+  const friends = useAppSelector(selectFriends);
 
   const signUpHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -83,7 +85,10 @@ export const SignUp: FC = () => {
     <>
       {!user.isFetching ? (
         <Redirect to="/dashboard" />
-      ) : user.isFetching && !user.error ? (
+      ) : user.isFetching &&
+        !user.error &&
+        friends.isFetching &&
+        !friends.error ? (
         <MainLoading />
       ) : user.error ? (
         <div className="signup">

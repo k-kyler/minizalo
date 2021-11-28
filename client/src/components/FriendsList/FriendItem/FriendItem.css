@@ -10,7 +10,7 @@
 }
 
 .friendItem:hover {
-  background-color: rgba(241, 242, 245, 0.6);
+  background-color: rgba(241, 242, 245, 0.8);
   transition: all 0.3s ease;
 }
 
