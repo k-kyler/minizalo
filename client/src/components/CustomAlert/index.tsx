@@ -14,6 +14,7 @@ export const CustomAlert: FC = () => {
 
   return (
     <Alert
+      variant="outlined"
       onClose={() => dispatch(closeAlert())}
       sx={{
         position: "absolute",

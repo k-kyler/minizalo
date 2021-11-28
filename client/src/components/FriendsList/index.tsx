@@ -1,18 +1,13 @@
 import { Grid, Typography } from "@mui/material";
 import { FC } from "react";
+import { nanoid } from "@reduxjs/toolkit";
 import { selectFriends } from "../../redux/FriendsSlice";
-import { selectUser } from "../../redux/UserSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { FriendItem } from "./FriendItem";
 import "./FriendsList.css";
 
 export const FriendsList: FC = () => {
   const { friends } = useAppSelector(selectFriends);
-  const { user } = useAppSelector(selectUser);
-
-  const friendsToDisplay = friends.filter(
-    (friend) => friend.friendId !== user.userId
-  );
 
   return (
     <div className="friendsList">
@@ -21,10 +16,8 @@ export const FriendsList: FC = () => {
       </Typography>
 
       <Grid className="friendsList__container" container>
-        {friendsToDisplay.length ? (
-          friendsToDisplay.map((friend) => (
-            <FriendItem key={friend.friendId} {...friend} />
-          ))
+        {friends.length ? (
+          friends.map((friend) => <FriendItem key={nanoid()} {...friend} />)
         ) : (
           <Grid item md={12}>
             <Typography

@@ -1,7 +1,9 @@
 import { UserType } from "./UserType";
 
 export type FriendType = {
-  friendId: string;
-  data: UserType;
-  userRefId: string;
+  senderId: string;
+  senderData: UserType;
+  receiverId: string;
+  receiverData: UserType;
+  beFriendAt: string;
 };
