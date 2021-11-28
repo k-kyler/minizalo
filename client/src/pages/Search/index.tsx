@@ -23,7 +23,7 @@ export const Search: FC = () => {
     if (inputRef.current) {
       const keyword = inputRef.current.value;
 
-      dispatch(searchForFriends(keyword));
+      if (keyword) dispatch(searchForFriends(keyword));
     }
   };
 
@@ -63,7 +63,7 @@ export const Search: FC = () => {
           {/* Do it later... */}
 
           {/* Suggest keywords */}
-          {!searchResults.length ? (
+          {!searchResults.length && !searchKeyword ? (
             <div className="search__suggestKeywords">
               <Typography
                 variant="h5"
@@ -99,6 +99,19 @@ export const Search: FC = () => {
                 </Typography>
               </div>
             </div>
+          ) : !searchResults.length && searchKeyword ? (
+            <Typography
+              variant="h5"
+              color="GrayText"
+              sx={{
+                mt: 2,
+                mb: 2.5,
+                textAlign: "center",
+                fontSize: "1.75rem",
+              }}
+            >
+              No results found
+            </Typography>
           ) : null}
 
           {/* Results */}
