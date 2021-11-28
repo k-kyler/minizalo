@@ -40,30 +40,44 @@ namespace minizalo.Repositories
 
         public async Task<IEnumerable<FriendDto>> GetUserFriends(Guid id)
         {
-            var friends = await _dataContext.Friends.Where(friend => friend.UserRefId == id || friend.FriendId == id).ToListAsync();
-            var modifiedFriends = friends.Select(friend => new FriendDto()
+            // Get friends of sender and receiver
+            var friends = await _dataContext.Friends.Where(friend => friend.FriendId == id || friend.UserRefId == id).ToListAsync();
+
+            // Configure for returning friend data
+            var friendsToReturn = friends.Select(friend => new FriendDto()
             {
-                FriendId = friend.FriendId,
-                Data = new UserDto(),
+                SenderId = friend.UserRefId,
+                SenderData = new UserDto(),
+                ReceiverId = friend.FriendId,
+                ReceiverData = new UserDto(),
                 BeFriendAt = friend.BeFriendAt
-            });
-            var userFriends = modifiedFriends.ToList();
-            
-            foreach (var friend in userFriends)
+            }).ToList();
+
+            // Add friend data to configuration above
+            foreach (var friend in friendsToReturn)
             {
-                var friendData = await _dataContext.Users.FirstOrDefaultAsync(user => user.UserId == friend.FriendId);
+                var senderFriendData = await _dataContext.Users.FirstOrDefaultAsync(user => user.UserId == friend.SenderId);
+                var receiverFriendData = await _dataContext.Users.FirstOrDefaultAsync(user => user.UserId == friend.ReceiverId);
                 
-                friend.Data = new UserDto()
+                friend.SenderData = new UserDto()
                 {
-                    Avatar = friendData.Avatar,
-                    CreatedAt = friendData.CreatedAt,
-                    Email = friendData.Email,
-                    UserName = friendData.UserName,
-                    UserId = friendData.UserId
+                    Avatar = senderFriendData.Avatar,
+                    CreatedAt = senderFriendData.CreatedAt,
+                    Email = senderFriendData.Email,
+                    UserName = senderFriendData.UserName,
+                    UserId = senderFriendData.UserId
+                };
+                friend.ReceiverData = new UserDto()
+                {
+                    Avatar = receiverFriendData.Avatar,
+                    CreatedAt = receiverFriendData.CreatedAt,
+                    Email = receiverFriendData.Email,
+                    UserName = receiverFriendData.UserName,
+                    UserId = receiverFriendData.UserId
                 };
             }
 
-            return userFriends;
+            return friendsToReturn;
         }
     }
 }
