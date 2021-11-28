@@ -239,7 +239,7 @@ export const ChatInput: FC<IChatInput> = ({
           <Tooltip title="Upload">
             <label htmlFor="upload-file">
               <Input
-                accept="image/*, video/*, .pdf, .doc, .docx, .xls, .xlsx"
+                accept="image/*, video/*, .pdf, .doc, .docx, .xls, .xlsx, .txt, .rar, .zip"
                 id="upload-file"
                 type="file"
                 onChange={showPreviewHandler}
