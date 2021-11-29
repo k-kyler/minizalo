@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, ChangeEvent } from "react";
+import { FC, useState, useEffect, useRef, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -26,6 +26,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { closeDialog, selectDialog } from "../../redux/DialogSlice";
 import { selectFriends } from "../../redux/FriendsSlice";
 import { selectUser } from "../../redux/UserSlice";
+import { postInbox, selectInboxes } from "../../redux/InboxesSlice";
 
 interface ChipMember {
   userId: string;
@@ -39,6 +40,7 @@ export const CustomDialog: FC = () => {
   const dialog = useAppSelector(selectDialog);
   const { friends } = useAppSelector(selectFriends);
   const { user } = useAppSelector(selectUser);
+  const { isCreating } = useAppSelector(selectInboxes);
 
   const Input = styled("input")({
     display: "none",
@@ -48,6 +50,8 @@ export const CustomDialog: FC = () => {
   const [chipIds, setChipIds] = useState<string[]>([]);
   const [chipMembers, setChipMembers] = useState<ChipMember[]>([]);
   const [avatarToUpload, setAvatarToUpload] = useState<any>();
+
+  const groupNameRef = useRef<HTMLInputElement>(null);
 
   const setAvatarToUploadHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -100,9 +104,24 @@ export const CustomDialog: FC = () => {
     setChipIds(modifiedChipIds);
   };
 
-  const createNewGroupHandler = () => {};
+  const createNewGroupHandler = () => {
+    dispatch(
+      postInbox({
+        name: groupNameRef.current ? groupNameRef.current.value : "",
+        background: "No background",
+        type: "group",
+        ownerId: user.userId,
+        memberIds: chipIds,
+        file: avatarToUpload,
+      })
+    );
+  };
 
   useEffect(generateChipMembers, [chipIds]);
+
+  useEffect(() => {
+    if (!isCreating) dispatch(closeDialog());
+  }, [isCreating]);
 
   if (dialog.type === "create-group")
     return (
@@ -154,6 +173,7 @@ export const CustomDialog: FC = () => {
 
           {/* Name */}
           <TextField
+            inputRef={groupNameRef}
             label="Name"
             type="text"
             fullWidth

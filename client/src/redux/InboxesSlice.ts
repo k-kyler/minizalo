@@ -47,11 +47,23 @@ export const fetchInboxes = createAsyncThunk(
 export const postInbox = createAsyncThunk(
   "inboxes/postInbox",
   async (inboxData: InboxItemType) => {
+    const formData = new FormData();
+
+    formData.append("name", inboxData.name);
+    formData.append("background", inboxData.background);
+    formData.append("memberIds", inboxData.memberIds as any);
+    formData.append("type", inboxData.type);
+    formData.append("ownerId", inboxData.ownerId);
+
+    if (inboxData.file) {
+      formData.append("file", inboxData.file, inboxData.file.name);
+    }
+
     const {
       data: { code, message, inbox },
     } = await axios.post(
       `${import.meta.env.VITE_API_URL}/api/inbox/create`,
-      inboxData,
+      formData,
       { withCredentials: true }
     );
 
@@ -107,7 +119,7 @@ export const inboxesSlice = createSlice({
         (state, action: PayloadAction<InboxItemType[]>) => {
           const sortedInboxes = action.payload
             .slice()
-            .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+            .sort((a, b: any) => b.createdAt.localeCompare(a.createdAt))
             .map((inbox) => ({
               ...inbox,
               messages: inbox.messages
@@ -116,7 +128,7 @@ export const inboxesSlice = createSlice({
             }));
 
           state.inboxes = sortedInboxes;
-          state.selectedInboxId = sortedInboxes[0].inboxId; // Set default selected inbox id of the latest inbox
+          state.selectedInboxId = sortedInboxes[0].inboxId as any; // Set default selected inbox id of the latest inbox
 
           if (state.inboxes.length) state.isFetching = false;
         }
@@ -135,7 +147,7 @@ export const inboxesSlice = createSlice({
           state.inboxes.push(action.payload.inbox);
           state.inboxes
             .slice()
-            .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+            .sort((a, b: any) => b.createdAt.localeCompare(a.createdAt))
             .map((inbox) => ({
               ...inbox,
               messages: inbox.messages

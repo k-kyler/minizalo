@@ -151,7 +151,7 @@ export const InboxMessages: FC = () => {
       <ChatInput
         openEmojiModal={openEmojiModal}
         setOpenEmojiModal={setOpenEmojiModal}
-        selectedInboxId={selectedInbox.inboxId}
+        selectedInboxId={selectedInbox.inboxId as any}
         selectedInboxType={selectedInbox.type}
       />
     </div>
