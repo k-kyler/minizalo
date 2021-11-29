@@ -64,6 +64,7 @@ namespace minizalo.Controllers
 
                 Friend friendToAdd = new Friend()
                 {
+                    ColumnId = Guid.NewGuid(),
                     FriendId = friend.FriendId,
                     BeFriendAt = DateTime.Now,
                     UserRefId = friend.UserRefId

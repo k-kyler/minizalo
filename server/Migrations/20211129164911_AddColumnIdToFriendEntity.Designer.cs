@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using minizalo.Data;
@@ -9,9 +10,10 @@ using minizalo.Data;
 namespace minizalo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211129164911_AddColumnIdToFriendEntity")]
+    partial class AddColumnIdToFriendEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,14 +23,14 @@ namespace minizalo.Migrations
 
             modelBuilder.Entity("minizalo.Entities.Friend", b =>
                 {
-                    b.Property<Guid>("ColumnId")
+                    b.Property<Guid>("FriendId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("BeFriendAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("FriendId")
+                    b.Property<Guid>("ColumnId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("UserId")
@@ -37,7 +39,7 @@ namespace minizalo.Migrations
                     b.Property<Guid>("UserRefId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("ColumnId");
+                    b.HasKey("FriendId");
 
                     b.HasIndex("UserId");
 
