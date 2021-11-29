@@ -17,7 +17,6 @@ import { CustomAlert } from "./components/CustomAlert";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { fetchUser } from "./redux/UserSlice";
 import { selectIsOpen } from "./redux/AlertSlice";
-import { fetchFriendsList } from "./redux/FriendsSlice";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -40,7 +39,6 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUser());
-    dispatch(fetchFriendsList());
   }, []);
 
   return (
