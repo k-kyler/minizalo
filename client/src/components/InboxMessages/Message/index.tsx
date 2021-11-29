@@ -98,7 +98,12 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
         className={`message ${user.userId === uid ? "message--yourUser" : ""}`}
       >
         {/* Avatar */}
-        {user.userId === uid ? null : <Avatar alt={username} src={avatar} />}
+        {user.userId === uid ? null : (
+          <Avatar
+            alt={username}
+            src={`${import.meta.env.VITE_API_URL}/Resources/${avatar}`}
+          />
+        )}
 
         {/* Message content */}
         <div
