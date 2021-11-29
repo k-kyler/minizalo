@@ -58,6 +58,7 @@ export const InboxMessages: FC = () => {
                 src={`${import.meta.env.VITE_API_URL}/Resources/${
                   selectedInbox.background
                 }`}
+                alt={selectedInbox.name}
               />
             ) : (
               <>
@@ -65,13 +66,17 @@ export const InboxMessages: FC = () => {
                   <>
                     {user.userId === selectedInbox.users[0].userId ? (
                       <Avatar
-                        src={selectedInbox.users[1].avatar}
-                        // src={`${import.meta.env.VITE_API_URL}/Resources/${selectedInbox.users[1].avatar}`}
+                        src={`${import.meta.env.VITE_API_URL}/Resources/${
+                          selectedInbox.users[1].avatar
+                        }`}
+                        alt={selectedInbox.users[1].avatar}
                       />
                     ) : (
                       <Avatar
-                        src={selectedInbox.users[0].avatar}
-                        // src={`${import.meta.env.VITE_API_URL}/Resources/${selectedInbox.users[0].avatar}`}
+                        src={`${import.meta.env.VITE_API_URL}/Resources/${
+                          selectedInbox.users[0].avatar
+                        }`}
+                        alt={selectedInbox.users[0].avatar}
                       />
                     )}
                   </>

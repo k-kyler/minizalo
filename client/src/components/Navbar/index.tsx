@@ -84,7 +84,7 @@ export const Navbar: FC = () => {
                 marginRight: "0.5rem",
               }}
               alt={user.userName}
-              src={user.avatar}
+              src={`${import.meta.env.VITE_API_URL}/Resources/${user.avatar}`}
             />
             <Typography
               variant="body1"

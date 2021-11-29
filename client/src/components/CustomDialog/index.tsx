@@ -212,7 +212,12 @@ export const CustomDialog: FC = () => {
                   return (
                     <MenuItem key={friend.senderId} value={friend.senderId}>
                       <ListItemAvatar>
-                        <Avatar src={friend.senderData.avatar} />
+                        <Avatar
+                          src={`${import.meta.env.VITE_API_URL}/Resources/${
+                            friend.senderData.avatar
+                          }`}
+                          alt={friend.senderData.userName}
+                        />
                       </ListItemAvatar>
                       <ListItemText primary={friend.senderData.userName} />
                     </MenuItem>
@@ -221,7 +226,12 @@ export const CustomDialog: FC = () => {
                   return (
                     <MenuItem key={friend.receiverId} value={friend.receiverId}>
                       <ListItemAvatar>
-                        <Avatar src={friend.receiverData.avatar} />
+                        <Avatar
+                          src={`${import.meta.env.VITE_API_URL}/Resources/${
+                            friend.receiverData.avatar
+                          }`}
+                          alt={friend.receiverData.userName}
+                        />
                       </ListItemAvatar>
                       <ListItemText primary={friend.receiverData.userName} />
                     </MenuItem>
@@ -237,7 +247,14 @@ export const CustomDialog: FC = () => {
             {chipMembers.map((member) => (
               <Chip
                 key={member.userId}
-                avatar={<Avatar src={member.avatar} />}
+                avatar={
+                  <Avatar
+                    src={`${import.meta.env.VITE_API_URL}/Resources/${
+                      member.avatar
+                    }`}
+                    alt={member.userName}
+                  />
+                }
                 label={member.userName}
                 sx={{ m: 0.5 }}
                 variant="outlined"

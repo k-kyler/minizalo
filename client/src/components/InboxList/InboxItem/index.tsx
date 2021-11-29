@@ -18,6 +18,7 @@ export const InboxItem: FC<IInboxItem> = ({
   background,
   createdAt,
   type,
+  ownerId,
   messages,
   users,
   selectedInboxId,
@@ -37,17 +38,26 @@ export const InboxItem: FC<IInboxItem> = ({
         {type === "group" ? (
           <Avatar
             src={`${import.meta.env.VITE_API_URL}/Resources/${background}`}
+            alt={name}
           />
         ) : (
           <>
             {users && users.length ? (
               <>
                 {user.userId === users[0].userId ? (
-                  <Avatar src={users[1].avatar} />
+                  <Avatar
+                    src={`${import.meta.env.VITE_API_URL}/Resources/${
+                      users[1].avatar
+                    }`}
+                    alt={users[1].userName}
+                  />
                 ) : (
-                  // <Avatar src={`${import.meta.env.VITE_API_URL}/Resources/${users[1].avatar}`} />
-                  <Avatar src={users[0].avatar} />
-                  // <Avatar src={`${import.meta.env.VITE_API_URL}/Resources/${users[0].avatar}`} />
+                  <Avatar
+                    src={`${import.meta.env.VITE_API_URL}/Resources/${
+                      users[0].avatar
+                    }`}
+                    alt={users[0].userName}
+                  />
                 )}
               </>
             ) : null}
