@@ -32,16 +32,16 @@ export const FriendItem: FC<IFriendItem> = ({
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const createPersonalInbox = () => {
-    const existingInbox = inboxes.find(
+  const createPersonalInbox = async () => {
+    const existingInbox = inboxes.filter(
       (inbox) =>
-        inbox.type === "personal" &&
+        inbox.memberIds.length === 2 &&
         inbox.memberIds.includes(senderId) &&
         inbox.memberIds.includes(receiverId)
     );
 
-    if (!existingInbox) {
-      dispatch(
+    if (!existingInbox.length) {
+      const { code } = await dispatch(
         postInbox({
           name: "",
           background: "",
@@ -49,8 +49,12 @@ export const FriendItem: FC<IFriendItem> = ({
           ownerId: "",
           memberIds: [senderId, receiverId],
         })
-      );
-      setAnchorEl(null);
+      ).unwrap();
+
+      if (code === "success") {
+        setAnchorEl(null);
+        history.push("/chat");
+      }
     } else {
       history.push("/chat");
     }
