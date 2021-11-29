@@ -51,9 +51,12 @@ export const postInbox = createAsyncThunk(
 
     formData.append("name", inboxData.name);
     formData.append("background", inboxData.background);
-    formData.append("memberIds", inboxData.memberIds as any);
     formData.append("type", inboxData.type);
     formData.append("ownerId", inboxData.ownerId);
+
+    for (let i = 0; i < inboxData.memberIds.length; i++) {
+      formData.append("memberIds", inboxData.memberIds[i] as any);
+    }
 
     if (inboxData.file) {
       formData.append("file", inboxData.file, inboxData.file.name);
@@ -144,16 +147,7 @@ export const inboxesSlice = createSlice({
       })
       .addCase(postInbox.fulfilled, (state, action) => {
         if (action.payload.code === "success") {
-          state.inboxes.push(action.payload.inbox);
-          state.inboxes
-            .slice()
-            .sort((a, b: any) => b.createdAt.localeCompare(a.createdAt))
-            .map((inbox) => ({
-              ...inbox,
-              messages: inbox.messages
-                ?.slice()
-                .sort((a: any, b) => a.createdAt.localeCompare(b.createdAt)),
-            }));
+          state.inboxes.unshift(action.payload.inbox);
           state.isCreating = false;
         }
       })

@@ -50,7 +50,9 @@ export const InboxList: FC = () => {
             key={room.inboxId}
             {...room}
             selectedInboxId={selectedInboxId}
-            clickHandler={() => dispatch(changeSelectedInboxId(room.inboxId))}
+            clickHandler={() =>
+              dispatch(changeSelectedInboxId(room.inboxId as any))
+            }
           />
         ))}
       </div>

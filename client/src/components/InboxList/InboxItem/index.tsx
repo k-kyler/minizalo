@@ -35,7 +35,9 @@ export const InboxItem: FC<IInboxItem> = ({
       <div className="inboxItem__group">
         {/* Background (Avatar) of group or personal */}
         {type === "group" ? (
-          <Avatar src={background} />
+          <Avatar
+            src={`${import.meta.env.VITE_API_URL}/Resources/${background}`}
+          />
         ) : (
           <>
             {users && users.length ? (
@@ -43,7 +45,9 @@ export const InboxItem: FC<IInboxItem> = ({
                 {user.userId === users[0].userId ? (
                   <Avatar src={users[1].avatar} />
                 ) : (
+                  // <Avatar src={`${import.meta.env.VITE_API_URL}/Resources/${users[1].avatar}`} />
                   <Avatar src={users[0].avatar} />
+                  // <Avatar src={`${import.meta.env.VITE_API_URL}/Resources/${users[0].avatar}`} />
                 )}
               </>
             ) : null}

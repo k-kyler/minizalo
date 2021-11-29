@@ -54,15 +54,25 @@ export const InboxMessages: FC = () => {
         >
           <div className="inboxMessages__headerLeft">
             {selectedInbox.type === "group" ? (
-              <Avatar src={selectedInbox.background} />
+              <Avatar
+                src={`${import.meta.env.VITE_API_URL}/Resources/${
+                  selectedInbox.background
+                }`}
+              />
             ) : (
               <>
                 {selectedInbox.users && selectedInbox.users.length ? (
                   <>
                     {user.userId === selectedInbox.users[0].userId ? (
-                      <Avatar src={selectedInbox.users[1].avatar} />
+                      <Avatar
+                        src={selectedInbox.users[1].avatar}
+                        // src={`${import.meta.env.VITE_API_URL}/Resources/${selectedInbox.users[1].avatar}`}
+                      />
                     ) : (
-                      <Avatar src={selectedInbox.users[0].avatar} />
+                      <Avatar
+                        src={selectedInbox.users[0].avatar}
+                        // src={`${import.meta.env.VITE_API_URL}/Resources/${selectedInbox.users[0].avatar}`}
+                      />
                     )}
                   </>
                 ) : null}
