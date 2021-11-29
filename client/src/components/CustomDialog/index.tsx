@@ -111,7 +111,7 @@ export const CustomDialog: FC = () => {
       dispatch(
         postInbox({
           name: groupNameRef.current.value,
-          background: "No background",
+          background: "",
           type: "group",
           ownerId: user.userId,
           memberIds: [...chipIds, user.userId],

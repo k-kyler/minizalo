@@ -1,10 +1,21 @@
-import { Avatar, Grid, IconButton, Typography } from "@mui/material";
-import { FC } from "react";
+import {
+  Avatar,
+  Grid,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
+import { FC, useState, MouseEvent } from "react";
 import { FriendType } from "../../../typings/FriendType";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
+import { useHistory } from "react-router-dom";
 import "./FriendItem.css";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
+import { postInbox, selectInboxes } from "../../../redux/InboxesSlice";
 
 interface IFriendItem extends FriendType {}
 
@@ -16,36 +27,186 @@ export const FriendItem: FC<IFriendItem> = ({
   beFriendAt,
 }) => {
   const { user } = useAppSelector(selectUser);
+  const { inboxes } = useAppSelector(selectInboxes);
+
+  const dispatch = useAppDispatch();
+  const history = useHistory();
+
+  const createPersonalInbox = () => {
+    const existingInbox = inboxes.find(
+      (inbox) =>
+        inbox.type === "personal" &&
+        inbox.memberIds.includes(senderId) &&
+        inbox.memberIds.includes(receiverId)
+    );
+
+    if (!existingInbox) {
+      dispatch(
+        postInbox({
+          name: "",
+          background: "",
+          type: "personal",
+          ownerId: "",
+          memberIds: [senderId, receiverId],
+        })
+      );
+      setAnchorEl(null);
+    } else {
+      history.push("/chat");
+    }
+  };
+
+  // Friend menu setup
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const open = Boolean(anchorEl);
+
+  const openFriendMenuHandler = (event: MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const closeFriendMenuHandler = () => {
+    setAnchorEl(null);
+  };
+  // End friend menu setup
 
   if (senderId !== user.userId) {
     return (
-      <Grid item md={6} className="friendItem">
-        <div className="friendItem__info">
-          <Avatar src={senderData.avatar} />
-          <Typography variant="body1" sx={{ ml: 1 }}>
-            {senderData.userName}
-          </Typography>
-        </div>
+      <>
+        <Grid item md={6} className="friendItem">
+          <div className="friendItem__info">
+            <Avatar
+              src={`${import.meta.env.VITE_API_URL}/Resources/${
+                senderData.avatar
+              }`}
+              alt={senderData.userName}
+            />
+            <Typography variant="body1" sx={{ ml: 1 }}>
+              {senderData.userName}
+            </Typography>
+          </div>
 
-        <IconButton className="friendItem__action">
-          <MoreHorizIcon />
-        </IconButton>
-      </Grid>
+          <div
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={openFriendMenuHandler}
+          >
+            <IconButton className="friendItem__action">
+              <MoreHorizIcon />
+            </IconButton>
+          </div>
+        </Grid>
+
+        {/* Friend menu */}
+        <Menu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={closeFriendMenuHandler}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              mt: 0.5,
+              ml: -0.1,
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.25))",
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+              },
+              "&:before": {
+                content: '""',
+                zIndex: 0,
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                transform: "translateY(-50%) rotate(45deg)",
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+              },
+            },
+          }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+        >
+          <MenuItem onClick={createPersonalInbox}>
+            <ListItemIcon>
+              <ForwardToInboxIcon />
+            </ListItemIcon>
+            Send message
+          </MenuItem>
+        </Menu>
+      </>
     );
   } else if (receiverId !== user.userId) {
     return (
-      <Grid item md={6} className="friendItem">
-        <div className="friendItem__info">
-          <Avatar src={receiverData.avatar} />
-          <Typography variant="body1" sx={{ ml: 1 }}>
-            {receiverData.userName}
-          </Typography>
-        </div>
+      <>
+        <Grid item md={6} className="friendItem">
+          <div className="friendItem__info">
+            <Avatar
+              src={`${import.meta.env.VITE_API_URL}/Resources/${
+                receiverData.avatar
+              }`}
+              alt={receiverData.userName}
+            />
+            <Typography variant="body1" sx={{ ml: 1 }}>
+              {receiverData.userName}
+            </Typography>
+          </div>
 
-        <IconButton className="friendItem__action">
-          <MoreHorizIcon />
-        </IconButton>
-      </Grid>
+          <div
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={openFriendMenuHandler}
+          >
+            <IconButton className="friendItem__action">
+              <MoreHorizIcon />
+            </IconButton>
+          </div>
+        </Grid>
+
+        {/* Friend menu */}
+        <Menu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={closeFriendMenuHandler}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              mt: 0.5,
+              ml: -0.1,
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.25))",
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+              },
+              "&:before": {
+                content: '""',
+                zIndex: 0,
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                transform: "translateY(-50%) rotate(45deg)",
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+              },
+            },
+          }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+        >
+          <MenuItem onClick={createPersonalInbox}>
+            <ListItemIcon>
+              <ForwardToInboxIcon />
+            </ListItemIcon>
+            Send message
+          </MenuItem>
+        </Menu>
+      </>
     );
   }
   return null;
