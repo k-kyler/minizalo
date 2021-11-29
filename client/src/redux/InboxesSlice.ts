@@ -13,13 +13,17 @@ interface InboxesState {
   error: boolean;
 }
 
-interface UpdateDataOfInbox {
+interface AddNewMessage {
   message: MessageType;
 }
 
 interface RemoveMessage {
   messageId?: string;
   inboxRefId: string;
+}
+
+interface AddNewInbox {
+  inbox: InboxItemType;
 }
 
 const initialState: InboxesState = {
@@ -88,7 +92,7 @@ export const inboxesSlice = createSlice({
     changeIsPreviewing: (state, action: PayloadAction<boolean>) => {
       state.isPreviewing = action.payload;
     },
-    addNewMessage: (state, action: PayloadAction<UpdateDataOfInbox>) => {
+    addNewMessage: (state, action: PayloadAction<AddNewMessage>) => {
       const { message } = action.payload;
       const existingInbox = state.inboxes.find(
         (inbox) => inbox.inboxId === message.inboxRefId
@@ -109,6 +113,9 @@ export const inboxesSlice = createSlice({
           (message) => message.messageId !== messageId
         );
       }
+    },
+    addNewInbox: (state, action: PayloadAction<AddNewInbox>) => {
+      state.inboxes.unshift(action.payload.inbox);
     },
   },
   extraReducers: (builder) => {
@@ -147,7 +154,6 @@ export const inboxesSlice = createSlice({
       })
       .addCase(postInbox.fulfilled, (state, action) => {
         if (action.payload.code === "success") {
-          state.inboxes.unshift(action.payload.inbox);
           state.isCreating = false;
         }
       })
@@ -162,6 +168,7 @@ export const {
   changeIsPreviewing,
   addNewMessage,
   removeMessage,
+  addNewInbox,
 } = inboxesSlice.actions;
 export const selectInboxes = (state: RootState) => state.inboxes;
 export default inboxesSlice.reducer;

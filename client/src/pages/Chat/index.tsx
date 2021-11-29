@@ -9,11 +9,16 @@ import {
   selectInboxes,
   addNewMessage,
   fetchInboxes,
+  addNewInbox,
 } from "../../redux/InboxesSlice";
+import { selectUser } from "../../redux/UserSlice";
+import { InboxItemType } from "../../typings/InboxItemType";
+import { MessageType } from "../../typings/MessageType";
 import "./Chat.css";
 
 export const Chat: FC = () => {
   const { isFetching } = useAppSelector(selectInboxes);
+  const { user } = useAppSelector(selectUser);
 
   const dispatch = useAppDispatch();
 
@@ -29,12 +34,25 @@ export const Chat: FC = () => {
       .start()
       .then(() => {
         // Receive message event listener
-        connection.on("ReceiveMessage", (message) => {
+        connection.on("ReceiveMessage", (message: MessageType) => {
           dispatch(
             addNewMessage({
               message,
             })
           );
+        });
+
+        // Receive inbox event listener
+        connection.on("ReceiveInbox", (inbox: InboxItemType) => {
+          const isJoinedInbox = inbox.memberIds.includes(user.userId);
+
+          if (isJoinedInbox) {
+            dispatch(
+              addNewInbox({
+                inbox,
+              })
+            );
+          }
         });
       })
       .catch((error) => console.error(error));
