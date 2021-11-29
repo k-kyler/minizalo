@@ -50,6 +50,7 @@ export const CustomDialog: FC = () => {
   const [chipIds, setChipIds] = useState<string[]>([]);
   const [chipMembers, setChipMembers] = useState<ChipMember[]>([]);
   const [avatarToUpload, setAvatarToUpload] = useState<any>();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const groupNameRef = useRef<HTMLInputElement>(null);
 
@@ -105,16 +106,21 @@ export const CustomDialog: FC = () => {
   };
 
   const createNewGroupHandler = () => {
-    dispatch(
-      postInbox({
-        name: groupNameRef.current ? groupNameRef.current.value : "",
-        background: "No background",
-        type: "group",
-        ownerId: user.userId,
-        memberIds: chipIds,
-        file: avatarToUpload,
-      })
-    );
+    if (groupNameRef.current && groupNameRef.current.value) {
+      setErrorMessage("");
+      dispatch(
+        postInbox({
+          name: groupNameRef.current.value,
+          background: "No background",
+          type: "group",
+          ownerId: user.userId,
+          memberIds: [...chipIds, user.userId],
+          file: avatarToUpload,
+        })
+      );
+    } else {
+      setErrorMessage("Please fill in group name");
+    }
   };
 
   useEffect(generateChipMembers, [chipIds]);
@@ -173,6 +179,8 @@ export const CustomDialog: FC = () => {
 
           {/* Name */}
           <TextField
+            error={errorMessage ? true : false}
+            helperText={errorMessage}
             inputRef={groupNameRef}
             label="Name"
             type="text"
