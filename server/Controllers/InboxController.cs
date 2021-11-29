@@ -50,7 +50,7 @@ namespace minizalo.Controllers
         }
 
         // Create new inbox
-        [HttpPost("create")]
+        [HttpPost("create"), DisableRequestSizeLimit]
         public async Task<ActionResult> CreateInbox([FromForm] CreateInboxDto createInboxDto)
         {
             try {
@@ -59,7 +59,7 @@ namespace minizalo.Controllers
 
                 Inbox inboxToCreate;
 
-                if (createInboxDto.Type == "Group")
+                if (createInboxDto.Type == "group" && createInboxDto.File is not null)
                 {
                     var uploadFile = await UploadFile(createInboxDto.File);
                     
@@ -67,7 +67,7 @@ namespace minizalo.Controllers
                     {
                         return Ok(new { code = "error", message = uploadFile.Message });
                     }
-                    
+
                     inboxToCreate = new()
                     {
                         InboxId = Guid.NewGuid(),
