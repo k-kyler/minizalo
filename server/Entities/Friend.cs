@@ -1,12 +1,16 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace minizalo.Entities
 {
     public record Friend
     {
-        public Guid FriendId { get; set; }
+        [Key]
+        public Guid ColumnId { get; set; }
         
+        public Guid FriendId { get; set; }
+
         public DateTime BeFriendAt { get; set; }
         
         [ForeignKey("FK_User")]
