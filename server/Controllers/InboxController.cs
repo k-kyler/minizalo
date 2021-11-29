@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using minizalo.Dtos;
 using minizalo.Entities;
 using minizalo.Helpers;
+using minizalo.Hubs;
 using minizalo.Repositories;
 
 namespace minizalo.Controllers
@@ -20,12 +22,14 @@ namespace minizalo.Controllers
         private readonly IInboxRepository _inboxRepository;
         private readonly JwtService _jwtService;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IHubContext<ChatHub, IChatClient> _chatHub;
 
-        public InboxController(IInboxRepository inboxRepository, JwtService jwtService, IWebHostEnvironment webHostEnvironment)
+        public InboxController(IInboxRepository inboxRepository, JwtService jwtService, IWebHostEnvironment webHostEnvironment, IHubContext<ChatHub, IChatClient> chatHub)
         {
             _inboxRepository = inboxRepository;
             _jwtService = jwtService;
             _webHostEnvironment = webHostEnvironment;
+            _chatHub = chatHub;
         }
 
         // Get all inboxes that user has joined
@@ -94,6 +98,7 @@ namespace minizalo.Controllers
                 }
 
                 await _inboxRepository.CreateInbox(inboxToCreate);
+                await _chatHub.Clients.All.ReceiveInbox(inboxToCreate);
     
                 return Ok(new { code = "success", inbox = inboxToCreate, message = "Create inbox successful" });
             } catch (Exception ex) {
