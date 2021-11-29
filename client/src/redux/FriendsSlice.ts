@@ -19,11 +19,15 @@ interface AddFriendData {
   userRefId: string;
 }
 
+interface RemoveSearchResult {
+  userId: string;
+}
+
 const initialState: FriendsState = {
   friends: [],
   isFetching: false,
   isSearching: false,
-  sendingFriendRequest: false,
+  sendingFriendRequest: true,
   searchKeyword: "",
   searchResults: [],
   error: false,
@@ -88,7 +92,20 @@ export const addFriend = createAsyncThunk(
 export const friendsSlice = createSlice({
   name: "friends",
   initialState,
-  reducers: {},
+  reducers: {
+    removeSearchResult: (state, action: PayloadAction<RemoveSearchResult>) => {
+      const { userId } = action.payload;
+      const existingResult = state.searchResults.find(
+        (result) => result.userId === userId
+      );
+
+      if (existingResult) {
+        state.searchResults = state.searchResults.filter(
+          (result) => result.userId !== userId
+        );
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Search for friends
@@ -136,5 +153,6 @@ export const friendsSlice = createSlice({
   },
 });
 
+export const { removeSearchResult } = friendsSlice.actions;
 export const selectFriends = (state: RootState) => state.friends;
 export default friendsSlice.reducer;
