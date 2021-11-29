@@ -51,7 +51,7 @@ namespace minizalo.Controllers
 
         // Create new inbox
         [HttpPost("create")]
-        public async Task<ActionResult> CreateInbox(CreateInboxDto createInboxDto)
+        public async Task<ActionResult> CreateInbox([FromForm] CreateInboxDto createInboxDto)
         {
             try {
                 var authJWT = Request.Cookies["accessToken"];
