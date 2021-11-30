@@ -114,15 +114,7 @@ namespace minizalo.Controllers
             {
                 ".png", 
                 ".jpg", 
-                ".jpeg",
-                ".pdf",
-                ".doc",
-                ".docx",
-                ".xls",
-                ".xlsx",
-                ".txt",
-                ".zip",
-                ".rar"
+                ".jpeg"
             };
             
             if (file.Length > 10000000)

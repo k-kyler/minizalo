@@ -91,6 +91,7 @@ namespace minizalo.Controllers
             var fileExtension = Path.GetExtension(file.FileName);
             var acceptedExtension = new[]
             {
+                ".mp4",
                 ".png", 
                 ".jpg", 
                 ".jpeg",
