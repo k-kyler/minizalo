@@ -5,11 +5,7 @@ import { forwardRef, useEffect, useState } from "react";
 import "./SearchResult.css";
 import { UserType } from "../../../typings/UserType";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {
-  addFriend,
-  selectFriends,
-  removeSearchResult,
-} from "../../../redux/FriendsSlice";
+import { addFriend, selectFriends } from "../../../redux/FriendsSlice";
 import { selectUser } from "../../../redux/UserSlice";
 
 interface ISearchResult extends UserType {}
@@ -19,7 +15,7 @@ export const SearchResult = forwardRef<HTMLLIElement, ISearchResult>(
     const dispatch = useAppDispatch();
 
     const { user } = useAppSelector(selectUser);
-    const { friends, sendingFriendRequest } = useAppSelector(selectFriends);
+    const { friends } = useAppSelector(selectFriends);
 
     const [isFriend, setIsFriend] = useState(false);
 
@@ -41,10 +37,6 @@ export const SearchResult = forwardRef<HTMLLIElement, ISearchResult>(
     };
 
     useEffect(checkIsFriend, []);
-
-    useEffect(() => {
-      if (!sendingFriendRequest) dispatch(removeSearchResult({ userId }));
-    }, [sendingFriendRequest]);
 
     if (userId === user.userId) return null;
     return (
