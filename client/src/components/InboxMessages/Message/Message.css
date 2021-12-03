@@ -58,8 +58,16 @@
   pointer-events: none;
 }
 
-.message__previewActions {
+.message__previewActions,
+.message__previewActionButtons {
   display: flex;
+}
+
+.message__previewActions {
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .message__video {
