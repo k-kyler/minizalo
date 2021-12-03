@@ -1,4 +1,4 @@
-import { forwardRef, useState, useRef } from "react";
+import { forwardRef, useState, useRef, useEffect } from "react";
 import "./Message.css";
 import { MessageType } from "../../../typings/MessageType";
 import { Avatar, Typography, Button } from "@mui/material";
@@ -17,7 +17,17 @@ interface IMessage extends MessageType {}
 
 export const Message = forwardRef<HTMLLIElement, IMessage>(
   (
-    { messageId, uid, username, avatar, content, type, createdAt, inboxRefId },
+    {
+      messageId,
+      uid,
+      username,
+      avatar,
+      content,
+      type,
+      createdAt,
+      inboxRefId,
+      file,
+    },
     ref
   ) => {
     const { user } = useAppSelector(selectUser);
@@ -26,6 +36,8 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
 
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isVideoMuted, setIsVideoMuted] = useState(false);
+    const [uploadErrorMessage, setUploadErrorMessage] =
+      useState("Upload error");
 
     const videoControllerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -91,6 +103,32 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
         videoRef.current.muted = isVideoMuted;
       }
     };
+
+    const checkUpload = () => {
+      if (file) {
+        console.log(file);
+        if (
+          [
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".mp4",
+            ".doc",
+            ".docx",
+            ".xls",
+            ".xlsx",
+            ".pdf",
+            ".rar",
+            ".zip",
+          ].includes(file)
+        ) {
+        }
+      }
+    };
+
+    useEffect(() => {
+      checkUpload();
+    }, [file]);
 
     return (
       <li
@@ -271,12 +309,23 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
           {/* Preview message actions */}
           {messageId?.includes("upload-preview") && (
             <div className="message__previewActions">
-              <Button color="primary" variant="text" onClick={uploadFile}>
-                Upload
-              </Button>
-              <Button color="error" variant="text" onClick={cancelUploadFile}>
-                Cancel
-              </Button>
+              <div className="message__previewActionButtons">
+                <Button
+                  disabled={uploadErrorMessage ? true : false}
+                  color="primary"
+                  variant="text"
+                  onClick={uploadFile}
+                >
+                  Upload
+                </Button>
+                <Button color="error" variant="text" onClick={cancelUploadFile}>
+                  Cancel
+                </Button>
+              </div>
+
+              <Typography variant="body2" color="error" sx={{ p: 0.5 }}>
+                {uploadErrorMessage}
+              </Typography>
             </div>
           )}
         </div>

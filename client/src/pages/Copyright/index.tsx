@@ -29,9 +29,17 @@ export const Copyright: FC = () => {
       </Typography>
 
       <Typography variant="subtitle1" color="GrayText">
-        Illustrations by{" "}
+        Additional resources from{" "}
         <Link href="https://storyset.com/web" target="__blank" underline="none">
           Storyset
+        </Link>
+        {" and "}
+        <Link
+          href="https://www.flaticon.com/"
+          target="__blank"
+          underline="none"
+        >
+          Flaticon
         </Link>
       </Typography>
     </div>

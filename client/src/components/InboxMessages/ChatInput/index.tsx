@@ -124,7 +124,7 @@ export const ChatInput: FC<IChatInput> = ({
           !event.target.files[0].type.includes("video")
             ? event.target.files[0].name
             : URL.createObjectURL(event.target.files[0]),
-        file: "",
+        file: event.target.files[0].type,
         type: event.target.files[0].type.includes("image")
           ? "image"
           : event.target.files[0].type.includes("video")
