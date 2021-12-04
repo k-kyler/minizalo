@@ -8,7 +8,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 > MiniZalo is still under development.
 
-## Demo
+## Screenshots
 
 **Dashboard**
 
