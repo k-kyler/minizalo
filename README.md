@@ -16,6 +16,8 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="demo/dashboard.png" />
 </p>
 
+<br />
+
 **Search for friends**
 
 <p align="center">
@@ -30,11 +32,15 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="demo/search-no-results.png" />
 </p>
 
+<br />
+
 **Experience chat with emoji**
 
 <p align="center">
   <img src="demo/chat-emoji.png" />
 </p>
+
+<br />
 
 **Upload video & document**
 
@@ -42,11 +48,15 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="demo/chat-video-document.png" />
 </p>
 
+<br />
+
 **Zoom or view the original size of your image**
 
 <p align="center">
   <img src="demo/chat-zoom-image.png" />
 </p>
+
+<br />
 
 **Create group messaging**
 
@@ -58,6 +68,8 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="demo/chat-create-group-2.png" />
 </p>
 
+<br />
+
 **View your friends list**
 You can also start direct messaging with your friend.
 
@@ -65,11 +77,15 @@ You can also start direct messaging with your friend.
   <img src="demo/friends.png" />
 </p>
 
+<br />
+
 **Copyright**
 
 <p align="center">
   <img src="demo/copyright.png" />
 </p>
+
+<br />
 
 **User settings**
 
