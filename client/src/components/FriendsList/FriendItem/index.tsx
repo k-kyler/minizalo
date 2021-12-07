@@ -33,14 +33,19 @@ export const FriendItem: FC<IFriendItem> = ({
   const history = useHistory();
 
   const createPersonalInbox = async () => {
-    const existingInbox = inboxes.filter(
-      (inbox) =>
+    let existingInbox = true;
+
+    for (let inbox of inboxes) {
+      if (
         inbox.memberIds.length === 2 &&
         inbox.memberIds.includes(senderId) &&
         inbox.memberIds.includes(receiverId)
-    );
+      ) {
+        existingInbox = false;
+      }
+    }
 
-    if (!existingInbox.length) {
+    if (existingInbox) {
       const { code } = await dispatch(
         postInbox({
           name: "",

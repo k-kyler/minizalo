@@ -1,0 +1,2 @@
+2. Fix cannot send message in a group has just been created
+3. Fix if a new created user get into chat page without any inboxes
