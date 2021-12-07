@@ -1,5 +1,5 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useCallback } from "react";
 import { InboxList } from "../../components/InboxList";
 import { InboxMessages } from "../../components/InboxMessages";
 import { PageLoading } from "../../components/Loadings/PageLoading";
@@ -24,7 +24,7 @@ export const Chat: FC = () => {
 
   const { setPathnameHandler } = useRedirect();
 
-  const createSignalRConnection = () => {
+  const createSignalRConnection = useCallback(() => {
     const connection = new HubConnectionBuilder()
       .withUrl(`${import.meta.env.VITE_API_URL}/hubs/chat`)
       .withAutomaticReconnect()
@@ -56,7 +56,7 @@ export const Chat: FC = () => {
         });
       })
       .catch((error) => console.error(error));
-  };
+  }, []);
 
   useEffect(() => {
     createSignalRConnection();

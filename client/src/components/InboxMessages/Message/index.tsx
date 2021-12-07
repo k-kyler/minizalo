@@ -36,8 +36,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
 
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isVideoMuted, setIsVideoMuted] = useState(false);
-    const [uploadErrorMessage, setUploadErrorMessage] =
-      useState("Upload error");
+    const [uploadErrorMessage, setUploadErrorMessage] = useState("");
 
     const videoControllerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -104,30 +103,40 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
       }
     };
 
-    const checkUpload = () => {
+    const uploadFileChecker = () => {
       if (file) {
-        console.log(file);
+        setUploadErrorMessage("");
+
+        const lastIndexOfDot = file.name.lastIndexOf(".");
+        const fileExtension = file.name.slice(lastIndexOfDot, file.name.length);
+
         if (
           [
+            ".mp4",
             ".png",
             ".jpg",
             ".jpeg",
-            ".mp4",
+            ".pdf",
             ".doc",
             ".docx",
             ".xls",
             ".xlsx",
-            ".pdf",
-            ".rar",
+            ".txt",
             ".zip",
-          ].includes(file)
+            ".rar",
+          ].includes(fileExtension)
         ) {
+          if (file.size > 10000000) {
+            setUploadErrorMessage("Can't upload over 10mb");
+          }
+        } else {
+          setUploadErrorMessage("File is not supported");
         }
       }
     };
 
     useEffect(() => {
-      checkUpload();
+      uploadFileChecker();
     }, [file]);
 
     return (
@@ -323,9 +332,15 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
                 </Button>
               </div>
 
-              <Typography variant="body2" color="error" sx={{ p: 0.5 }}>
-                {uploadErrorMessage}
-              </Typography>
+              {uploadErrorMessage ? (
+                <Typography
+                  variant="body2"
+                  color="error"
+                  sx={{ p: 0.5, mr: 1 }}
+                >
+                  {uploadErrorMessage}
+                </Typography>
+              ) : null}
             </div>
           )}
         </div>
