@@ -98,7 +98,10 @@ export const inboxesSlice = createSlice({
         (inbox) => inbox.inboxId === message.inboxRefId
       );
 
-      if (existingInbox) {
+      if (existingInbox && existingInbox.messages !== null) {
+        existingInbox.messages?.push(message);
+      } else if (existingInbox && existingInbox.messages === null) {
+        existingInbox.messages = [];
         existingInbox.messages?.push(message);
       }
     },
