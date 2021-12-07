@@ -93,7 +93,7 @@ You can also start direct messaging with your friend.
   <img src="demo/user-settings.png" />
 </p>
 
-NOTE: A lot of cool features are still in development and will be release in the future. Besides, we also have to fix some issues :(
+NOTE: We are working on notification, friend request confirmation and user settings.
 
 ---
 
