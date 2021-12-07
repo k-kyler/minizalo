@@ -59,7 +59,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 </p>
 
 ### View your friends list
-You can also start direct messaging with your friend.
+You can also start messaging with your friend from here.
 
 <p align="center">
   <img src="demo/friends.png" />
@@ -71,15 +71,13 @@ You can also start direct messaging with your friend.
   <img src="demo/copyright.png" />
 </p>
 
-<br />
-
 ### User settings
 
 <p align="center">
   <img src="demo/user-settings.png" />
 </p>
 
-NOTE: We are working on notification, friend request confirmation and user settings.
+NOTE: We are now working on notification, friend request confirmation, user settings and more...
 
 ---
 
