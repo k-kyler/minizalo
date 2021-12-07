@@ -15,6 +15,7 @@ export const TimeAgo: FC<ITimeAgo> = ({ timestamp }) => {
     timeAgo = `${timePeriod}`;
 
     if (timeAgo === "less than a minute") timeAgo = "now";
+    if (timeAgo.includes("about")) timeAgo = timeAgo.split("about ")[1];
   }
 
   return (

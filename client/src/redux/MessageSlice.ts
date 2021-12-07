@@ -3,22 +3,11 @@ import axios from "axios";
 import { MessageType } from "../typings/MessageType";
 
 interface MessageState {
-  message: MessageType;
   isCreating: boolean;
   error: boolean;
 }
 
 const initialState: MessageState = {
-  message: {
-    messageId: "",
-    uid: "",
-    username: "",
-    avatar: "",
-    content: "",
-    createdAt: "",
-    type: "text",
-    inboxRefId: "",
-  },
   isCreating: true,
   error: false,
 };
@@ -66,13 +55,11 @@ export const messageSlice = createSlice({
       })
       .addCase(postMessage.fulfilled, (state, action) => {
         if (action.payload.code === "success") {
-          state.message = action.payload.message;
           state.isCreating = false;
         }
       })
       .addCase(postMessage.rejected, (state) => {
         state.error = true;
-        state.message = initialState.message;
       });
   },
 });

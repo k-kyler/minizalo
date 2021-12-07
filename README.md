@@ -36,19 +36,57 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/chat-emoji.png" />
 </p>
 
-### Upload video & document
+### Upload image, video & document
+
+#### Image
 
 <p align="center">
-  <img src="screenshots/chat-video-document.png" />
+  <img src="screenshots/chat-upload-image.png" />
 </p>
 
-### Zoom or view the original size of your image
+<p align="center">
+  <img src="screenshots/chat-upload-image-successful.png" />
+</p>
+
+#### Video
+
+<p align="center">
+  <img src="screenshots/chat-upload-video.png" />
+</p>
+
+<p align="center">
+  <img src="screenshots/chat-upload-video-successful.png" />
+</p>
+
+#### Document
+
+<p align="center">
+  <img src="screenshots/chat-upload-document.png" />
+</p>
+
+<p align="center">
+  <img src="screenshots/chat-upload-document-successful.png" />
+</p>
+
+### Image & video features
+
+#### Zoom or view the original size of your image
 
 <p align="center">
   <img src="screenshots/chat-zoom-image.png" />
 </p>
 
-### Create group messaging
+#### Pause, mute or open video in full screen
+
+<p align="center">
+  <img src="screenshots/chat-video-features.png" />
+</p>
+
+### Create group chat
+
+- Choose the pencil icon above of the inboxes list to start creating your new group.
+- You can add your group an avatar (optional).
+- You can only add your friends as members of the group.
 
 <p align="center">
   <img src="screenshots/chat-create-group-1.png" />
@@ -58,12 +96,18 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/chat-create-group-2.png" />
 </p>
 
-### View your friends list
+### Friends
 
-You can also start messaging with your friend from here.
+#### View friends list
 
 <p align="center">
   <img src="screenshots/friends.png" />
+</p>
+
+#### Message with your friend
+
+<p align="center">
+  <img src="screenshots/friends-messaging.png" />
 </p>
 
 ### Copyright
