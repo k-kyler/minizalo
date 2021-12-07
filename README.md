@@ -10,15 +10,13 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ## Screenshots
 
-**Dashboard**
+### Dashboard
 
 <p align="center">
   <img src="demo/dashboard.png" />
 </p>
 
-<br />
-
-**Search for friends**
+### Search for friends
 
 <p align="center">
   <img src="demo/search.png" />
@@ -32,33 +30,25 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="demo/search-no-results.png" />
 </p>
 
-<br />
-
-**Experience chat with emoji**
+### Experience chat with emoji
 
 <p align="center">
   <img src="demo/chat-emoji.png" />
 </p>
 
-<br />
-
-**Upload video & document**
+### Upload video & document
 
 <p align="center">
   <img src="demo/chat-video-document.png" />
 </p>
 
-<br />
-
-**Zoom or view the original size of your image**
+### Zoom or view the original size of your image
 
 <p align="center">
   <img src="demo/chat-zoom-image.png" />
 </p>
 
-<br />
-
-**Create group messaging**
+### Create group messaging
 
 <p align="center">
   <img src="demo/chat-create-group-1.png" />
@@ -68,18 +58,14 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="demo/chat-create-group-2.png" />
 </p>
 
-<br />
-
-**View your friends list**
+### View your friends list
 You can also start direct messaging with your friend.
 
 <p align="center">
   <img src="demo/friends.png" />
 </p>
 
-<br />
-
-**Copyright**
+### Copyright
 
 <p align="center">
   <img src="demo/copyright.png" />
@@ -87,7 +73,7 @@ You can also start direct messaging with your friend.
 
 <br />
 
-**User settings**
+### User settings
 
 <p align="center">
   <img src="demo/user-settings.png" />
