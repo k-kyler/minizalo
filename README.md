@@ -6,7 +6,7 @@
 
 MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP .NET Core to build a real-time web chat. We also have added some additional features to make it more awesome.
 
-[![Demo video](https://img.shields.io/badge/Demo%20video-v1-blue?style=social&logo=google)]()
+[![Demo video](https://img.shields.io/badge/Demo-Version%201.0-blue?style=social&logo=google)]()
 
 ## Screenshots
 
@@ -124,7 +124,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ## NOTE
 
-We are now working on notification, friend request confirmation, user settings and more...
+We are still working on notification, friend request confirmation, user settings and more...
 
 ---
 
