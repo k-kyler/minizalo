@@ -24,7 +24,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./CustomDialog.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { closeDialog, selectDialog } from "../../redux/DialogSlice";
-import { selectFriends } from "../../redux/FriendsSlice";
+import { fetchFriendsList, selectFriends } from "../../redux/FriendsSlice";
 import { selectUser } from "../../redux/UserSlice";
 import { postInbox, selectInboxes } from "../../redux/InboxesSlice";
 
@@ -126,6 +126,7 @@ export const CustomDialog: FC = () => {
   useEffect(generateChipMembers, [chipIds]);
 
   useEffect(() => {
+    dispatch(fetchFriendsList());
     if (!isCreating) dispatch(closeDialog());
   }, [isCreating]);
 
