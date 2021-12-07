@@ -76,7 +76,9 @@ You can also start messaging with your friend from here.
   <img src="screenshots/user-settings.png" />
 </p>
 
-> NOTE: We are now working on notification, friend request confirmation, user settings and more...
+## NOTE
+
+We are now working on notification, friend request confirmation, user settings and more...
 
 ---
 
