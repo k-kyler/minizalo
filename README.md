@@ -8,6 +8,8 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 [![Demo video](https://img.shields.io/badge/Demo%20video-v1.0-blue?style=social&logo=google)](https://youtu.be/sc08zwHgIb4)
 
+[![Document]](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
+
 ## Screenshots
 
 ### Dashboard
