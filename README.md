@@ -69,7 +69,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/chat-upload-document-successful.png" />
 </p>
 
-### Image & video features
+### Image, video & document features
 
 #### Zoom or view the original size of your image
 
@@ -81,6 +81,12 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 <p align="center">
   <img src="screenshots/chat-video-features.png" />
+</p>
+
+#### Upload limit is 10mb
+
+<p align="center">
+  <img src="screenshots/chat-upload-error.png" />
 </p>
 
 ### Create group chat
