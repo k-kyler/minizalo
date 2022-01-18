@@ -1,14 +1,14 @@
 # MiniZalo
 
+[![Youtube Short Demo](https://img.shields.io/badge/Short%20Demo-white?style=for-the-badge&logo=youtube&labelColor=d93025)](https://youtu.be/sc08zwHgIb4)
+[![Postman API Reference](https://img.shields.io/badge/API%20Reference-orange?style=for-the-badge&logo=postman&labelColor=white)](https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b)
+[![Project Report](https://img.shields.io/badge/Project%20Report-white?style=for-the-badge&logo=github&labelColor=black)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
+
 @Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long
 
 ## Description
 
 MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP .NET Core to build a real-time web chat. We also have added some additional features to make it more awesome.
-
-[![Youtube Short Demo](https://img.shields.io/badge/Youtube-Short%20Demo-white?style=for-the-badge&logo=youtube&labelColor=d93025)](https://youtu.be/sc08zwHgIb4)
-[![API Reference](https://img.shields.io/badge/API-Reference-orange?style=for-the-badge&logo=postman&labelColor=white)](https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b)
-[![Project Report](https://img.shields.io/badge/Project%20Report-v1.0-blue?style=for-the-badge&logo=github)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
 
 ## Screenshots
 
