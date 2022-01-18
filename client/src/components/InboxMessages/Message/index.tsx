@@ -42,11 +42,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
     const videoRef = useRef<HTMLVideoElement>(null);
     const videoProgressRef = useRef<HTMLDivElement>(null);
 
-    const cancelUploadFile = () =>
-      dispatch(removeMessage({ messageId, inboxRefId }));
-
-    const uploadFile = () => dispatch(changeIsPreviewing(true));
-
+    // Video handlers
     const videoDurationHandler = () => {
       if (videoRef.current) {
         videoRef.current.addEventListener("timeupdate", () => {
@@ -102,6 +98,13 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
         videoRef.current.muted = isVideoMuted;
       }
     };
+    // End of video handlers
+
+    // File handlers
+    const cancelUploadFile = () =>
+      dispatch(removeMessage({ messageId, inboxRefId }));
+
+    const uploadFile = () => dispatch(changeIsPreviewing(true));
 
     const uploadFileChecker = () => {
       if (file) {
@@ -138,6 +141,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
     useEffect(() => {
       uploadFileChecker();
     }, [file]);
+    // End of file handlers
 
     return (
       <li
