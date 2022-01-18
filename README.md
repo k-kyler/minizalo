@@ -6,8 +6,9 @@
 
 MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP .NET Core to build a real-time web chat. We also have added some additional features to make it more awesome.
 
-[![Demo video](https://img.shields.io/badge/Youtube-Short%20Demo-white?style=for-the-badge&logo=youtube&labelColor=d93025)](https://youtu.be/sc08zwHgIb4)
-[![Document](https://img.shields.io/badge/Project%20Report-v1.0-blue?style=for-the-badge&logo=github)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
+[![Youtube Short Demo](https://img.shields.io/badge/Youtube-Short%20Demo-white?style=for-the-badge&logo=youtube&labelColor=d93025)](https://youtu.be/sc08zwHgIb4)
+[![API Reference](https://img.shields.io/badge/API-Reference-orange?style=for-the-badge&logo=postman&labelColor=white)](https://youtu.be/sc08zwHgIb4)
+[![Project Report](https://img.shields.io/badge/Project%20Report-v1.0-blue?style=for-the-badge&logo=github)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
 
 ## Screenshots
 
@@ -117,17 +118,6 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/friends-messaging.png" />
 </p>
 
-### Copyright
-
-<p align="center">
-  <img src="screenshots/copyright.png" />
-</p>
-
-### User settings
-
-<p align="center">
-  <img src="screenshots/user-settings.png" />
-</p>
 
 ## NOTE
 
