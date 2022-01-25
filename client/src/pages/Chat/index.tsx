@@ -17,6 +17,7 @@ import { InboxItemType } from "../../typings/InboxItemType";
 import { MessageType } from "../../typings/MessageType";
 import "./Chat.css";
 import NoInboxesOverlay from "../../assets/no_inboxes_overlay.svg";
+import { Link } from "react-router-dom";
 
 export const Chat: FC = () => {
   const { isFetching, inboxes } = useAppSelector(selectInboxes);
@@ -73,7 +74,8 @@ export const Chat: FC = () => {
           <div className="chat__overlay">
             <img src={NoInboxesOverlay} />
             <Typography variant="body1" sx={{ textAlign: "center" }}>
-              You have no inboxes, add some friends and start your conversation
+              You have no inboxes, <Link to="/search">add</Link> some friends
+              and start your conversation
             </Typography>
           </div>
         </div>
