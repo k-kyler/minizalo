@@ -14,13 +14,15 @@ export const CustomAlert: FC = () => {
 
   return (
     <Alert
-      variant="outlined"
+      variant="standard"
       onClose={() => dispatch(closeAlert())}
       sx={{
         position: "absolute",
         right: "1rem",
         bottom: "1rem",
         zIndex: 99,
+        boxShadow:
+          "rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px",
       }}
     >
       {message}
