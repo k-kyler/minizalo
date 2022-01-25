@@ -2,7 +2,7 @@
 
 [![Project Report](https://img.shields.io/badge/Project%20Report-blue?style=for-the-badge&logo=github&labelColor=gray)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
 [![Postman API Reference](https://img.shields.io/badge/API%20Reference-orange?style=for-the-badge&logo=postman&labelColor=white)](https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b)
-[![Youtube Short Demo](https://img.shields.io/badge/Short%20Demo-black?style=for-the-badge&logo=youtube&labelColor=d93025)](https://youtu.be/sc08zwHgIb4)
+[![Youtube Short Demo](https://img.shields.io/badge/Short%20Demo-d93025?style=for-the-badge&logo=youtube&labelColor=212121)](https://youtu.be/sc08zwHgIb4)
 
 @Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long
 
