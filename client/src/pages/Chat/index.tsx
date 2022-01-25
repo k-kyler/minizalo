@@ -1,4 +1,5 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
+import { Typography } from "@mui/material";
 import { FC, useEffect, useCallback } from "react";
 import { InboxList } from "../../components/InboxList";
 import { InboxMessages } from "../../components/InboxMessages";
@@ -15,9 +16,10 @@ import { selectUser } from "../../redux/UserSlice";
 import { InboxItemType } from "../../typings/InboxItemType";
 import { MessageType } from "../../typings/MessageType";
 import "./Chat.css";
+import NoInboxesOverlay from "../../assets/no_inboxes_overlay.svg";
 
 export const Chat: FC = () => {
-  const { isFetching } = useAppSelector(selectInboxes);
+  const { isFetching, inboxes } = useAppSelector(selectInboxes);
   const { user } = useAppSelector(selectUser);
 
   const dispatch = useAppDispatch();
@@ -66,16 +68,22 @@ export const Chat: FC = () => {
 
   return (
     <>
-      {isFetching ? (
+      {!inboxes.length ? (
+        <div className="chat" style={{ backgroundColor: "#f1f2f5" }}>
+          <div className="chat__overlay">
+            <img src={NoInboxesOverlay} />
+            <Typography variant="body1" sx={{ textAlign: "center" }}>
+              You have no inboxes, add some friends and start your conversation
+            </Typography>
+          </div>
+        </div>
+      ) : isFetching ? (
         <PageLoading />
       ) : (
         <div className="chat">
-          {/* Inbox list */}
           <div className="chat__inboxList">
             <InboxList />
           </div>
-
-          {/* Inbox messages */}
           <div className="chat__inboxMessages">
             <InboxMessages />
           </div>

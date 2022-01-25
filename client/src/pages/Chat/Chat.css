@@ -12,3 +12,18 @@
 .chat__inboxMessages {
   flex: 0.75;
 }
+
+.chat__overlay {
+  flex: 1 0 100%;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat__overlay > img {
+  width: auto;
+  height: 27rem;
+  display: flex;
+}
