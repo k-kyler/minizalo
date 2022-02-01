@@ -96,13 +96,14 @@
   transition: all 0.2s ease;
 }
 
-.navbar__settingButton {
+.navbar__settingButton,
+.navbar__notificationsButton {
   color: #65676b !important;
   background-color: rgb(241, 242, 245, 1) !important;
 }
 
-.navbar__settingButton:not(:last-child) {
-  margin-right: 0.5rem !important;
+.navbar__settingButton {
+  margin-left: 0.5rem !important;
 }
 
 .navbar .css-to4x1n-MuiBadge-badge {

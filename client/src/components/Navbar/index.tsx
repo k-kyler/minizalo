@@ -21,27 +21,37 @@ import Logo from "../../assets/logo.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectUser, signOutUser } from "../../redux/UserSlice";
 import { linkData } from "../../constants/LinkData";
+import { NotificationsList } from "../NotificationsList";
 
 export const Navbar: FC = () => {
-  // User setting menu setup
+  const { user } = useAppSelector(selectUser);
+
+  const dispatch = useAppDispatch();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorElNotifications, setAnchorElNotifications] =
+    useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
+  const openNotifications = Boolean(anchorElNotifications);
 
   const openUserSettingMenuHandler = (event: MouseEvent<HTMLDivElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const openNotificationsMenuHandler = (event: MouseEvent<HTMLDivElement>) => {
+    setAnchorElNotifications(event.currentTarget);
+  };
+
   const closeUserSettingMenuHandler = () => {
     setAnchorEl(null);
   };
-  // End of user setting menu setup
 
-  const { user } = useAppSelector(selectUser);
+  const closeNotificationsMenuHandler = () => {
+    setAnchorElNotifications(null);
+  };
 
-  const dispatch = useAppDispatch();
-
-  const signOutHandler = async () => {
+  const signOutHandler = () => {
     setAnchorEl(null);
     dispatch(signOutUser());
   };
@@ -105,11 +115,17 @@ export const Navbar: FC = () => {
         </Tooltip>
 
         {/* Notifications */}
-        <IconButton className="navbar__settingButton">
-          <Badge badgeContent={5} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
+        <div
+          aria-haspopup="true"
+          aria-expanded={openNotifications ? "true" : undefined}
+          onClick={openNotificationsMenuHandler}
+        >
+          <IconButton className="navbar__notificationsButton">
+            <Badge badgeContent={2} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+        </div>
 
         {/* Setting */}
         <div
@@ -128,7 +144,6 @@ export const Navbar: FC = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={closeUserSettingMenuHandler}
-        className="navbar__userSettingMenu"
         PaperProps={{
           elevation: 0,
           sx: {
@@ -146,7 +161,7 @@ export const Navbar: FC = () => {
               display: "block",
               position: "absolute",
               top: 0,
-              right: 14,
+              right: 15,
               transform: "translateY(-50%) rotate(45deg)",
               width: 10,
               height: 10,
@@ -157,14 +172,14 @@ export const Navbar: FC = () => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
       >
-        <MenuItem onClick={closeUserSettingMenuHandler}>
+        <MenuItem>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
           Profile
         </MenuItem>
 
-        <MenuItem onClick={closeUserSettingMenuHandler}>
+        <MenuItem>
           <ListItemIcon>
             <Brightness7Icon />
           </ListItemIcon>
@@ -179,6 +194,45 @@ export const Navbar: FC = () => {
           </ListItemIcon>
           Sign out
         </MenuItem>
+      </Menu>
+
+      {/* Notifications menu */}
+      <Menu
+        anchorEl={anchorElNotifications}
+        open={openNotifications}
+        onClose={closeNotificationsMenuHandler}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            mt: 3,
+            ml: 0,
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.25))",
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+            },
+            "&:before": {
+              content: '""',
+              zIndex: 0,
+              display: "block",
+              position: "absolute",
+              top: 0,
+              right: 15,
+              transform: "translateY(-50%) rotate(45deg)",
+              width: 10,
+              height: 10,
+              bgcolor: "background.paper",
+            },
+          },
+        }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+      >
+        <MenuItem sx={{ pointerEvents: "none" }}>
+          <Typography variant="h6">Notifications</Typography>
+        </MenuItem>
+        <NotificationsList />
       </Menu>
     </div>
   );
