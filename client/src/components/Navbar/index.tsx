@@ -115,28 +115,32 @@ export const Navbar: FC = () => {
         </Tooltip>
 
         {/* Notifications */}
-        <div
-          aria-haspopup="true"
-          aria-expanded={openNotifications ? "true" : undefined}
-          onClick={openNotificationsMenuHandler}
-        >
-          <IconButton className="navbar__notificationsButton">
-            <Badge badgeContent={2} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </div>
+        <Tooltip title="Notifications">
+          <div
+            aria-haspopup="true"
+            aria-expanded={openNotifications ? "true" : undefined}
+            onClick={openNotificationsMenuHandler}
+          >
+            <IconButton className="navbar__notificationsButton">
+              <Badge badgeContent={2} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </div>
+        </Tooltip>
 
         {/* Setting */}
-        <div
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={openUserSettingMenuHandler}
-        >
-          <IconButton className="navbar__settingButton">
-            <ArrowDropDownIcon />
-          </IconButton>
-        </div>
+        <Tooltip title="Setting">
+          <div
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={openUserSettingMenuHandler}
+          >
+            <IconButton className="navbar__settingButton">
+              <ArrowDropDownIcon />
+            </IconButton>
+          </div>
+        </Tooltip>
       </div>
 
       {/* Setting menu */}
@@ -147,6 +151,7 @@ export const Navbar: FC = () => {
         PaperProps={{
           elevation: 0,
           sx: {
+            borderRadius: "8px",
             mt: 3,
             ml: 0,
             overflow: "visible",
@@ -204,6 +209,7 @@ export const Navbar: FC = () => {
         PaperProps={{
           elevation: 0,
           sx: {
+            borderRadius: "8px",
             mt: 3,
             ml: 0,
             overflow: "visible",
@@ -229,9 +235,6 @@ export const Navbar: FC = () => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
       >
-        <MenuItem sx={{ pointerEvents: "none" }}>
-          <Typography variant="h6">Notifications</Typography>
-        </MenuItem>
         <NotificationsList />
       </Menu>
     </div>

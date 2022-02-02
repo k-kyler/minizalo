@@ -114,6 +114,7 @@ export const FriendItem: FC<IFriendItem> = ({
           PaperProps={{
             elevation: 0,
             sx: {
+              borderRadius: "8px",
               mt: 0.5,
               ml: -0.1,
               overflow: "visible",
@@ -183,6 +184,7 @@ export const FriendItem: FC<IFriendItem> = ({
           PaperProps={{
             elevation: 0,
             sx: {
+              borderRadius: "8px",
               mt: 0.5,
               ml: -0.1,
               overflow: "visible",
