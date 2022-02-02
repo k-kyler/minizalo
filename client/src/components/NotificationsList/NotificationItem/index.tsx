@@ -54,7 +54,7 @@ export const NotificationItem: FC<INotificationItem> = ({
                     display: "flex",
                     alignItems: "center",
                     gap: "0 0.5rem",
-                    marginTop: "0.5rem",
+                    margin: "0.5rem 0",
                   }}
                 >
                   <Button variant="contained" size="small">
@@ -66,15 +66,13 @@ export const NotificationItem: FC<INotificationItem> = ({
                 </div>
               ) : null}
 
-              {/* <Typography
-                sx={{ display: "inline" }}
-                component="span"
+              <Typography
                 variant="body2"
+                sx={{ fontWeight: 500, mt: 0.5 }}
                 color="text.primary"
               >
-                Ali Connors
+                {timestamp} ago
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"} */}
             </>
           }
         />
