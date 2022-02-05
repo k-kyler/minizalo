@@ -78,3 +78,7 @@
   display: block !important;
   transition: all 0.3s ease;
 }
+
+.customDialog .MuiPaper-root {
+  border-radius: 8px !important;
+}

@@ -132,18 +132,31 @@ export const inboxesSlice = createSlice({
         (state, action: PayloadAction<InboxItemType[]>) => {
           const sortedInboxes = action.payload
             .slice()
-            .sort((a, b: any) => b.createdAt.localeCompare(a.createdAt))
             .map((inbox) => ({
               ...inbox,
               messages: inbox.messages
                 ?.slice()
                 .sort((a: any, b) => a.createdAt.localeCompare(b.createdAt)),
-            }));
+            }))
+            // Sort inbox list by desc order
+            .sort((a, b: any) => b.createdAt.localeCompare(a.createdAt))
+            // Sort inbox list by its latest message
+            .sort((a, b) => {
+              let aMessages = a.messages as any;
+              let bMessages = b.messages as any;
 
-          state.inboxes = sortedInboxes;
-          state.selectedInboxId = sortedInboxes[0].inboxId as any; // Set default selected inbox id of the latest inbox
+              if (aMessages.length && bMessages.length)
+                return bMessages[bMessages.length - 1].createdAt.localeCompare(
+                  aMessages[aMessages.length - 1].createdAt
+                );
+            });
 
-          if (state.inboxes.length) state.isFetching = false;
+          if (sortedInboxes.length) {
+            state.inboxes = sortedInboxes;
+            state.selectedInboxId = sortedInboxes[0].inboxId as any; // Set default selected inbox id of the latest inbox
+          }
+
+          state.isFetching = false;
         }
       )
       .addCase(fetchInboxes.rejected, (state) => {

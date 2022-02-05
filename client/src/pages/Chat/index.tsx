@@ -69,7 +69,18 @@ export const Chat: FC = () => {
 
   return (
     <>
-      {!inboxes.length ? (
+      {!isFetching && inboxes.length ? (
+        <div className="chat">
+          <div className="chat__inboxList">
+            <InboxList />
+          </div>
+          <div className="chat__inboxMessages">
+            <InboxMessages />
+          </div>
+        </div>
+      ) : isFetching ? (
+        <PageLoading />
+      ) : (
         <div className="chat" style={{ backgroundColor: "#f1f2f5" }}>
           <div className="chat__overlay">
             <img src={NoInboxesOverlay} />
@@ -77,17 +88,6 @@ export const Chat: FC = () => {
               You have no inboxes, <Link to="/search">add</Link> some friends
               and start your conversation
             </Typography>
-          </div>
-        </div>
-      ) : isFetching ? (
-        <PageLoading />
-      ) : (
-        <div className="chat">
-          <div className="chat__inboxList">
-            <InboxList />
-          </div>
-          <div className="chat__inboxMessages">
-            <InboxMessages />
           </div>
         </div>
       )}
