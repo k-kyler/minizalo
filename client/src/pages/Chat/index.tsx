@@ -1,6 +1,6 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import { Typography } from "@mui/material";
-import { FC, useEffect, useCallback } from "react";
+import { FC, useEffect, useCallback, useState } from "react";
 import { InboxList } from "../../components/InboxList";
 import { InboxMessages } from "../../components/InboxMessages";
 import { PageLoading } from "../../components/Loadings/PageLoading";
@@ -11,13 +11,18 @@ import {
   addNewMessage,
   fetchInboxes,
   addNewInbox,
+  changeSelectedInboxId,
 } from "../../redux/InboxesSlice";
 import { selectUser } from "../../redux/UserSlice";
 import { InboxItemType } from "../../typings/InboxItemType";
 import { MessageType } from "../../typings/MessageType";
 import "./Chat.css";
 import NoInboxesOverlay from "../../assets/no_inboxes_overlay.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+interface ILocationState {
+  inboxIdToSelect: string;
+}
 
 export const Chat: FC = () => {
   const { isFetching, inboxes } = useAppSelector(selectInboxes);
@@ -26,6 +31,8 @@ export const Chat: FC = () => {
   const dispatch = useAppDispatch();
 
   const { setPathnameHandler } = useRedirect();
+
+  const location = useLocation<ILocationState>();
 
   const createSignalRConnection = useCallback(() => {
     const connection = new HubConnectionBuilder()
@@ -66,6 +73,11 @@ export const Chat: FC = () => {
     dispatch(fetchInboxes());
     setPathnameHandler();
   }, []);
+
+  useEffect(() => {
+    if (!isFetching && location?.state?.inboxIdToSelect)
+      dispatch(changeSelectedInboxId(location?.state?.inboxIdToSelect)); // Target to the friend inbox while redirecting from friends list
+  }, [isFetching]);
 
   return (
     <>
