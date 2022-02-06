@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Fab, Zoom } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { HubConnectionBuilder } from "@microsoft/signalr";
 import "./App.css";
 import { linkData } from "./constants/LinkData";
 import { SignIn } from "./pages/SignIn";
@@ -15,13 +16,17 @@ import { Navbar } from "./components/Navbar";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { CustomAlert } from "./components/CustomAlert";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
-import { fetchUser } from "./redux/UserSlice";
+import { fetchUser, selectUser } from "./redux/UserSlice";
 import { selectIsOpen } from "./redux/AlertSlice";
+import { addNewInbox, addNewMessage } from "./redux/InboxesSlice";
+import { InboxItemType } from "./typings/InboxItemType";
+import { MessageType } from "./typings/MessageType";
 
 function App() {
   const dispatch = useAppDispatch();
 
   const isAlertOpen = useAppSelector(selectIsOpen);
+  const { user } = useAppSelector(selectUser);
 
   const [displayFloatButton, setDisplayFloatButton] = useState(false);
 
@@ -37,8 +42,43 @@ function App() {
     appRef.current ? (appRef.current.scrollTop = 0) : null;
   };
 
+  const createSignalRConnection = () => {
+    const connection = new HubConnectionBuilder()
+      .withUrl(`${import.meta.env.VITE_API_URL}/hubs/chat`)
+      .withAutomaticReconnect()
+      .build();
+
+    connection
+      .start()
+      .then(() => {
+        // Receive message event listener
+        connection.on("ReceiveMessage", (message: MessageType) => {
+          dispatch(
+            addNewMessage({
+              message,
+            })
+          );
+        });
+
+        // Receive inbox event listener
+        connection.on("ReceiveInbox", (inbox: InboxItemType) => {
+          const isJoinedInbox = inbox.memberIds.includes(user.userId);
+
+          if (isJoinedInbox) {
+            dispatch(
+              addNewInbox({
+                inbox,
+              })
+            );
+          }
+        });
+      })
+      .catch((error) => console.error(error));
+  };
+
   useEffect(() => {
     dispatch(fetchUser());
+    createSignalRConnection();
   }, []);
 
   return (
@@ -86,7 +126,7 @@ function App() {
             <SignIn />
           </Route>
 
-          {/* Redirect if user gets into wrong routes */}
+          {/* Redirect back to dashboard if user gets into wrong routes */}
           <Redirect to="/dashboard" />
         </Switch>
       </Router>
