@@ -138,17 +138,24 @@ export const inboxesSlice = createSlice({
                 ?.slice()
                 .sort((a: any, b) => a.createdAt.localeCompare(b.createdAt)),
             }))
-            // Sort inbox list by desc order
-            .sort((a, b: any) => b.createdAt.localeCompare(a.createdAt))
-            // Sort inbox list by its latest message
-            .sort((a, b) => {
-              let aMessages = a.messages as any;
+            // Sort inbox list by its latest message or inbox created time
+            .sort((a: any, b) => {
+              let aMessages = a.messages;
               let bMessages = b.messages as any;
 
-              if (aMessages.length && bMessages.length)
+              if (aMessages.length && bMessages.length) {
                 return bMessages[bMessages.length - 1].createdAt.localeCompare(
                   aMessages[aMessages.length - 1].createdAt
                 );
+              } else if (aMessages.length) {
+                return a.createdAt.localeCompare(
+                  aMessages[aMessages.length - 1].createdAt
+                );
+              } else if (bMessages.length) {
+                return bMessages[bMessages.length - 1].createdAt.localeCompare(
+                  a.createdAt
+                );
+              }
             });
 
           if (sortedInboxes.length) {

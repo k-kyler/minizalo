@@ -13,9 +13,9 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import { useHistory } from "react-router-dom";
 import "./FriendItem.css";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
-import { postInbox, selectInboxes } from "../../../redux/InboxesSlice";
+import { selectInboxes } from "../../../redux/InboxesSlice";
 
 interface IFriendItem extends FriendType {}
 
@@ -29,43 +29,39 @@ export const FriendItem: FC<IFriendItem> = ({
   const { user } = useAppSelector(selectUser);
   const { inboxes } = useAppSelector(selectInboxes);
 
-  const dispatch = useAppDispatch();
-
   const history = useHistory();
 
-  const createPersonalInbox = async () => {
-    let createInbox: boolean = true;
-    let inboxIdToSelect: string = "";
-
-    for (let inbox of inboxes) {
-      if (
+  const getIntoFriendInbox = async () => {
+    const inboxIdToSelect = inboxes.find(
+      (inbox) =>
         inbox.type === "personal" &&
         inbox.memberIds.includes(senderId) &&
         inbox.memberIds.includes(receiverId)
-      ) {
-        createInbox = false;
-        inboxIdToSelect = inbox.inboxId as any;
-      }
-    }
+    )?.inboxId;
 
-    if (createInbox) {
-      const { code } = await dispatch(
-        postInbox({
-          name: "",
-          background: "",
-          type: "personal",
-          ownerId: "",
-          memberIds: [senderId, receiverId],
-        })
-      ).unwrap();
+    history.push({ pathname: "/chat", state: { inboxIdToSelect } });
 
-      if (code === "success") {
-        setAnchorEl(null);
-        history.push("/chat");
-      }
-    } else {
-      history.push({ pathname: "/chat", state: { inboxIdToSelect } });
-    }
+    //   try {
+    //     const { code, inbox } = await dispatch(
+    //       postInbox({
+    //         name: "",
+    //         background: "",
+    //         type: "personal",
+    //         ownerId: "",
+    //         memberIds: [senderId, receiverId],
+    //       })
+    //     ).unwrap();
+
+    //     if (code === "success") {
+    //       setAnchorEl(null);
+    //       history.push({
+    //         pathname: "/chat",
+    //         state: { inboxIdToSelect: inbox.inboxId },
+    //       });
+    //     }
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
   };
 
   // Friend menu setup
@@ -143,7 +139,7 @@ export const FriendItem: FC<IFriendItem> = ({
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
         >
-          <MenuItem onClick={createPersonalInbox}>
+          <MenuItem onClick={getIntoFriendInbox}>
             <ListItemIcon>
               <ForwardToInboxIcon />
             </ListItemIcon>
@@ -213,7 +209,7 @@ export const FriendItem: FC<IFriendItem> = ({
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
         >
-          <MenuItem onClick={createPersonalInbox}>
+          <MenuItem onClick={getIntoFriendInbox}>
             <ListItemIcon>
               <ForwardToInboxIcon />
             </ListItemIcon>
