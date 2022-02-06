@@ -23,10 +23,11 @@ export const InboxList: FC = () => {
       let aMessages = a.messages as any;
       let bMessages = b.messages as any;
 
-      if (aMessages.length && bMessages.length)
+      if (aMessages?.length && bMessages?.length) {
         return bMessages[bMessages.length - 1].createdAt.localeCompare(
           aMessages[aMessages.length - 1].createdAt
         );
+      }
     });
 
     setInboxList(sortedInboxes);
