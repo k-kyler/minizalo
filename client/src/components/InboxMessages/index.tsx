@@ -12,6 +12,7 @@ import FlipMove from "react-flip-move";
 import { useAppSelector } from "../../redux/hooks";
 import { selectInboxes } from "../../redux/InboxesSlice";
 import { selectUser } from "../../redux/UserSlice";
+import { MessageType } from "../../typings/MessageType";
 
 export const InboxMessages: FC = () => {
   const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
@@ -155,11 +156,13 @@ export const InboxMessages: FC = () => {
         ref={messagesEndRef}
         onClick={() => setOpenEmojiModal(false)}
       >
-        <FlipMove leaveAnimation="fade">
-          {selectedInbox.messages?.map((message) => (
-            <Message key={message.messageId} {...message} />
-          ))}
-        </FlipMove>
+        {selectedInbox.messages?.length ? (
+          <FlipMove leaveAnimation="fade">
+            {selectedInbox.messages?.map((message) => (
+              <Message key={message.messageId} {...message} />
+            ))}
+          </FlipMove>
+        ) : null}
       </ul>
 
       {/* Chat input */}

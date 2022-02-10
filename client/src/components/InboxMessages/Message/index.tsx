@@ -1,6 +1,8 @@
 import { forwardRef, useState, useRef, useEffect } from "react";
 import "./Message.css";
 import { MessageType } from "../../../typings/MessageType";
+import { TimeAgo } from "../../TimeAgo";
+import Emoji from "react-emoji-render";
 import { Avatar, Typography, Button } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -9,7 +11,6 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectUser } from "../../../redux/UserSlice";
-import { TimeAgo } from "../../TimeAgo";
 import { openDialog } from "../../../redux/DialogSlice";
 import { changeIsPreviewing, removeMessage } from "../../../redux/InboxesSlice";
 
@@ -143,6 +144,18 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
     }, [file]);
     // End of file handlers
 
+    if (type === "time-message")
+      return (
+        <div className="timeMessage">
+          <Typography variant="caption">
+            {createdAt
+              ? new Date(createdAt).toDateString() +
+                ", " +
+                new Date(createdAt).toLocaleTimeString()
+              : ""}
+          </Typography>
+        </div>
+      );
     return (
       <li
         ref={ref}
@@ -177,7 +190,7 @@ export const Message = forwardRef<HTMLLIElement, IMessage>(
           {/* Display styles for each types of message */}
           {type === "text" ? (
             <Typography variant="body1" className="message__text">
-              {content}
+              <Emoji text={content} />
             </Typography>
           ) : type === "image" ? (
             <div
