@@ -1,7 +1,7 @@
+import { forwardRef, useEffect, useState } from "react";
 import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
-import { forwardRef, useEffect, useState } from "react";
 import "./SearchResult.css";
 import { UserType } from "../../../typings/UserType";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -19,14 +19,14 @@ export const SearchResult = forwardRef<HTMLLIElement, ISearchResult>(
 
     const [isFriend, setIsFriend] = useState(false);
 
-    const addFriendHandler = () => {
-      dispatch(
-        addFriend({
-          friendId: userId,
-          userRefId: user.userId,
-        })
-      );
-    };
+    // const addFriendHandler = () => {
+    //   dispatch(
+    //     addFriend({
+    //       friendId: userId,
+    //       userRefId: user.userId,
+    //     })
+    //   );
+    // };
 
     const checkIsFriend = () => {
       const isFriend = friends.filter(
@@ -60,7 +60,7 @@ export const SearchResult = forwardRef<HTMLLIElement, ISearchResult>(
             <IconButton
               className="searchResult__action"
               sx={{ color: "#0b81ff" }}
-              onClick={addFriendHandler}
+              // onClick={addFriendHandler}
             >
               <PersonAddIcon />
             </IconButton>

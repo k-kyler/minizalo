@@ -1,3 +1,11 @@
+.timeMessage {
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  margin: 1rem 0;
+  color: #b7b8b9;
+}
+
 .message {
   margin-bottom: 0.75rem;
   display: flex;
