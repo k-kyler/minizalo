@@ -18,7 +18,7 @@ export const CustomAlert: FC = () => {
       onClose={() => dispatch(closeAlert())}
       sx={{
         position: "absolute",
-        right: "1rem",
+        left: "1rem",
         bottom: "1rem",
         zIndex: 99,
         boxShadow:
