@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import "./InboxMessages.css";
 import { Message } from "./Message";
 import { ChatInput } from "./ChatInput";
+import { Overlay } from "./Overlay";
 import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -12,7 +13,6 @@ import FlipMove from "react-flip-move";
 import { useAppSelector } from "../../redux/hooks";
 import { selectInboxes } from "../../redux/InboxesSlice";
 import { selectUser } from "../../redux/UserSlice";
-import { MessageType } from "../../typings/MessageType";
 
 export const InboxMessages: FC = () => {
   const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
@@ -162,7 +162,9 @@ export const InboxMessages: FC = () => {
               <Message key={message.messageId} {...message} />
             ))}
           </FlipMove>
-        ) : null}
+        ) : (
+          <Overlay selectedInbox={selectedInbox} />
+        )}
       </ul>
 
       {/* Chat input */}

@@ -1,0 +1,11 @@
+.overlay {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 2.25rem 0;
+}
+
+.overlay__groupAvatar .MuiAvatar-root {
+  width: 3.125rem !important;
+  height: 3.125rem !important;
+}
