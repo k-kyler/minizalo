@@ -13,7 +13,7 @@ interface IInboxItem extends InboxItemType {
   clickHandler: () => void;
 }
 
-export const InboxItem: FC<IInboxItem> = ({
+const InboxItem: FC<IInboxItem> = ({
   inboxId,
   name,
   background,
@@ -144,3 +144,5 @@ export const InboxItem: FC<IInboxItem> = ({
     </div>
   );
 };
+
+export default InboxItem;

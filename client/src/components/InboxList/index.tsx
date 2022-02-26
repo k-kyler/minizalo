@@ -1,14 +1,15 @@
-import { IconButton, Tooltip, Typography } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, lazy, Suspense } from "react";
 import "./InboxList.css";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { InboxItem } from "./InboxItem";
 import { CustomDialog } from "../CustomDialog";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changeSelectedInboxId, selectInboxes } from "../../redux/InboxesSlice";
 import { openDialog } from "../../redux/DialogSlice";
 import { InboxItemType } from "../../typings/InboxItemType";
+
+const InboxItem = lazy(() => import("./InboxItem"));
 
 export const InboxList: FC = () => {
   const dispatch = useAppDispatch();
@@ -69,14 +70,15 @@ export const InboxList: FC = () => {
       {/* Inboxes */}
       <div className="inboxList__inboxes">
         {inboxList.map((room) => (
-          <InboxItem
-            key={room.inboxId}
-            {...room}
-            selectedInboxId={selectedInboxId}
-            clickHandler={() =>
-              dispatch(changeSelectedInboxId(room.inboxId as any))
-            }
-          />
+          <Suspense key={room.inboxId} fallback={""}>
+            <InboxItem
+              {...room}
+              selectedInboxId={selectedInboxId}
+              clickHandler={() =>
+                dispatch(changeSelectedInboxId(room.inboxId as any))
+              }
+            />
+          </Suspense>
         ))}
       </div>
     </div>
