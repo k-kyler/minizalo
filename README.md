@@ -5,7 +5,8 @@
 
 <h1 align="center">MiniZalo</h1>
 <p align="center"><b>@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</b></p>
-<p align="center">MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP.NET Core to build a web chat.</p>
+<p align="center">MiniZalo is a web chat inspired by Zalo and Facebook</p>
+<p align="center">It's also our university project about implementing SignalR of ASP.NET Core to build a web chat</p>
 
 <br />
 
