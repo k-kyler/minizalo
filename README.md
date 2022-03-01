@@ -1,40 +1,32 @@
 <p align="center">
-  <img src="client/src/assets/logo.png" width="25% />
+  <img src="client/src/assets/logo.png" width="15%" />
 </p>
 
-<h1 align="center">MiniZalo</h1>
+<h3 align="center">MiniZalo</h3>
+<h4 align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</h4>
+<p align="center">MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP .NET Core to build a web chat.</p>
 
-[![Project Report](https://img.shields.io/badge/Project%20Report-blue?style=for-the-badge&logo=github&labelColor=gray)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
-[![Postman API Reference](https://img.shields.io/badge/API%20Reference-orange?style=for-the-badge&logo=postman&labelColor=white)](https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b)
-[![Youtube Short Demo](https://img.shields.io/badge/Short%20Demo-d93025?style=for-the-badge&logo=youtube&labelColor=212121)](https://youtu.be/sc08zwHgIb4)
+<br />
 
-@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long
+<p align="center">
+  <a href="https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf">
+    <img src="https://img.shields.io/badge/Project%20Report-blue?style=flat&logo=github&labelColor=gray" alt="Project Report" />
+  </a>
+  <a href="https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b">
+    <img src="https://img.shields.io/badge/API%20Reference-orange?style=flat&logo=postman&labelColor=white" alt="Postman API Document" />
+  </a>
+  <a href="https://youtu.be/sc08zwHgIb4">
+    <img src="https://img.shields.io/badge/Short%20Demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube Short Demo" />
+  </a>
+</p>  
 
-## Description
-
-MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP .NET Core to build a web chat.
-
-## Overview
-
-### Dashboard
+<br />
 
 <p align="center">
   <img src="screenshots/dashboard.png" />
 </p>
 
-### Search for friends
-
-<p align="center">
-  <img src="screenshots/search.png" />
-</p>
-
-<p align="center">
-  <img src="screenshots/search-results.png" />
-</p>
-
-<p align="center">
-  <img src="screenshots/search-no-results.png" />
-</p>
+## Overview
 
 ### Chat
 
@@ -111,6 +103,20 @@ The upload handler will only accept the following file extensions:
 </p>
 
 ### Friends
+
+#### Search for friends
+
+<p align="center">
+  <img src="screenshots/search.png" />
+</p>
+
+<p align="center">
+  <img src="screenshots/search-results.png" />
+</p>
+
+<p align="center">
+  <img src="screenshots/search-no-results.png" />
+</p>
 
 #### View friends
 
