@@ -3,11 +3,10 @@
   <img src="screenshots/logo.png" width="50%" />
 </p>
 
-<br />
+<h3 align="center">Simple web chat inspired by Zalo and Facebook</h3>
+<p align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</p>
 
-<p align="center"><b>@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</b></p>
-<p align="center">MiniZalo is a web chat inspired by Zalo and Facebook</p>
-<p align="center">It's also our university project about implementing SignalR of ASP.NET Core to build a web chat</p>
+<br />
 
 <p align="center">
   <a href="https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf">
@@ -19,9 +18,9 @@
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
-</p>
-
-<p align="center">
+  
+  <br />
+  
   <a href="https://storyset.com/">
     <img src="https://img.shields.io/badge/Storyset-1273EB?style=flat" alt="Storyset" />
   </a>
@@ -35,6 +34,11 @@
 <p align="center">
   <img src="screenshots/quick-look.gif" />
 </p>
+
+<br />
+
+MiniZalo is a web chat created by I and my friends, it is also our university project about implementing SignalR of ASP.NET Core to build a web chat. We have collected some ideas and features from Zalo and Facebook to make our project more awesome 🎉.
+
 <!-- End of introduction -->
 
 <!-- Features -->
@@ -127,13 +131,11 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/search-no-results.png" />
 </p>
 
-### View friends
+### View friends & direct message
 
 <p align="center">
   <img src="screenshots/friends.png" />
 </p>
-
-### Direct message with your friends
 
 <p align="center">
   <img src="screenshots/friends-messaging.png" />
@@ -154,6 +156,5 @@ We are still working on notifications, friend request confirmation, user profile
 
 ---
 
-Powered by KKL Software Team
-
+<p align="center">Powered by KKL Software Team</p>
 <!-- End of notes -->
