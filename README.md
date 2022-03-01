@@ -6,6 +6,16 @@
 
 <h3 align="center">Simple web chat inspired by Zalo and Facebook</h3>
 <p align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</p>
+<p align="center">
+  Media resources from
+  <a href="https://storyset.com/">
+    Storyset
+  </a>
+  and
+  <a href="https://www.flaticon.com/">
+    Flaticon
+  </a>
+</p>
 
 <br />
 
@@ -18,15 +28,6 @@
   </a>
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://storyset.com/">
-    <img src="https://img.shields.io/badge/Storyset-1273EB?style=flat" alt="Storyset" />
-  </a>
-  <a href="https://www.flaticon.com/">
-    <img src="https://img.shields.io/badge/Flaticon-4ad395?style=flat" alt="Flaticon" />
   </a>
 </p>
 
