@@ -1,6 +1,6 @@
 <!-- Introduction -->
 <p align="center">
-  <img src="client/src/assets/logo.png" width="20%" />
+  <img src="client/src/assets/logo.png" width="21%" />
 </p>
 
 <h1 align="center">MiniZalo</h1>
