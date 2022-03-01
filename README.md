@@ -38,6 +38,8 @@
 <p align="center">
   <img src="screenshots/dashboard.png" />
 </p>
+
+<br />
 <!-- End of introduction -->
 
 <!-- Features -->
@@ -150,6 +152,7 @@ The upload handler will only accept the following file extensions:
 <!-- End of features -->
 
 <!-- Notes -->
+<br />
 
 ## 📋 NOTE
 
