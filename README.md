@@ -2,8 +2,8 @@
   <img src="client/src/assets/logo.png" width="15%" />
 </p>
 
-<h3 align="center">MiniZalo</h3>
-<h4 align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</h4>
+<h1 align="center">MiniZalo</h1>
+<p align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</p>
 <p align="center">MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP .NET Core to build a web chat.</p>
 
 <br />
