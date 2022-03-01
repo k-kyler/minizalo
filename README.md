@@ -1,7 +1,7 @@
 <!-- Introduction -->
 <p align="center">
-  <img src="screenshots/logo-dark.png#gh-dark-mode-only" width="512px" />
-  <img src="screenshots/logo-light.png#gh-light-mode-only" width="30%" />
+  <img src="screenshots/logo-dark.png#gh-dark-mode-only" />
+  <img src="screenshots/logo-light.png#gh-light-mode-only" />
 </p>
 
 <h3 align="center">Simple web chat inspired by Zalo and Facebook</h3>
@@ -19,9 +19,6 @@
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
-</p>
-
-<p align="center">
   <a href="https://storyset.com/">
     <img src="https://img.shields.io/badge/Storyset-1273EB?style=flat" alt="Storyset" />
   </a>
