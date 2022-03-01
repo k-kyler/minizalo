@@ -11,7 +11,6 @@
 <p align="center">MiniZalo is a web chat inspired by Zalo and Facebook</p>
 <p align="center">It's also our university project about implementing SignalR of ASP.NET Core to build a web chat</p>
 
-
 <p align="center">
   <a href="https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf">
     <img src="https://img.shields.io/badge/Project%20report-blue?style=flat&logo=github&labelColor=gray" alt="Project report" />
@@ -36,7 +35,7 @@
 <br />
 
 <p align="center">
-  <img src="screenshots/dashboard.png" />
+  <img src="screenshots/quick-look.gif" />
 </p>
 <!-- End of introduction -->
 
@@ -150,6 +149,7 @@ The upload handler will only accept the following file extensions:
 <!-- End of features -->
 
 <!-- Notes -->
+
 ## 📋 NOTE
 
 We are still working on notifications, friend request confirmation, user profile and more...
