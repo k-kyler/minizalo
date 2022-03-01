@@ -128,7 +128,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ## NOTE
 
-We are still working on notification, friend request confirmation, user settings and more...
+We are still working on notifications, friend request confirmation, user settings and more...
 
 ---
 
