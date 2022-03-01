@@ -32,13 +32,15 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/search-no-results.png" />
 </p>
 
-### Experience with emoji
+### Chat
+
+#### Experience with emoji
 
 <p align="center">
   <img src="screenshots/chat-emoji.png" />
 </p>
 
-### Upload image, video & document
+#### Upload image, video & document
 
 The upload handler will only accept the following file extensions:
 
@@ -46,7 +48,7 @@ The upload handler will only accept the following file extensions:
 - All extensions of video
 - Document & archive: `.doc`, `.docx`, `.xls`, `.xlsx`, `.txt`, `.pdf`, `.rar`, `.zip`
 
-#### Upload image
+##### Upload image
 
 <p align="center">
   <img src="screenshots/chat-upload-image.png" />
@@ -56,7 +58,7 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-upload-image-successful.png" />
 </p>
 
-#### Upload video
+##### Upload video
 
 <p align="center">
   <img src="screenshots/chat-upload-video.png" />
@@ -66,7 +68,7 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-upload-video-successful.png" />
 </p>
 
-#### Upload document
+##### Upload document
 
 <p align="center">
   <img src="screenshots/chat-upload-document.png" />
@@ -76,27 +78,21 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-upload-document-successful.png" />
 </p>
 
-### Image, video & document features
+#### Image, video & document features
 
-#### Zoom or view the original size of your image
+##### Zoom or view the original size of your image
 
 <p align="center">
   <img src="screenshots/chat-zoom-image.png" />
 </p>
 
-#### Pause, mute or open video in full screen
-
-<p align="center">
-  <img src="screenshots/chat-video-features.png" />
-</p>
-
-#### Upload limit is 10mb
+##### Upload limit is 10mb
 
 <p align="center">
   <img src="screenshots/chat-upload-error.png" />
 </p>
 
-### Create group chat
+#### Create group chat
 
 - Choose the pencil icon above of the inbox list to start creating your new group
 - Add your group an avatar (optional)
