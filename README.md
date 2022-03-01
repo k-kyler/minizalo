@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf">
-    <img src="https://img.shields.io/badge/Project%20Report-blue?style=flat&logo=github&labelColor=gray" alt="Project Report" />
+    <img src="https://img.shields.io/badge/Project%20report-blue?style=flat&logo=github&labelColor=gray" alt="Project report" />
   </a>
   <a href="https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b">
-    <img src="https://img.shields.io/badge/API%20Reference-orange?style=flat&logo=postman&labelColor=white" alt="Postman API Document" />
+    <img src="https://img.shields.io/badge/API%20document-orange?style=flat&logo=postman&labelColor=white" alt="Postman API document" />
   </a>
   <a href="https://youtu.be/sc08zwHgIb4">
-    <img src="https://img.shields.io/badge/Short%20Demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube Short Demo" />
+    <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
 </p>  
 
