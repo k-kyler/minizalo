@@ -40,7 +40,6 @@
 <!-- End of introduction -->
 
 <!-- Features -->
-
 ## ✨ Features
 
 ### Experience with emoji
@@ -129,13 +128,11 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/search-no-results.png" />
 </p>
 
-### View friends
+### View friends & direct message
 
 <p align="center">
   <img src="screenshots/friends.png" />
 </p>
-
-### Direct message with your friends
 
 <p align="center">
   <img src="screenshots/friends-messaging.png" />
@@ -156,6 +153,5 @@ We are still working on notifications, friend request confirmation, user profile
 
 ---
 
-Powered by KKL Software Team
-
+<p align="center">Powered by KKL Software Team</p>
 <!-- End of notes -->
