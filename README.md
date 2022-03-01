@@ -8,7 +8,6 @@
 <p align="center">MiniZalo is a web chat inspired by Zalo and Facebook</p>
 <p align="center">It's also our university project about implementing SignalR of ASP.NET Core to build a web chat</p>
 
-<br />
 
 <p align="center">
   <a href="https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf">
@@ -20,9 +19,9 @@
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
-  
-  <br />
-  
+</p>
+
+<p align="center">
   <a href="https://storyset.com/">
     <img src="https://img.shields.io/badge/Storyset-1273EB?style=flat" alt="Storyset" />
   </a>
