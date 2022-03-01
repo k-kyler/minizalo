@@ -26,7 +26,7 @@
   <img src="screenshots/dashboard.png" />
 </p>
 
-## Overview
+## Features
 
 ### Chat
 
