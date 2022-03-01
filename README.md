@@ -1,9 +1,7 @@
 <!-- Introduction -->
 <p align="center">
-  <img src="client/src/assets/logo.png" width="20%" />
+  <img src="screenshots/logo.png" width="50%" />
 </p>
-
-<h1 align="center">MiniZalo</h1>
 
 <br />
 
