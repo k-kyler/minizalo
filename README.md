@@ -19,7 +19,10 @@
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
-</p>  
+  <br />
+  <a href="https://storyset.com/">Storyset</a>
+  <a href="https://www.flaticon.com/">Flaticon</a>
+</p>
 
 <br />
 
@@ -29,6 +32,7 @@
 <!-- End of introduction -->
 
 <!-- Features -->
+
 ## ✨ Features
 
 ### Experience with emoji
@@ -137,6 +141,7 @@ The upload handler will only accept the following file extensions:
 <!-- End of features -->
 
 <!-- Notes -->
+
 ## 📋 NOTE
 
 We are still working on notifications, friend request confirmation, user profile and more...
@@ -144,4 +149,5 @@ We are still working on notifications, friend request confirmation, user profile
 ---
 
 Powered by KKL Software Team
+
 <!-- End of notes -->

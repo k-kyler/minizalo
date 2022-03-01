@@ -27,21 +27,6 @@ export const Copyright: FC = () => {
           GitHub repository
         </Link>
       </Typography>
-
-      <Typography variant="subtitle1" color="GrayText">
-        Additional resources from{" "}
-        <Link href="https://storyset.com/web" target="__blank" underline="none">
-          Storyset
-        </Link>
-        {" and "}
-        <Link
-          href="https://www.flaticon.com/"
-          target="__blank"
-          underline="none"
-        >
-          Flaticon
-        </Link>
-      </Typography>
     </div>
   );
 };
