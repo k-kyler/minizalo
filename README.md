@@ -7,6 +7,8 @@
 <p align="center"><b>@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</b></p>
 <p align="center">MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP.NET Core to build a web chat.</p>
 
+<br />
+
 <p align="center">
   <a href="https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf">
     <img src="https://img.shields.io/badge/Project%20report-blue?style=flat&logo=github&labelColor=gray" alt="Project report" />
@@ -27,6 +29,8 @@
     <img src="https://img.shields.io/badge/Flaticon-4ad395?style=flat" alt="Flaticon" />
   </a>
 </p>
+
+<br />
 
 <p align="center">
   <img src="screenshots/dashboard.png" />
