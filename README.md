@@ -1,4 +1,8 @@
-# MiniZalo
+<p align="center">
+  <img src="client/src/assets/logo.png" width="25% />
+</p>
+
+<h1 align="center">MiniZalo</h1>
 
 [![Project Report](https://img.shields.io/badge/Project%20Report-blue?style=for-the-badge&logo=github&labelColor=gray)](https://github.com/ToVinhKhang/All-Reports/blob/main/BSA_WEB/WEB_MiniZaloChatRealTime.pdf)
 [![Postman API Reference](https://img.shields.io/badge/API%20Reference-orange?style=for-the-badge&logo=postman&labelColor=white)](https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b)
