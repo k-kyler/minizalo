@@ -32,8 +32,6 @@
   </a>
 </p>
 
-<br />
-
 <p align="center">
   <img src="screenshots/quick-look.gif" />
 </p>
