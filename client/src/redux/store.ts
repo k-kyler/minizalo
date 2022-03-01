@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./UserSlice";
-import alertReducer from "./AlertSlice";
-import dialogReducer from "./DialogSlice";
-import inboxesReducer from "./InboxesSlice";
-import messageReducer from "./MessageSlice";
-import friendsReducer from "./FriendsSlice";
+import userReducer from "./user.slice";
+import alertReducer from "./alert.slice";
+import dialogReducer from "./dialog.slice";
+import inboxesReducer from "./inboxes.slice";
+import messageReducer from "./message.slice";
+import friendsReducer from "./friends.slice";
 
 export const store = configureStore({
   reducer: {

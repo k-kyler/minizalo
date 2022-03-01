@@ -1,0 +1,33 @@
+.chatScreenInput {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.chatScreenInput__inputContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.25rem 0.5rem 1rem;
+}
+
+.chatScreenInput__inputContainer > textarea {
+  width: 100%;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.chatScreenInput__buttons {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.chatScreenInput__emoji {
+  position: relative;
+}
