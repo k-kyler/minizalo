@@ -1,4 +1,4 @@
-.emojiList {
+.chatScreenEmojiList {
   position: absolute;
   bottom: 2.75rem;
   right: 0;
@@ -18,7 +18,7 @@
   }
 }
 
-.emojiList::after {
+.chatScreenEmojiList::after {
   position: absolute;
   top: 100.5%;
   right: 0.75rem;

@@ -14,7 +14,7 @@ import { useAppSelector } from "@redux/hooks";
 import { selectInboxes } from "@redux/inboxes.slice";
 import { selectUser } from "@redux/user.slice";
 
-export const InboxMessages: FC = () => {
+export const ChatScreen: FC = () => {
   const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);
   const { user } = useAppSelector(selectUser);
 
@@ -35,9 +35,9 @@ export const InboxMessages: FC = () => {
   useEffect(scrollToBottom, [selectedInboxId, selectedInbox]);
 
   return (
-    <div className="inboxMessages">
+    <div className="chatScreen">
       {/* Header */}
-      <div className="inboxMessages__header">
+      <div className="chatScreen__header">
         <Tooltip
           title={
             selectedInbox.type === "group"
@@ -53,7 +53,7 @@ export const InboxMessages: FC = () => {
               : ""
           }
         >
-          <div className="inboxMessages__headerLeft">
+          <div className="chatScreen__headerLeft">
             {selectedInbox.type === "group" ? (
               <Avatar
                 src={`${import.meta.env.VITE_API_URL}/Resources/${
@@ -85,7 +85,7 @@ export const InboxMessages: FC = () => {
               </>
             )}
 
-            <div className="inboxMessages__info">
+            <div className="chatScreen__info">
               {selectedInbox.type === "group" ? (
                 <Typography variant="h6">{selectedInbox.name}</Typography>
               ) : (
@@ -127,7 +127,7 @@ export const InboxMessages: FC = () => {
           </div>
         </Tooltip>
 
-        <div className="inboxMessages__headerRight">
+        <div className="chatScreen__headerRight">
           {selectedInbox.type === "group" ? (
             <Tooltip title="Invite member">
               <IconButton sx={{ color: "#0b81ff" }}>
@@ -152,7 +152,7 @@ export const InboxMessages: FC = () => {
 
       {/* Messages */}
       <ul
-        className="inboxMessages__messages"
+        className="chatScreen__messages"
         ref={messagesEndRef}
         onClick={() => setOpenEmojiModal(false)}
       >

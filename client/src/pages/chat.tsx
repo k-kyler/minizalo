@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { InboxMessages } from "@features/chat/chat-screen/chat-screen.component";
+import { ChatScreen } from "@features/chat/chat-screen/chat-screen.component";
 import { InboxList } from "@features/chat/inboxes/inbox-list.component";
 import { PageLoading } from "@features/ui/loadings/page-loading/page-loading";
 import { useRedirect } from "@hooks/use-redirect";
@@ -11,8 +11,8 @@ import {
   fetchInboxes,
   changeSelectedInboxId,
 } from "@redux/inboxes.slice";
-import "./chat.style.css";
 import NoInboxesOverlay from "@assets/no_inboxes_overlay.svg";
+import "./chat.style.css";
 
 interface ILocationState {
   inboxIdToSelect: string;
@@ -45,7 +45,7 @@ export const Chat: FC = () => {
             <InboxList />
           </div>
           <div className="chat__inboxMessages">
-            <InboxMessages />
+            <ChatScreen />
           </div>
         </div>
       ) : isFetching ? (

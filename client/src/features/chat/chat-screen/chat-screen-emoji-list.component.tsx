@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "./chat-screen-emoji-list.css";
+import "./chat-screen-emoji-list.style.css";
 
 interface IChatScreenEmojiList {
   emojiPicker: any;

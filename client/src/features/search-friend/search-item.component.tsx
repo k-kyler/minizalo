@@ -39,8 +39,8 @@ export const SearchItem: FC<ISearchItem> = ({ userId, userName, avatar }) => {
 
   if (userId === user.userId) return null;
   return (
-    <li className="searchResult">
-      <div className="searchResult__info">
+    <li className="searchItem">
+      <div className="searchItem__info">
         <Avatar
           src={`${import.meta.env.VITE_API_URL}/Resources/${avatar}`}
           alt={userName}
@@ -57,7 +57,7 @@ export const SearchItem: FC<ISearchItem> = ({ userId, userName, avatar }) => {
           </IconButton>
         ) : (
           <IconButton
-            className="searchResult__action"
+            className="searchItem__action"
             sx={{ color: "#0b81ff" }}
             // onClick={addFriendHandler}
           >

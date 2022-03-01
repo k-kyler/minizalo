@@ -8,7 +8,7 @@ import {
 import { Fab, Zoom } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { HubConnectionBuilder } from "@microsoft/signalr";
-import "./app.css";
+import "./app.style.css";
 import { linkData } from "@shared/link-data";
 import { SignIn } from "@pages/sign-in";
 import { SignUp } from "@pages/sign-up";

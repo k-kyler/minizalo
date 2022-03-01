@@ -32,7 +32,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/search-no-results.png" />
 </p>
 
-### Experience chat with emoji
+### Experience with emoji
 
 <p align="center">
   <img src="screenshots/chat-emoji.png" />
@@ -40,7 +40,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ### Upload image, video & document
 
-#### Image
+#### Upload image
 
 <p align="center">
   <img src="screenshots/chat-upload-image.png" />
@@ -50,7 +50,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/chat-upload-image-successful.png" />
 </p>
 
-#### Video
+#### Upload video
 
 <p align="center">
   <img src="screenshots/chat-upload-video.png" />
@@ -60,7 +60,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/chat-upload-video-successful.png" />
 </p>
 
-#### Document
+#### Upload document (.pdf, .doc, .docx, .xls, .xlsx, .txt, .rar, .zip)
 
 <p align="center">
   <img src="screenshots/chat-upload-document.png" />
@@ -92,9 +92,9 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ### Create group chat
 
-- Choose the pencil icon above of the inboxes list to start creating your new group.
-- You can add your group an avatar (optional).
-- You can only add your friends as members of the group.
+- Choose the pencil icon above of the inbox list to start creating your new group.
+- Add your group an avatar (optional).
+- Add your friends as members of the group.
 
 <p align="center">
   <img src="screenshots/chat-create-group-1.png" />
@@ -106,16 +106,24 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ### Friends
 
-#### View friends list
+#### View friends
 
 <p align="center">
   <img src="screenshots/friends.png" />
 </p>
 
-#### Message with your friend
+#### Message with your friends
 
 <p align="center">
   <img src="screenshots/friends-messaging.png" />
+</p>
+
+### Notifications
+
+#### View notifications
+
+<p align="center">
+  <img src="screenshots/notifications-dropdown.png" />
 </p>
 
 ## NOTE
