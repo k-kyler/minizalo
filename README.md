@@ -139,7 +139,7 @@ The upload handler will only accept the following file extensions:
 <!-- Notes -->
 ## 📋 NOTE
 
-We are still working on notifications, friend request confirmation, user settings and more...
+We are still working on notifications, friend request confirmation, user profile and more...
 
 ---
 
