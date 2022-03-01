@@ -1,7 +1,7 @@
 <!-- Introduction -->
 <p align="center">
-  <img src="screenshots/logo-dark.png#gh-dark-mode-only" />
-  <img src="screenshots/logo-light.png#gh-light-mode-only" />
+  <img src="screenshots/logo-dark.png#gh-dark-mode-only" width="30%" />
+  <img src="screenshots/logo-light.png#gh-light-mode-only" width="30%" />
 </p>
 
 <h3 align="center">Simple web chat inspired by Zalo and Facebook</h3>
