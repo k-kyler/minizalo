@@ -4,8 +4,6 @@
   <img src="screenshots/logo-light.png#gh-light-mode-only" />
 </p>
 
-<br />
-
 <h3 align="center">Simple web chat inspired by Zalo and Facebook</h3>
 <p align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</p>
 
