@@ -1,8 +1,7 @@
 import { FC, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { ChatScreen } from "@features/chat/chat-screen/chat-screen.component";
-import { InboxList } from "@features/chat/inboxes/inbox-list.component";
+import { ChatScreen, InboxList } from "@features/chat";
 import { PageLoading } from "@features/ui/loadings/page-loading/page-loading";
 import { useRedirect } from "@hooks/use-redirect";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";

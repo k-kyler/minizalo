@@ -1,9 +1,9 @@
 import { FC, useEffect, useRef, useState } from "react";
 import FlipMove from "react-flip-move";
 import "./chat-screen.style.css";
-import { Message } from "@features/chat/messages/message.component";
-import { ChatScreenInput } from "@features/chat/chat-screen/chat-screen-input.component";
+import { ChatScreenInput } from "./chat-screen-input.component";
 import { ChatScreenOverlay } from "./chat-screen-overlay.component";
+import { Message } from "@features/chat/messages";
 import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import BarChartIcon from "@mui/icons-material/BarChart";

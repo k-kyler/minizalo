@@ -3,7 +3,7 @@ import "./search.style.css";
 import SearchIcon from "@mui/icons-material/Search";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import { IconButton, Typography } from "@mui/material";
-import { SearchResults } from "@features/search-friend/search-results.component";
+import { SearchResults } from "@features/search-friend";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import {
   fetchFriendsList,

@@ -1,5 +1,5 @@
-import { Grid, Typography } from "@mui/material";
 import { FC } from "react";
+import { Grid, Typography } from "@mui/material";
 import { nanoid } from "@reduxjs/toolkit";
 import { selectFriends } from "@redux/friends.slice";
 import { useAppSelector } from "@redux/hooks";

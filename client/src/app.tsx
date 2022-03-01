@@ -13,7 +13,7 @@ import { linkData } from "@shared/link-data";
 import { SignIn } from "@pages/sign-in";
 import { SignUp } from "@pages/sign-up";
 import { Navbar } from "@features/ui/navbar/navbar.component";
-import { PrivateRoute } from "@features/private-route/private-route.component";
+import { PrivateRoute } from "@features/private-route";
 import { CustomAlert } from "@features/ui/custom-alert/custom-alert.component";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { fetchUser, selectUser } from "@redux/user.slice";
