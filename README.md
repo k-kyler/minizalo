@@ -44,7 +44,7 @@ The upload handler will only accept the following file extensions:
 
 - All extensions of image
 - All extensions of video
-- Document & Archive: `.doc`, `.docx`, `.xls`, `.xlsx`, `.txt`, `.pdf`, `.rar`, `.zip`
+- Document & archive: `.doc`, `.docx`, `.xls`, `.xlsx`, `.txt`, `.pdf`, `.rar`, `.zip`
 
 #### Upload image
 
