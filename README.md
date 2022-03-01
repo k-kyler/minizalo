@@ -5,7 +5,7 @@
 </p>
 
 <h3 align="center">Simple web chat inspired by Zalo and Facebook</h3>
-<p align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</p>
+<p align="center">@Authors: <a href="https://github.com/ToVinhKhang">To Vinh Khang</a>, <a href="https://github.com/k-kyler">Bui Quang Khai</a>, <a href="https://github.com/longvnbd2000">Du Thuan Long</a></p>
 <p align="center">
   Media resources from
   <a href="https://storyset.com/">
