@@ -40,6 +40,13 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ### Upload image, video & document
 
+The upload handler will only accept the following file extensions:
+
+- All extensions of image
+- All extensions of video
+- Document: `.doc`, `.docx`, `.xls`, `.xlsx`, `.txt`, `.pdf`
+- Archive: `.rar`, `.zip`
+
 #### Upload image
 
 <p align="center">
@@ -60,7 +67,7 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
   <img src="screenshots/chat-upload-video-successful.png" />
 </p>
 
-#### Upload document (.pdf, .doc, .docx, .xls, .xlsx, .txt, .rar, .zip)
+#### Upload document
 
 <p align="center">
   <img src="screenshots/chat-upload-document.png" />
@@ -92,9 +99,9 @@ MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a universit
 
 ### Create group chat
 
-- Choose the pencil icon above of the inbox list to start creating your new group.
-- Add your group an avatar (optional).
-- Add your friends as members of the group.
+- Choose the pencil icon above of the inbox list to start creating your new group
+- Add your group an avatar (optional)
+- Add your friends as members of the group
 
 <p align="center">
   <img src="screenshots/chat-create-group-1.png" />
