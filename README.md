@@ -1,6 +1,6 @@
 <!-- Introduction -->
 <p align="center">
-  <img src="screenshots/logo-dark.png#gh-dark-mode-only" width="30%" />
+  <img src="screenshots/logo-dark.png#gh-dark-mode-only" width="512px" />
   <img src="screenshots/logo-light.png#gh-light-mode-only" width="30%" />
 </p>
 
