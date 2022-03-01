@@ -14,14 +14,20 @@
     <img src="https://img.shields.io/badge/Project%20report-blue?style=flat&logo=github&labelColor=gray" alt="Project report" />
   </a>
   <a href="https://documenter.getpostman.com/view/12371540/UVCB943H#490ec4bb-5ad8-4dbd-b373-a4a9a38b018b">
-    <img src="https://img.shields.io/badge/API%20document-orange?style=flat&logo=postman&labelColor=white" alt="Postman API document" />
+    <img src="https://img.shields.io/badge/API%20document-orange?style=flat&logo=postman&labelColor=white" alt="API document" />
   </a>
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
+  
   <br />
-  <a href="https://storyset.com/">Storyset</a>
-  <a href="https://www.flaticon.com/">Flaticon</a>
+  
+  <a href="https://storyset.com/">
+    <img src="https://img.shields.io/badge/Storyset-1273EB?style=flat" alt="Storyset" />
+  </a>
+  <a href="https://www.flaticon.com/">
+    <img src="https://img.shields.io/badge/Flaticon-4ad395?style=flat" alt="Flaticon" />
+  </a>
 </p>
 
 <br />
