@@ -1,9 +1,10 @@
+<!-- Introduction -->
 <p align="center">
   <img src="client/src/assets/logo.png" width="15%" />
 </p>
 
 <h1 align="center">MiniZalo</h1>
-<p align="center">@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</p>
+<p align="center"><b>@Authors: To Vinh Khang, Bui Quang Khai, Du Thuan Long</b></p>
 <p align="center">MiniZalo is a web chat that inspired by Zalo and Facebook, it's also a university project of I and my friends about implementing SignalR of ASP.NET Core to build a web chat.</p>
 
 <br />
@@ -25,18 +26,18 @@
 <p align="center">
   <img src="screenshots/dashboard.png" />
 </p>
+<!-- End of introduction -->
 
-## Features
+<!-- Features -->
+## ✨ Features
 
-### Chat
-
-#### Experience with emoji
+### Experience with emoji
 
 <p align="center">
   <img src="screenshots/chat-emoji.png" />
 </p>
 
-#### Upload image, video & document
+### Upload image, video & document
 
 The upload handler will only accept the following file extensions:
 
@@ -44,7 +45,7 @@ The upload handler will only accept the following file extensions:
 - All extensions of video
 - Document & archive: `.doc`, `.docx`, `.xls`, `.xlsx`, `.txt`, `.pdf`, `.rar`, `.zip`
 
-##### Upload image
+#### Upload image
 
 <p align="center">
   <img src="screenshots/chat-upload-image.png" />
@@ -54,7 +55,7 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-upload-image-successful.png" />
 </p>
 
-##### Upload video
+#### Upload video
 
 <p align="center">
   <img src="screenshots/chat-upload-video.png" />
@@ -64,7 +65,7 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-upload-video-successful.png" />
 </p>
 
-##### Upload document
+#### Upload document
 
 <p align="center">
   <img src="screenshots/chat-upload-document.png" />
@@ -74,21 +75,21 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-upload-document-successful.png" />
 </p>
 
-#### Image, video & document features
+### Image, video & document features
 
-##### Zoom or view the original size of your image
+#### Zoom or view the original size of your image
 
 <p align="center">
   <img src="screenshots/chat-zoom-image.png" />
 </p>
 
-##### Upload limit is 10mb
+#### Upload limit is 10mb
 
 <p align="center">
   <img src="screenshots/chat-upload-error.png" />
 </p>
 
-#### Create group chat
+### Create group chat
 
 - Choose the pencil icon above of the inbox list to start creating your new group
 - Add your group an avatar (optional)
@@ -102,9 +103,7 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/chat-create-group-2.png" />
 </p>
 
-### Friends
-
-#### Search for friends
+### Search for friends
 
 <p align="center">
   <img src="screenshots/search.png" />
@@ -118,30 +117,31 @@ The upload handler will only accept the following file extensions:
   <img src="screenshots/search-no-results.png" />
 </p>
 
-#### View friends
+### View friends
 
 <p align="center">
   <img src="screenshots/friends.png" />
 </p>
 
-#### Message with your friends
+### Direct message with your friends
 
 <p align="center">
   <img src="screenshots/friends-messaging.png" />
 </p>
 
-### Notifications
-
-#### View notifications
+### View notifications
 
 <p align="center">
   <img src="screenshots/notifications-dropdown.png" />
 </p>
+<!-- End of features -->
 
-## NOTE
+<!-- Notes -->
+## 📋 NOTE
 
 We are still working on notifications, friend request confirmation, user settings and more...
 
 ---
 
 Powered by KKL Software Team
+<!-- End of notes -->
