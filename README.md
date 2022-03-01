@@ -19,9 +19,9 @@
   <a href="https://youtu.be/sc08zwHgIb4">
     <img src="https://img.shields.io/badge/Short%20demo-d93025?style=flat&logo=youtube&labelColor=212121" alt="Youtube short demo" />
   </a>
-</p>
-
-<p align="center">
+  
+  <br />
+  
   <a href="https://storyset.com/">
     <img src="https://img.shields.io/badge/Storyset-1273EB?style=flat" alt="Storyset" />
   </a>
