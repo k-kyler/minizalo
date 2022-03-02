@@ -1,0 +1,11 @@
+.searchSuggestion__keywords {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.searchSuggestion__keyword {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}

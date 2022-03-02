@@ -5,3 +5,4 @@ export * from "./navbar";
 export * from "./slider";
 export * from "./time-ago";
 export * from "./form-text-field";
+export * from "./buttons";

@@ -5,16 +5,13 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { Fab, Zoom } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import "./app.style.css";
 import { linkData } from "@shared/link-data";
 import { SignIn } from "@pages/sign-in";
 import { SignUp } from "@pages/sign-up";
-import { Navbar } from "@features/ui/navbar/navbar.component";
 import { PrivateRoute } from "@features/private-route";
-import { CustomAlert } from "@features/ui/custom-alert/custom-alert.component";
+import { CustomAlert, ScrollToTopButton, Navbar } from "@features/ui";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { fetchUser, selectUser } from "@redux/user.slice";
 import { selectIsOpen } from "@redux/alert.slice";
@@ -36,10 +33,6 @@ function App() {
     appRef.current && appRef.current.scrollTop !== 0
       ? setDisplayFloatButton(true)
       : setDisplayFloatButton(false);
-  };
-
-  const scrollToTopHandler = () => {
-    appRef.current ? (appRef.current.scrollTop = 0) : null;
   };
 
   const createSignalRConnection = () => {
@@ -86,17 +79,8 @@ function App() {
       {/* General alert */}
       {isAlertOpen && <CustomAlert />}
 
-      {/* Zoom button */}
-      <Zoom in={displayFloatButton}>
-        <Fab
-          color="primary"
-          className="search__scrollToTop"
-          size="medium"
-          onClick={scrollToTopHandler}
-        >
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </Zoom>
+      {/* Scroll to top button */}
+      <ScrollToTopButton ref={appRef} displayFloatButton={displayFloatButton} />
 
       {/* Routes setup */}
       <Router>
