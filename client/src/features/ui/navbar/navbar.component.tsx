@@ -1,4 +1,5 @@
 import { FC, useState, MouseEvent } from "react";
+import { Link, NavLink } from "react-router-dom";
 import {
   Avatar,
   Tooltip,
@@ -10,7 +11,6 @@ import {
   IconButton,
   Badge,
 } from "@mui/material";
-import { Link, NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LogoutIcon from "@mui/icons-material/Logout";

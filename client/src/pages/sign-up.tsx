@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import { selectUser, signUpUser } from "@redux/user.slice";
 import { openAlert } from "@redux/alert.slice";
 import { selectFriends } from "@redux/friends.slice";
-import { MainLoading } from "@features/ui/loadings/main-loading/main-loading.component";
+import { MainLoading } from "@features/ui";
 import { useRedirect } from "@hooks/use-redirect";
 
 export const SignUp: FC = () => {

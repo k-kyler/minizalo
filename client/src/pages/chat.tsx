@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { ChatScreen, InboxList } from "@features/chat";
-import { PageLoading } from "@features/ui/loadings/page-loading/page-loading";
+import { PageLoading } from "@features/ui";
 import { useRedirect } from "@hooks/use-redirect";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import {
