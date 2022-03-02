@@ -88,6 +88,7 @@ export const SignIn: FC = () => {
               <form className="signin__form" onSubmit={signInHandler}>
                 <FormTextField
                   errorMessage={errorMessage}
+                  errorType="email"
                   ref={emailRef}
                   label="Email"
                   type="email"
@@ -95,6 +96,7 @@ export const SignIn: FC = () => {
                 <Box sx={{ height: 20 }} />
                 <FormTextField
                   errorMessage={errorMessage}
+                  errorType="password"
                   ref={passwordRef}
                   label="Password"
                   type="password"
