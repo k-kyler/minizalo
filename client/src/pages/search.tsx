@@ -4,13 +4,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import { IconButton, Typography } from "@mui/material";
 import { SearchResults } from "@features/search-friend";
+import { PageLoading } from "@features/ui";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import {
   fetchFriendsList,
   searchForFriends,
   selectFriends,
 } from "@redux/friends.slice";
-import { PageLoading } from "@features/ui/loadings/page-loading/page-loading";
 import { useRedirect } from "@hooks/use-redirect";
 
 export const Search: FC = () => {
