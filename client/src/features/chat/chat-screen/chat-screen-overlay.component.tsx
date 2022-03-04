@@ -1,10 +1,10 @@
 import { FC } from "react";
 import "./chat-screen-overlay.style.css";
 import { Avatar, AvatarGroup, Typography } from "@mui/material";
-import { InboxItemType } from "@typings/inbox-item.type";
-import { useAppSelector } from "@redux/hooks";
-import { selectUser } from "@redux/user.slice";
-import { selectFriends } from "@redux/friends.slice";
+import { InboxItemType } from "typings/inbox-item.type";
+import { useAppSelector } from "redux/hooks";
+import { selectUser } from "redux/user.slice";
+import { selectFriends } from "redux/friends.slice";
 
 interface IChatScreenOverlay {
   selectedInbox: InboxItemType;

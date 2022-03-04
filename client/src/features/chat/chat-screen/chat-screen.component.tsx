@@ -3,16 +3,16 @@ import FlipMove from "react-flip-move";
 import "./chat-screen.style.css";
 import { ChatScreenInput } from "./chat-screen-input.component";
 import { ChatScreenOverlay } from "./chat-screen-overlay.component";
-import { Message } from "@features/chat/messages";
+import { Message } from "features/chat/messages";
 import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
-import { useAppSelector } from "@redux/hooks";
-import { selectInboxes } from "@redux/inboxes.slice";
-import { selectUser } from "@redux/user.slice";
+import { useAppSelector } from "redux/hooks";
+import { selectInboxes } from "redux/inboxes.slice";
+import { selectUser } from "redux/user.slice";
 
 export const ChatScreen: FC = () => {
   const { selectedInboxId, inboxes } = useAppSelector(selectInboxes);

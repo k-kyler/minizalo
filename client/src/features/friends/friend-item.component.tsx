@@ -10,12 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import { FriendType } from "@typings/friend.type";
+import { FriendType } from "typings/friend.type";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
-import { useAppSelector } from "@redux/hooks";
-import { selectUser } from "@redux/user.slice";
-import { selectInboxes } from "@redux/inboxes.slice";
+import { useAppSelector } from "redux/hooks";
+import { selectUser } from "redux/user.slice";
+import { selectInboxes } from "redux/inboxes.slice";
 
 interface IFriendItem extends FriendType {}
 

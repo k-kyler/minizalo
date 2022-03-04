@@ -1,7 +1,7 @@
-import { SlideType } from "@typings/slide.type";
-import FirstSlide from "@assets/slide_1.gif";
-import SecondSlide from "@assets/slide_2.gif";
-import ThirdSlide from "@assets/slide_3.gif";
+import { SlideType } from "typings/slide.type";
+import FirstSlide from "assets/slide_1.gif";
+import SecondSlide from "assets/slide_2.gif";
+import ThirdSlide from "assets/slide_3.gif";
 
 export const sliderData: SlideType[] = [
   {

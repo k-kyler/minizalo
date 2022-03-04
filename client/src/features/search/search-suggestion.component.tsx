@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import NumbersIcon from "@mui/icons-material/Numbers";
-import { useAppSelector } from "@redux/hooks";
-import { selectFriends } from "@redux/friends.slice";
+import { useAppSelector } from "redux/hooks";
+import { selectFriends } from "redux/friends.slice";
 import "./search-suggestion.style.css";
 
 export const SearchSuggestion = () => {

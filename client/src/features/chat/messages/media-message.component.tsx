@@ -4,8 +4,8 @@ import PauseIcon from "@mui/icons-material/Pause";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
-import { openDialog } from "@redux/dialog.slice";
-import { useAppDispatch } from "@redux/hooks";
+import { openDialog } from "redux/dialog.slice";
+import { useAppDispatch } from "redux/hooks";
 
 interface IMediaMessage {
   type: "video" | "image";

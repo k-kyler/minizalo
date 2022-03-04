@@ -7,17 +7,17 @@ import {
 } from "react-router-dom";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import "./app.style.css";
-import { linkData } from "@shared/link-data";
-import { SignIn } from "@pages/sign-in";
-import { SignUp } from "@pages/sign-up";
-import { PrivateRoute } from "@features/private-route";
-import { CustomAlert, ScrollToTopButton, Navbar } from "@features/ui";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { fetchUser, selectUser } from "@redux/user.slice";
-import { selectIsOpen } from "@redux/alert.slice";
-import { addNewInbox, addNewMessage } from "@redux/inboxes.slice";
-import { InboxItemType } from "@typings/inbox-item.type";
-import { MessageType } from "@typings/message.type";
+import { linkData } from "shared/link-data";
+import { SignIn } from "pages/sign-in";
+import { SignUp } from "pages/sign-up";
+import { PrivateRoute } from "features/private-route";
+import { CustomAlert, ScrollToTopButton, Navbar } from "features/ui";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { fetchUser, selectUser } from "redux/user.slice";
+import { selectIsOpen } from "redux/alert.slice";
+import { addNewInbox, addNewMessage } from "redux/inboxes.slice";
+import { InboxItemType } from "typings/inbox-item.type";
+import { MessageType } from "typings/message.type";
 
 function App() {
   const dispatch = useAppDispatch();

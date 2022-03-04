@@ -1,16 +1,19 @@
-import { FC } from "react";
+import React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { Button, ListItemButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { notificationType } from "@typings/notification.type";
-import Logo from "@assets/logo.png";
+import { notificationType } from "typings/notification.type";
+// import Logo from "assets/logo.png";
+
+// For testing purpose
+const Logo: string = new URL("assets/logo.png", "http://localhost:3000/").href;
 
 interface INotificationItem extends notificationType {}
 
-export const NotificationItem: FC<INotificationItem> = ({
+export const NotificationItem: React.FC<INotificationItem> = ({
   type,
   title,
   description,
@@ -40,36 +43,37 @@ export const NotificationItem: FC<INotificationItem> = ({
                 <span style={{ fontWeight: 500 }}>Thuan Long</span> want to be
                 your friend
               </>
-            ) : (
-              ""
-            )
+            ) : null
           }
           secondary={
             <>
               {type === "system" ? (
                 description
               ) : type === "friend-request" ? (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0 0.5rem",
-                    margin: "0.5rem 0",
-                  }}
-                >
-                  <Button variant="contained" size="small">
+                <>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    sx={{ my: "0.5rem", mr: "0.5rem" }}
+                  >
                     Accept
                   </Button>
-                  <Button variant="contained" color="inherit" size="small">
+                  <Button
+                    variant="contained"
+                    color="inherit"
+                    size="small"
+                    sx={{ my: "0.5rem" }}
+                  >
                     Decline
                   </Button>
-                </div>
+                </>
               ) : null}
 
               <Typography
                 variant="body2"
                 sx={{ fontWeight: 500, mt: 0.5 }}
                 color="text.primary"
+                component="span"
               >
                 {timestamp} ago
               </Typography>

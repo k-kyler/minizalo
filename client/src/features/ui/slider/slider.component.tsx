@@ -1,11 +1,11 @@
 import { FC, useEffect, useRef, useReducer } from "react";
 import "./slider.style.css";
-import { SlideType } from "../../../typings/slide.type";
+import { SlideType } from "typings/slide.type";
 import {
   SliderReducerType,
   SliderActionType,
   SliderActionsType,
-} from "../../../typings/slider-reducer.type";
+} from "typings/slider-reducer.type";
 import { SliderItem } from "./slider-item.component";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";

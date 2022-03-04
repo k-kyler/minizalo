@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FriendType } from "@typings/friend.type";
-import { UserType } from "@typings/user.type";
+import { FriendType } from "typings/friend.type";
+import { UserType } from "typings/user.type";
 import { RootState } from "./store";
 
 interface FriendsState {

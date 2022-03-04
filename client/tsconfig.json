@@ -17,17 +17,10 @@
     "jsx": "react-jsx",
 
     // Config for absolute imports
-    "baseUrl": ".",
-    "paths": {
-      "@assets/*": ["src/assets/*"],
-      "@shared/*": ["src/shared/*"],
-      "@features/*": ["src/features/*"],
-      "@pages/*": ["src/pages/*"],
-      "@redux/*": ["src/redux/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@typings/*": ["src/typings/*"]
-    }
+    "baseUrl": "src"
     // End of config for absolute imports
   },
-  "include": ["./src"]
+  // Config for absolute imports
+  "include": ["src"]
+  // End of config for absolute imports
 }

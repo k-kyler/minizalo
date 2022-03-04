@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import "./slider-item.style.css";
-import { SlideType } from "@typings/slide.type";
+import { SlideType } from "typings/slide.type";
 import { Typography } from "@mui/material";
 
 interface ISliderItem extends SlideType {}

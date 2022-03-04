@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Alert } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { closeAlert, selectMessage } from "@redux/alert.slice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { closeAlert, selectMessage } from "redux/alert.slice";
 
 export const CustomAlert: FC = () => {
   const dispatch = useAppDispatch();

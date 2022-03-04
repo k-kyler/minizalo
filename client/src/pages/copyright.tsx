@@ -1,8 +1,8 @@
 import { FC, useEffect } from "react";
 import "./copyright.style.css";
 import { Typography, Link } from "@mui/material";
-import CopyrightImage from "@assets/copyright.png";
-import { useRedirect } from "@hooks/use-redirect";
+import CopyrightImage from "assets/copyright.png";
+import { useRedirect } from "hooks/use-redirect";
 
 export const Copyright: FC = () => {
   const { setPathnameHandler } = useRedirect();

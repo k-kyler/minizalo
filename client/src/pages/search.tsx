@@ -1,11 +1,11 @@
 import { FC, useEffect } from "react";
 import "./search.style.css";
 import { Typography } from "@mui/material";
-import { SearchBar, SearchResults, SearchSuggestion } from "@features/search";
-import { PageLoading } from "@features/ui";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { fetchFriendsList, selectFriends } from "@redux/friends.slice";
-import { useRedirect } from "@hooks/use-redirect";
+import { SearchBar, SearchResults, SearchSuggestion } from "features/search";
+import { PageLoading } from "features/ui";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { fetchFriendsList, selectFriends } from "redux/friends.slice";
+import { useRedirect } from "hooks/use-redirect";
 
 export const Search: FC = () => {
   const dispatch = useAppDispatch();

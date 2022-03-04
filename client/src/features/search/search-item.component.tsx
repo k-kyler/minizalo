@@ -3,10 +3,10 @@ import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import "./search-item.style.css";
-import { UserType } from "@typings/user.type";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { addFriend, selectFriends } from "@redux/friends.slice";
-import { selectUser } from "@redux/user.slice";
+import { UserType } from "typings/user.type";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { addFriend, selectFriends } from "redux/friends.slice";
+import { selectUser } from "redux/user.slice";
 
 interface ISearchItem extends UserType {}
 

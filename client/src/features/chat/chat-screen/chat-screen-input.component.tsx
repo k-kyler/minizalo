@@ -18,15 +18,15 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import SendIcon from "@mui/icons-material/Send";
 import { nanoid } from "@reduxjs/toolkit";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { selectUser } from "@redux/user.slice";
-import { postMessage } from "@redux/message.slice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { selectUser } from "redux/user.slice";
+import { postMessage } from "redux/message.slice";
 import {
   addNewMessage,
   selectInboxes,
   removeMessage,
   changeIsPreviewing,
-} from "@redux/inboxes.slice";
+} from "redux/inboxes.slice";
 
 interface IChatScreenInput {
   selectedInboxId: string;
