@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +11,7 @@ import { linkData } from "shared/link-data";
 import { SignIn } from "pages/sign-in";
 import { SignUp } from "pages/sign-up";
 import { PrivateRoute } from "features/private-route";
-import { CustomAlert, ScrollToTopButton, Navbar } from "features/ui";
+import { CustomAlert, Navbar } from "features/ui";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { fetchUser, selectUser } from "redux/user.slice";
 import { selectIsOpen } from "redux/alert.slice";
@@ -24,16 +24,6 @@ function App() {
 
   const isAlertOpen = useAppSelector(selectIsOpen);
   const { user } = useAppSelector(selectUser);
-
-  const [displayFloatButton, setDisplayFloatButton] = useState(false);
-
-  const appRef = useRef<HTMLDivElement>(null);
-
-  const showFloatButtonHandler = () => {
-    appRef.current && appRef.current.scrollTop !== 0
-      ? setDisplayFloatButton(true)
-      : setDisplayFloatButton(false);
-  };
 
   const createSignalRConnection = () => {
     const connection = new HubConnectionBuilder()
@@ -75,12 +65,9 @@ function App() {
   }, []);
 
   return (
-    <div className="app" ref={appRef} onScroll={showFloatButtonHandler}>
+    <div className="app">
       {/* General alert */}
       {isAlertOpen && <CustomAlert />}
-
-      {/* Scroll to top button */}
-      <ScrollToTopButton ref={appRef} displayFloatButton={displayFloatButton} />
 
       {/* Routes setup */}
       <Router>
