@@ -2,11 +2,11 @@ import { forwardRef, useState, useEffect, lazy, Suspense } from "react";
 import "./message.style.css";
 import Emoji from "react-emoji-render";
 import { Avatar, Typography, Button } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { selectUser } from "@redux/user.slice";
-import { changeIsPreviewing, removeMessage } from "@redux/inboxes.slice";
-import { MessageType } from "@typings/message.type";
-import { TimeAgo } from "@features/ui/time-ago/time-ago.component";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { selectUser } from "redux/user.slice";
+import { changeIsPreviewing, removeMessage } from "redux/inboxes.slice";
+import { MessageType } from "typings/message.type";
+import { TimeAgo } from "features/ui/time-ago/time-ago.component";
 import { TimeMessage } from "./time-message.component";
 import { FallbackMessage } from "./fallback-message.component";
 

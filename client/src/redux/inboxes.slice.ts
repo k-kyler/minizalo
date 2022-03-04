@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MessageType } from "../typings/message.type";
-import { InboxItemType } from "../typings/inbox-item.type";
+import { MessageType } from "typings/message.type";
+import { InboxItemType } from "typings/inbox-item.type";
 import { RootState } from "./store";
 
 interface InboxesState {

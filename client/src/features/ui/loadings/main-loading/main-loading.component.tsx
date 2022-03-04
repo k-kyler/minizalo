@@ -1,6 +1,6 @@
 import { FC } from "react";
 import "./main-loading.style.css";
-import Logo from "@assets/logo.png";
+import Logo from "assets/logo.png";
 
 export const MainLoading: FC = () => {
   return (

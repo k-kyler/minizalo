@@ -3,11 +3,11 @@ import "./inbox-list.style.css";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { CustomDialog } from "@features/ui/custom-dialog/custom-dialog.component";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { changeSelectedInboxId, selectInboxes } from "@redux/inboxes.slice";
-import { openDialog } from "@redux/dialog.slice";
-import { InboxItemType } from "@typings/inbox-item.type";
+import { CustomDialog } from "features/ui/custom-dialog/custom-dialog.component";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { changeSelectedInboxId, selectInboxes } from "redux/inboxes.slice";
+import { openDialog } from "redux/dialog.slice";
+import { InboxItemType } from "typings/inbox-item.type";
 
 const InboxItem = lazy(() => import("./inbox-item.component"));
 

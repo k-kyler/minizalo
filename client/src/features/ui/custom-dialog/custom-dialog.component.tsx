@@ -22,11 +22,11 @@ import { PhotoCamera } from "@mui/icons-material";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./custom-dialog.style.css";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { closeDialog, selectDialog } from "@redux/dialog.slice";
-import { fetchFriendsList, selectFriends } from "@redux/friends.slice";
-import { selectUser } from "@redux/user.slice";
-import { postInbox, selectInboxes } from "@redux/inboxes.slice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { closeDialog, selectDialog } from "redux/dialog.slice";
+import { fetchFriendsList, selectFriends } from "redux/friends.slice";
+import { selectUser } from "redux/user.slice";
+import { postInbox, selectInboxes } from "redux/inboxes.slice";
 
 interface ChipMember {
   userId: string;

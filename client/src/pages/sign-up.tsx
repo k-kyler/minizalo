@@ -2,12 +2,12 @@ import { FC } from "react";
 import "./sign-up.style.css";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Box, CircularProgress } from "@mui/material";
-import { useAppSelector } from "@redux/hooks";
-import { selectUser } from "@redux/user.slice";
-import { selectFriends } from "@redux/friends.slice";
-import { FormTextField, MainLoading } from "@features/ui";
-import { useRedirect } from "@hooks/use-redirect";
-import { useAuth } from "@hooks/use-auth";
+import { useAppSelector } from "redux/hooks";
+import { selectUser } from "redux/user.slice";
+import { selectFriends } from "redux/friends.slice";
+import { FormTextField, MainLoading } from "features/ui";
+import { useRedirect } from "hooks/use-redirect";
+import { useAuth } from "hooks/use-auth";
 
 interface ISignUpButton {
   isSignUp: boolean;

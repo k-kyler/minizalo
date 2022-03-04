@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
-import { useAppSelector } from "@redux/hooks";
-import { selectUser } from "@redux/user.slice";
+import { useAppSelector } from "redux/hooks";
+import { selectUser } from "redux/user.slice";
 
 interface IPrivateRouteProps extends RouteProps {
   component: any;

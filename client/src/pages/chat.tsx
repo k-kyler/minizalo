@@ -1,16 +1,16 @@
 import { FC, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { ChatScreen, InboxList } from "@features/chat";
-import { PageLoading } from "@features/ui";
-import { useRedirect } from "@hooks/use-redirect";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { ChatScreen, InboxList } from "features/chat";
+import { PageLoading } from "features/ui";
+import { useRedirect } from "hooks/use-redirect";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
   selectInboxes,
   fetchInboxes,
   changeSelectedInboxId,
-} from "@redux/inboxes.slice";
-import NoInboxesOverlay from "@assets/no_inboxes_overlay.svg";
+} from "redux/inboxes.slice";
+import NoInboxesOverlay from "assets/no_inboxes_overlay.svg";
 import "./chat.style.css";
 
 interface ILocationState {

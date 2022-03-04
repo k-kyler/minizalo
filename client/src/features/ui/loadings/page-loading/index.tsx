@@ -1,1 +1,1 @@
-export { PageLoading } from "./page-loading";
+export { PageLoading } from "./page-loading.component";

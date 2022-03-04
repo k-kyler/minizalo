@@ -17,11 +17,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import "./navbar.style.css";
-import Logo from "@assets/logo.png";
-import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { selectUser, signOutUser } from "@redux/user.slice";
-import { linkData } from "@shared/link-data";
-import { NotificationList } from "@features/notifications";
+import Logo from "assets/logo.png";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { selectUser, signOutUser } from "redux/user.slice";
+import { linkData } from "shared/link-data";
+import { NotificationList } from "features/notifications";
 
 export const Navbar: FC = () => {
   const { user } = useAppSelector(selectUser);

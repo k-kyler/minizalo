@@ -1,8 +1,8 @@
 import { FormEvent, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { fetchUser, signInUser, signUpUser } from "@redux/user.slice";
-import { useAppDispatch } from "@redux/hooks";
-import { openAlert } from "@redux/alert.slice";
+import { fetchUser, signInUser, signUpUser } from "redux/user.slice";
+import { useAppDispatch } from "redux/hooks";
+import { openAlert } from "redux/alert.slice";
 
 export const useAuth = (type: "sign-in" | "sign-up") => {
   const dispatch = useAppDispatch();

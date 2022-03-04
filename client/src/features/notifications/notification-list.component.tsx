@@ -1,7 +1,8 @@
+import React from "react";
 import { FC } from "react";
 import List from "@mui/material/List";
 import { ListItem, Typography } from "@mui/material";
-import { notificationType } from "@typings/notification.type";
+import { notificationType } from "typings/notification.type";
 import { NotificationItem } from "./notification-item.component";
 import "./notification-list.style.css";
 
@@ -30,7 +31,9 @@ export const NotificationList: FC = () => {
     >
       {/* Title */}
       <ListItem alignItems="flex-start" sx={{ py: 0 }}>
-        <Typography variant="h6">Notifications</Typography>
+        <Typography variant="h6" component="span">
+          Notifications
+        </Typography>
       </ListItem>
 
       {/* Notification items */}

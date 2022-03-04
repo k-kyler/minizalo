@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MessageType } from "../typings/message.type";
+import { MessageType } from "typings/message.type";
 
 interface MessageState {
   isCreating: boolean;
