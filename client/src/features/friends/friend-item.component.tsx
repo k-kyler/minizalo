@@ -19,7 +19,7 @@ import { selectInboxes } from "redux/inboxes.slice";
 
 interface IFriendItem extends FriendType {}
 
-export const FriendItem: FC<IFriendItem> = ({
+const FriendItem: FC<IFriendItem> = ({
   senderId,
   senderData,
   receiverId,
@@ -221,3 +221,5 @@ export const FriendItem: FC<IFriendItem> = ({
   }
   return null;
 };
+
+export default FriendItem;

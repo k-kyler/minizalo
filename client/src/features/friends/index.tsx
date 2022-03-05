@@ -1,1 +1,1 @@
-export { FriendsList } from "./friend-list.component";
+export { FriendList } from "./friend-list.component";

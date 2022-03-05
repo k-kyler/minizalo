@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react";
 import { Container } from "@mui/material";
-import { FriendsList } from "features/friends";
+import { FriendList } from "features/friends";
 import { PageLoading } from "features/ui";
 import { fetchFriendsList, selectFriends } from "redux/friends.slice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { useRedirect } from "hooks/use-redirect";
+import { useRedirect } from "hooks";
 import "./friends.style.css";
 
 export const Friends: FC = () => {
@@ -21,7 +21,7 @@ export const Friends: FC = () => {
 
   return (
     <Container className="friends" maxWidth="md">
-      {isFetching ? <PageLoading /> : <FriendsList />}
+      {isFetching ? <PageLoading /> : <FriendList />}
     </Container>
   );
 };

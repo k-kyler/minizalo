@@ -6,10 +6,7 @@ import { Button, ListItemButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { notificationType } from "typings/notification.type";
-// import Logo from "assets/logo.png";
-
-// For testing purpose
-const Logo: string = new URL("assets/logo.png", "http://localhost:3000/").href;
+import Logo from "assets/logo.png";
 
 interface INotificationItem extends notificationType {}
 
@@ -71,7 +68,7 @@ export const NotificationItem: React.FC<INotificationItem> = ({
 
               <Typography
                 variant="body2"
-                sx={{ fontWeight: 500, mt: 0.5 }}
+                sx={{ fontWeight: 500, mt: 0.5, display: "block" }}
                 color="text.primary"
                 component="span"
               >
