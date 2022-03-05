@@ -6,8 +6,7 @@ import { useAppSelector } from "redux/hooks";
 import { selectUser } from "redux/user.slice";
 import { selectFriends } from "redux/friends.slice";
 import { FormTextField, MainLoading } from "features/ui";
-import { useRedirect } from "hooks/use-redirect";
-import { useAuth } from "hooks/use-auth";
+import { useRedirect, useAuth } from "hooks";
 
 interface ISignInButton {
   isSignIn: boolean;

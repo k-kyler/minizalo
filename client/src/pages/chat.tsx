@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { ChatScreen, InboxList } from "features/chat";
 import { PageLoading } from "features/ui";
-import { useRedirect } from "hooks/use-redirect";
+import { useRedirect, useSignalR } from "hooks";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
   selectInboxes,
@@ -16,6 +16,11 @@ import "./chat.style.css";
 interface ILocationState {
   inboxIdToSelect: string;
 }
+
+const CreateConnection = () => {
+  useSignalR();
+  return <></>;
+};
 
 export const Chat: FC = () => {
   const { isFetching, inboxes } = useAppSelector(selectInboxes);
@@ -38,6 +43,10 @@ export const Chat: FC = () => {
 
   return (
     <>
+      {/* Connection builder */}
+      <CreateConnection />
+
+      {/* Chat page */}
       {!isFetching && inboxes.length ? (
         <div className="chat">
           <div className="chat__inboxList">

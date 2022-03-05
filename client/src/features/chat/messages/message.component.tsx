@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectUser } from "redux/user.slice";
 import { changeIsPreviewing, removeMessage } from "redux/inboxes.slice";
 import { MessageType } from "typings/message.type";
-import { TimeAgo } from "features/ui/time-ago/time-ago.component";
+import { TimeAgo } from "features/ui";
 import { TimeMessage } from "./time-message.component";
 import { FallbackMessage } from "./fallback-message.component";
 

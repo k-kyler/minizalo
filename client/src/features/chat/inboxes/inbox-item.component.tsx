@@ -5,7 +5,7 @@ import { InboxItemType } from "typings/inbox-item.type";
 import "./inbox-item.style.css";
 import { useAppSelector } from "redux/hooks";
 import { selectUser } from "redux/user.slice";
-import { TimeAgo } from "features/ui/time-ago/time-ago.component";
+import { TimeAgo } from "features/ui";
 
 interface IInboxItem extends InboxItemType {
   selectedInboxId: string;

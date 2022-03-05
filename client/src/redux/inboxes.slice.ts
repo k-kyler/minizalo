@@ -23,6 +23,7 @@ interface RemoveMessage {
 }
 
 interface AddNewInbox {
+  userId: string;
   inbox: InboxItemType;
 }
 
@@ -118,7 +119,12 @@ export const inboxesSlice = createSlice({
       }
     },
     addNewInbox: (state, action: PayloadAction<AddNewInbox>) => {
-      state.inboxes.unshift(action.payload.inbox);
+      const { inbox, userId } = action.payload;
+      const isJoinedInbox = inbox.memberIds.includes(userId);
+
+      if (isJoinedInbox) {
+        state.inboxes.unshift(inbox);
+      }
     },
   },
   extraReducers: (builder) => {
@@ -155,6 +161,9 @@ export const inboxesSlice = createSlice({
                 return bMessages[bMessages.length - 1].createdAt.localeCompare(
                   a.createdAt
                 );
+              } else {
+                let bInbox = { ...b } as any;
+                return bInbox.createdAt.localeCompare(a.createdAt);
               }
             });
 
