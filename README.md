@@ -143,5 +143,6 @@ We are still working on notifications, friend request confirmation, user profile
 
 ---
 
-<p align="center">Powered by KKL Software Team</p>
+Powered by KKL Software Team
+
 <!-- End of notes -->
