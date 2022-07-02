@@ -141,8 +141,4 @@ The upload handler will only accept the following file extensions:
 
 We are still working on notifications, friend request confirmation, user profile and more...
 
----
-
-Powered by KKL Software Team
-
 <!-- End of notes -->
